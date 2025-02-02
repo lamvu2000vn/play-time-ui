@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "Добро пожаловать!",
+        "homePage": "Главная",
+        "logout": "Выйти",
+        "submit": "OK",
+        "cancel": "Отмена",
+        "loading": "Загрузка...",
+        "error": {
+            "requiredField": "Это поле обязательно для заполнения.",
+            "minLength": "Минимальная длина {min} символов.",
+            "maxLength": "Максимальная длина {max} символов.",
+            "noWhitespace": "Поле не должно содержать пробелов.",
+            "noSpecialCharacters": "Поле не должно содержать специальные символы."
+        },
+        "notification": {
+            "title": "Уведомление",
+            "options": {
+                "readAll": "Отметить все как прочитанные",
+                "deleteAll": "Удалить все"
+            }
+        },
+        "sidebar": {
+            "messageLink": "Сообщения",
+            "FriendLink": "Друзья",
+            "HistoryLink": "История",
+            "HomeLink": "Домой",
+            "StoreLink": "Магазин",
+            "gameInstructionsLink": "Инструкции к игре",
+            "gameSectionTitle": "Игры",
+            "userInfo": {
+                "accountManagerLink": "Управление аккаунтом",
+                "myStatistics": "Моя статистика",
+                "changeProfileImage": "Изменить изображение профиля"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "Побед: {times}",
+            "loseTimes": "Поражений: {times}",
+            "drawTimes": "Ничьих: {times}",
+            "history": "История"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "Моя статистика",
+                "totalWins": "Победы",
+                "totalLoses": "Поражения",
+                "totalDraws": "Ничьи",
+                "totalWinRate": "Процент побед",
+                "level": "Уровень",
+                "error": {
+                    "unknown": "Не удалось загрузить статистику игры. Пожалуйста, обновите страницу или попробуйте позже."
+                }
+            },
+            "historyModal": {
+                "title": "История",
+                "pageLabel": "Страница {page}",
+                "winLabel": "Победа",
+                "loseLabel": "Поражение",
+                "drawLabel": "Ничья",
+                "totalMatchesLabel": "Всего: {totalMatch} матчей",
+                "searchingHistory": "Получение данных истории...",
+                "noHistoryFound": "История не найдена.",
+                "error": {
+                    "unknown": "Не удалось загрузить данные истории. Пожалуйста, обновите страницу или попробуйте позже."
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "Подтвердить покупку:"
+            },
+            "confirmLeaveMatchModal": {
+                "title": "Выйти из матча",
+                "content": "Подтвердить выход из матча? Противнику будет засчитана победа."
+            },
+            "lookingForGameModal": {
+                "content": "Поиск противника",
+                "lookingForOpponentNotification": "Поиск подходящего противника, пожалуйста, подождите.",
+                "opponentNotFoundNotification": "В данный момент противники не найдены. Пожалуйста, попробуйте позже."
+            },
+            "settingModal": {
+                "title": "Настройки",
+                "systemType": "Система",
+                "soundType": "Звук",
+                "languageType": "Язык",
+                "theme": "Тема",
+                "backgroundImage": "Фоновое изображение",
+                "image": "Изображение {number}",
+                "language": "Язык",
+                "BackgroundMusicVolume": "Фоновая музыка",
+                "SystemSoundVolume": "Системные звуки"
+            },
+            "gameSetup": {
+                "title": "Создать новую комнату",
+                "gameName": "Игра",
+                "createRoom": "Создать комнату",
+                "ticTacToe": {
+                    "boardSize": "Размер поля",
+                    "size3x3Description": "3x3 (Классический)",
+                    "size5x5Description": "5x5 (Четыре в ряд для победы)",
+                    "timePerTurn": "Время на ход",
+                    "seconds": "{seconds} секунд",
+                    "playTurn": "Ход",
+                    "firstTurn": "{firstTurn, select, me {Я хожу первым} opponent {Противник ходит первым} other {Случайно}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "Длительность матча",
+                    "minutes": "{minutes} минут"
+                },
+                "memory": {
+                    "theme": "Тема карт",
+                    "themeValue": "{theme, select, fruit {Фрукты} other {Животные}}",
+                    "numOfCardsLabel": "Количество карт",
+                    "numOfCards": "{number} карт",
+                    "timeForMatch": "Длительность матча",
+                    "minutes": "{minutes} минут"
+                },
+                "error": {
+                    "createRoomFailure": "Не удалось создать новую комнату, пожалуйста, попробуйте позже."
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "Для игры требуется экран размером не менее {width}px."
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "Авторизоваться",
+                "usernameInput": "Имя пользователя",
+                "passwordInput": "Пароль",
+                "loginBtn": "Авторизоваться",
+                "forgotPasswordBtn": "Забыли пароль?",
+                "rememberMeText": "Запомнить меня",
+                "haveNoAccountText": "У вас нет учетной записи?",
+                "registerBtn": "Зарегистрироваться",
+                "error": {
+                    "invalidCredentials": "Неверное имя пользователя или пароль.",
+                    "unknown": "Невозможно войти. Повторите попытку позже."
+                }
+            },
+            "register": {
+                "title": "Зарегистрироваться",
+                "fullNameInput": "Как тебя зовут?",
+                "usernameInput": "Имя пользователя",
+                "passwordInput": "Пароль",
+                "reEnterPasswordInput": "Повторно введите пароль",
+                "registerBtn": "Зарегистрироваться",
+                "loginBtn": "Авторизоваться",
+                "haveAccountText": "У вас уже есть аккаунт?",
+                "error": {
+                    "passwordLength": "Пароль должен состоять из 6-18 символов.",
+                    "passwordNotMatch": "Пароли не совпадают.",
+                    "usernameTaken": "Имя пользователя уже занято.",
+                    "unknown": "Невозможно зарегистрироваться. "
+                },
+                "success": "Аккаунт успешно зарегистрирован!"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "Потрясающая игровая платформа",
+                "text1": "100% бесплатно",
+                "text2": "Мультиплеер",
+                "text3": "Дружелюбно"
+            },
+            "introduceSection2": {
+                "title1": "Таблица лидеров",
+                "content1": "Бросьте вызов лучшим игрокам мира с помощью нашей уникальной системы ежедневных турниров и станьте номером один! ",
+                "title2": "Играйте с друзьями",
+                "content2": "Играйте с кем угодно по всему миру в режиме реального времени, поделившись уникальной ссылкой. ",
+                "title3": "Интернет-магазин",
+                "content3": "Чем больше вы играете, тем больше внутриигровых монет вы заработаете. ",
+                "title4": "Заводить друзей и общаться",
+                "content4": "Подружитесь со своими товарищами и друзьями. "
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "Магазин"
+            },
+            "tab": {
+                "ownedLabel": "В собственности",
+                "notOwnedLabel": "Премиум"
+            },
+            "confirmBuyModal": {
+                "title": "Подтвердить покупку"
+            },
+            "error": {
+                "itemNotFound": "Товар не существует.",
+                "cannotGetItemList": "Не удалось получить список элементов."
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "Играй с другом",
+                "playWithRandom": "Случайное совпадение",
+                "gameInstructions": "Инструкция по игре"
+            },
+            "ranking": {
+                "title": "Таблица лидеров"
+            },
+            "ticTacToe": {
+                "description": "Стратегическая игра, в которой игроки по очереди отмечают «X» или «O» в пустых клетках на доске. "
+            },
+            "fifteenPuzzle": {
+                "description": "Игра-головоломка, в которую играют на доске 4x4 с 15 плитками с номерами от 1 до 15 и одной пустой ячейкой. "
+            },
+            "memory": {
+                "description": "Игра на проверку памяти, в которой игроки по очереди переворачивают две карты. "
+            }
+        },
+        "account": {
+            "title": "Мой счет",
+            "displayName": "Отображаемое имя",
+            "password": "Пароль",
+            "changePasswordBtn": "Изменить пароль",
+            "changeProfileImageBtn": "Изменять",
+            "deleteAccountTitle": "Удалить аккаунт",
+            "deleteAccountDescription": "Удаление вашей учетной записи приведет к безвозвратному удалению вашей учетной записи, игр и рейтингов. ",
+            "deleteAccountBtn": "Удалить аккаунт"
+        },
+        "gameInstructions": {
+            "title": "Инструкции по игре",
+            "ticTacToe": {
+                "objectiveTitle": "Цель:",
+                "objectiveContent": "Выровняйте 3 своих символа (X или O) последовательно в строке, столбце или диагонали на доске.",
+                "instructionsTitle": "Как играть:",
+                "instructionsContent": "Два игрока по очереди отмечают свои символы в пустых клетках доски. "
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "Цель:",
+                "objectiveContent": "Расположите пронумерованные плитки от 1 до 15 по порядку слева направо, сверху вниз на доске 4х4, оставив последнюю ячейку пустой.",
+                "instructionsTitle": "Как играть:",
+                "instructionsContent": "На доске 16 плиток, включая одну пустую ячейку. "
+            },
+            "memory": {
+                "objectiveTitle": "Цель:",
+                "objectiveContent": "Найдите на доске все пары совпадающих изображений.",
+                "instructionsTitle": "Как играть:",
+                "instructionsContent": "На игровом поле находится набор закрытых карточек с изображениями. "
+            }
+        },
+        "room": {
+            "leaveRoom": "Покинуть комнату",
+            "shareLinkTitle": "Поделитесь этой ссылкой с другом:",
+            "PreparingRoomTitle": "Подготовка комнаты",
+            "youAreFirstTurn": "Вы первая очередь.",
+            "opponentIsFirstTurn": "Противник — первый ход.",
+            "youWin": "Вы выиграли!",
+            "opponentWin": "Противник победил!",
+            "drawMatch": "Матч ничья!",
+            "loadingTheGame": "Загрузка данных игры, пожалуйста, подождите...",
+            "opponentCancelRequest": "Оппонент отклонил запрос.",
+            "opponentWantToPlayAgain": "Соперник хочет сыграть снова.",
+            "playAgain": "Играть снова",
+            "sentPlayAgainRequest": "Запрос отправлен",
+            "sendFirstMessageTitle": "Отправьте первое сообщение.",
+            "youHere": "Вы здесь",
+            "opponentHere": "Противник здесь",
+            "15PuzzleMoveInstruction": "Перемещайте плитки на сетке, чтобы расположить их от 1 до 15.",
+            "error": {
+                "sendPlayAgainRequestFail": "Невозможно отправить запрос",
+                "roomNotFound": "Комната не найдена.",
+                "playAgainFailure": "Оппонент покинул комнату или комната была отменена.",
+                "screenSizeNotSupported": "Игра требует большего размера экрана.",
+                "unknown": "Неизвестная ошибка."
+            }
+        },
+        "error": {
+            "title": "В системе произошла ошибка. Пожалуйста, повторите попытку позже.",
+            "tryAgain": "Попробовать снова"
+        }
+    }
+}

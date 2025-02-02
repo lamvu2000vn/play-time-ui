@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "Bem-vindo!",
+        "homePage": "Início",
+        "logout": "Sair",
+        "submit": "OK",
+        "cancel": "Cancelar",
+        "loading": "Carregando...",
+        "error": {
+            "requiredField": "Este campo é obrigatório.",
+            "minLength": "O tamanho mínimo é de {min} caracteres.",
+            "maxLength": "O tamanho máximo é de {max} caracteres.",
+            "noWhitespace": "O campo não deve conter espaços.",
+            "noSpecialCharacters": "O campo não deve conter caracteres especiais."
+        },
+        "notification": {
+            "title": "Notificação",
+            "options": {
+                "readAll": "Marcar tudo como lido",
+                "deleteAll": "Apagar tudo"
+            }
+        },
+        "sidebar": {
+            "messageLink": "Mensagens",
+            "FriendLink": "Amigos",
+            "HistoryLink": "Histórico",
+            "HomeLink": "Início",
+            "StoreLink": "Loja",
+            "gameInstructionsLink": "Instruções do Jogo",
+            "gameSectionTitle": "Jogos",
+            "userInfo": {
+                "accountManagerLink": "Gerenciamento de Conta",
+                "myStatistics": "Minhas Estatísticas",
+                "changeProfileImage": "Alterar Imagem de Perfil"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "Vitórias: {times}",
+            "loseTimes": "Derrotas: {times}",
+            "drawTimes": "Empates: {times}",
+            "history": "Histórico"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "Minhas Estatísticas",
+                "totalWins": "Vitórias",
+                "totalLoses": "Derrotas",
+                "totalDraws": "Empates",
+                "totalWinRate": "Taxa de Vitórias",
+                "level": "Nível",
+                "error": {
+                    "unknown": "Não foi possível carregar as estatísticas do jogo. Atualize a página ou tente novamente mais tarde."
+                }
+            },
+            "historyModal": {
+                "title": "Histórico",
+                "pageLabel": "Página {page}",
+                "winLabel": "Vitória",
+                "loseLabel": "Derrota",
+                "drawLabel": "Empate",
+                "totalMatchesLabel": "Total: {totalMatch} partidas",
+                "searchingHistory": "Buscando dados do histórico...",
+                "noHistoryFound": "Nenhum histórico encontrado.",
+                "error": {
+                    "unknown": "Não foi possível carregar os dados do histórico. Atualize a página ou tente novamente mais tarde."
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "Confirmar compra:"
+            },
+            "confirmLeaveMatchModal": {
+                "title": "Sair da Partida",
+                "content": "Confirmar a saída da partida? O oponente receberá a vitória."
+            },
+            "lookingForGameModal": {
+                "content": "Procurando um oponente",
+                "lookingForOpponentNotification": "Procurando por um oponente adequado, aguarde.",
+                "opponentNotFoundNotification": "Nenhum oponente encontrado no momento. Tente novamente mais tarde."
+            },
+            "settingModal": {
+                "title": "Configurações",
+                "systemType": "Sistema",
+                "soundType": "Som",
+                "languageType": "Idioma",
+                "theme": "Tema",
+                "backgroundImage": "Imagem de fundo",
+                "image": "Imagem {number}",
+                "language": "Idioma",
+                "BackgroundMusicVolume": "Música de fundo",
+                "SystemSoundVolume": "Sons do sistema"
+            },
+            "gameSetup": {
+                "title": "Criar Nova Sala",
+                "gameName": "Jogo",
+                "createRoom": "Criar Sala",
+                "ticTacToe": {
+                    "boardSize": "Tamanho do Tabuleiro",
+                    "size3x3Description": "3x3 (Clássico)",
+                    "size5x5Description": "5x5 (Conecte 4 para Vencer)",
+                    "timePerTurn": "Tempo por Turno",
+                    "seconds": "{seconds} segundos",
+                    "playTurn": "Turno",
+                    "firstTurn": "{firstTurn, select, me {Eu começo primeiro} opponent {O oponente começa primeiro} other {Aleatório}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "Duração da Partida",
+                    "minutes": "{minutes} minutos"
+                },
+                "memory": {
+                    "theme": "Tema das Cartas",
+                    "themeValue": "{theme, select, fruit {Frutas} other {Animais}}",
+                    "numOfCardsLabel": "Número de cartões",
+                    "numOfCards": "{number} cartões",
+                    "timeForMatch": "Duração da Partida",
+                    "minutes": "{minutes} minutos"
+                },
+                "error": {
+                    "createRoomFailure": "Não foi possível criar uma nova sala, tente novamente mais tarde."
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "O jogo requer uma tela com pelo menos {width}px."
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "Conecte-se",
+                "usernameInput": "Nome de usuário",
+                "passwordInput": "Senha",
+                "loginBtn": "Conecte-se",
+                "forgotPasswordBtn": "Esqueceu sua senha?",
+                "rememberMeText": "Lembre de mim",
+                "haveNoAccountText": "Não tem uma conta?",
+                "registerBtn": "Cadastre-se",
+                "error": {
+                    "invalidCredentials": "Nome de usuário ou senha inválidos.",
+                    "unknown": "Não foi possível fazer login. Tente novamente mais tarde."
+                }
+            },
+            "register": {
+                "title": "Cadastre-se",
+                "fullNameInput": "Qual o seu nome?",
+                "usernameInput": "Nome de usuário",
+                "passwordInput": "Senha",
+                "reEnterPasswordInput": "Digite novamente a senha",
+                "registerBtn": "Cadastre-se",
+                "loginBtn": "Conecte-se",
+                "haveAccountText": "Já tem uma conta?",
+                "error": {
+                    "passwordLength": "A senha deve ter de 6 a 18 caracteres.",
+                    "passwordNotMatch": "As senhas não coincidem.",
+                    "usernameTaken": "O nome de usuário já está em uso.",
+                    "unknown": "Não foi possível registrar. "
+                },
+                "success": "Conta registrada com sucesso!"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "Uma incrível plataforma de jogos",
+                "text1": "100% grátis",
+                "text2": "Multijogador",
+                "text3": "Amigável"
+            },
+            "introduceSection2": {
+                "title1": "Tabela de classificação",
+                "content1": "Desafie os melhores jogadores do mundo com nosso sistema exclusivo de torneios diários e torne-se o número um! ",
+                "title2": "Jogue com amigos",
+                "content2": "Jogue com qualquer pessoa ao redor do mundo em tempo real compartilhando um link exclusivo. ",
+                "title3": "Loja on-line",
+                "content3": "Quanto mais você joga, mais moedas no jogo você ganha. ",
+                "title4": "Faça amigos e converse",
+                "content4": "Faça amizade com seus camaradas e amigos. "
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "Loja"
+            },
+            "tab": {
+                "ownedLabel": "Controlado",
+                "notOwnedLabel": "Prêmio"
+            },
+            "confirmBuyModal": {
+                "title": "Confirmar compra"
+            },
+            "error": {
+                "itemNotFound": "O item não existe.",
+                "cannotGetItemList": "Não foi possível buscar a lista de itens."
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "Jogue com um amigo",
+                "playWithRandom": "Partida aleatória",
+                "gameInstructions": "Instruções do jogo"
+            },
+            "ranking": {
+                "title": "Tabela de classificação"
+            },
+            "ticTacToe": {
+                "description": "Um jogo de estratégia onde os jogadores se revezam marcando 'X' ou 'O' nas células vazias do tabuleiro. "
+            },
+            "fifteenPuzzle": {
+                "description": "Um jogo de quebra-cabeça jogado em um tabuleiro 4x4 com 15 peças numeradas de 1 a 15 e um espaço vazio. "
+            },
+            "memory": {
+                "description": "Um jogo de teste de memória onde os jogadores se revezam para lançar duas cartas. "
+            }
+        },
+        "account": {
+            "title": "Minha conta",
+            "displayName": "Nome de exibição",
+            "password": "Senha",
+            "changePasswordBtn": "Alterar a senha",
+            "changeProfileImageBtn": "Mudar",
+            "deleteAccountTitle": "Excluir conta",
+            "deleteAccountDescription": "Excluir sua conta apagará permanentemente sua conta, jogos e classificações. ",
+            "deleteAccountBtn": "Excluir conta"
+        },
+        "gameInstructions": {
+            "title": "Instruções do jogo",
+            "ticTacToe": {
+                "objectiveTitle": "Objetivo:",
+                "objectiveContent": "Alinhe 3 dos seus símbolos (X ou O) consecutivamente em uma linha, coluna ou diagonal no tabuleiro.",
+                "instructionsTitle": "Como jogar:",
+                "instructionsContent": "Dois jogadores se revezam marcando seus símbolos em células vazias do tabuleiro. "
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "Objetivo:",
+                "objectiveContent": "Organize as peças numeradas de 1 a 15 da esquerda para a direita, de cima para baixo em um tabuleiro 4x4, deixando o último slot vazio.",
+                "instructionsTitle": "Como jogar:",
+                "instructionsContent": "O tabuleiro tem 16 peças, incluindo um espaço vazio. "
+            },
+            "memory": {
+                "objectiveTitle": "Objetivo:",
+                "objectiveContent": "Encontre todos os pares de imagens correspondentes no quadro.",
+                "instructionsTitle": "Como jogar:",
+                "instructionsContent": "O tabuleiro contém um conjunto de cartas viradas para baixo com imagens. "
+            }
+        },
+        "room": {
+            "leaveRoom": "Sair da sala",
+            "shareLinkTitle": "Compartilhe este link com um amigo:",
+            "PreparingRoomTitle": "Sala de Preparação",
+            "youAreFirstTurn": "Você é a primeira vez.",
+            "opponentIsFirstTurn": "O oponente é o primeiro turno.",
+            "youWin": "Você venceu!",
+            "opponentWin": "O oponente venceu!",
+            "drawMatch": "A partida está empatada!",
+            "loadingTheGame": "Carregando dados do jogo, aguarde...",
+            "opponentCancelRequest": "O adversário recusou o pedido.",
+            "opponentWantToPlayAgain": "O adversário quer jogar novamente.",
+            "playAgain": "Jogue novamente",
+            "sentPlayAgainRequest": "Solicitação enviada",
+            "sendFirstMessageTitle": "Envie a primeira mensagem.",
+            "youHere": "Você está aqui",
+            "opponentHere": "Oponente está aqui",
+            "15PuzzleMoveInstruction": "Mova as peças na grade para organizá-las de 1 a 15.",
+            "error": {
+                "sendPlayAgainRequestFail": "Não foi possível enviar a solicitação",
+                "roomNotFound": "Quarto não encontrado.",
+                "playAgainFailure": "O oponente saiu da sala ou a sala foi cancelada.",
+                "screenSizeNotSupported": "O jogo requer um tamanho de tela maior.",
+                "unknown": "Erro desconhecido."
+            }
+        },
+        "error": {
+            "title": "Ocorreu um erro no sistema. Por favor, tente novamente mais tarde.",
+            "tryAgain": "Tente novamente"
+        }
+    }
+}

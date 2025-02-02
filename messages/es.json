@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "¡Bienvenido/a!",
+        "homePage": "Inicio",
+        "logout": "Cerrar sesión",
+        "submit": "Aceptar",
+        "cancel": "Cancelar",
+        "loading": "Cargando...",
+        "error": {
+            "requiredField": "Este campo es obligatorio.",
+            "minLength": "La longitud mínima es de {min} caracteres.",
+            "maxLength": "La longitud máxima es de {max} caracteres.",
+            "noWhitespace": "El campo no debe contener espacios.",
+            "noSpecialCharacters": "El campo no debe contener caracteres especiales."
+        },
+        "notification": {
+            "title": "Notificación",
+            "options": {
+                "readAll": "Marcar todo como leído",
+                "deleteAll": "Borrar todo"
+            }
+        },
+        "sidebar": {
+            "messageLink": "Mensajes",
+            "FriendLink": "Amigos",
+            "HistoryLink": "Historial",
+            "HomeLink": "Inicio",
+            "StoreLink": "Tienda",
+            "gameInstructionsLink": "Instrucciones del juego",
+            "gameSectionTitle": "Juegos",
+            "userInfo": {
+                "accountManagerLink": "Administración de la cuenta",
+                "myStatistics": "Mis estadísticas",
+                "changeProfileImage": "Cambiar foto de perfil"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "Victorias: {times}",
+            "loseTimes": "Derrotas: {times}",
+            "drawTimes": "Empates: {times}",
+            "history": "Historial"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "Mis estadísticas",
+                "totalWins": "Victorias",
+                "totalLoses": "Derrotas",
+                "totalDraws": "Empates",
+                "totalWinRate": "Porcentaje de victorias",
+                "level": "Nivel",
+                "error": {
+                    "unknown": "No se pueden cargar las estadísticas del juego. Por favor, actualice la página o inténtelo de nuevo más tarde."
+                }
+            },
+            "historyModal": {
+                "title": "Historial",
+                "pageLabel": "Página {page}",
+                "winLabel": "Victoria",
+                "loseLabel": "Derrota",
+                "drawLabel": "Empate",
+                "totalMatchesLabel": "Total: {totalMatch} partidas",
+                "searchingHistory": "Buscando datos del historial...",
+                "noHistoryFound": "No se encontró ningún historial.",
+                "error": {
+                    "unknown": "No se pueden cargar los datos del historial. Por favor, actualice la página o inténtelo de nuevo más tarde."
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "Confirmar compra:"
+            },
+            "confirmLeaveMatchModal": {
+                "title": "Abandonar partida",
+                "content": "¿Confirmar que desea abandonar la partida? El oponente recibirá la victoria."
+            },
+            "lookingForGameModal": {
+                "content": "Buscando un oponente",
+                "lookingForOpponentNotification": "Buscando un oponente adecuado, por favor espere.",
+                "opponentNotFoundNotification": "No se encontraron oponentes en este momento. Por favor, inténtelo de nuevo más tarde."
+            },
+            "settingModal": {
+                "title": "Configuración",
+                "systemType": "Sistema",
+                "soundType": "Sonido",
+                "languageType": "Idioma",
+                "theme": "Tema",
+                "backgroundImage": "Imagen de fondo",
+                "image": "Imagen {number}",
+                "language": "Idioma",
+                "BackgroundMusicVolume": "Música de fondo",
+                "SystemSoundVolume": "Sonidos del sistema"
+            },
+            "gameSetup": {
+                "title": "Crear nueva sala",
+                "gameName": "Juego",
+                "createRoom": "Crear sala",
+                "ticTacToe": {
+                    "boardSize": "Tamaño del tablero",
+                    "size3x3Description": "3x3 (Clásico)",
+                    "size5x5Description": "5x5 (Conecta 4 para ganar)",
+                    "timePerTurn": "Tiempo por turno",
+                    "seconds": "{seconds} segundos",
+                    "playTurn": "Turno",
+                    "firstTurn": "{firstTurn, select, me {Empiezo yo primero} opponent {Empieza el oponente primero} other {Aleatorio}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "Duración de la partida",
+                    "minutes": "{minutes} minutos"
+                },
+                "memory": {
+                    "theme": "Tema de las cartas",
+                    "themeValue": "{theme, select, fruit {Frutas} other {Animales}}",
+                    "numOfCardsLabel": "Número de tarjetas",
+                    "numOfCards": "{number} tarjetas",
+                    "timeForMatch": "Duración de la partida",
+                    "minutes": "{minutes} minutos"
+                },
+                "error": {
+                    "createRoomFailure": "No se pudo crear una nueva sala, por favor inténtelo de nuevo más tarde."
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "El juego requiere un tamaño de pantalla de al menos {width}px."
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "Iniciar sesión",
+                "usernameInput": "Nombre de usuario",
+                "passwordInput": "Contraseña",
+                "loginBtn": "Iniciar sesión",
+                "forgotPasswordBtn": "¿Olvidaste tu contraseña?",
+                "rememberMeText": "Recuérdame",
+                "haveNoAccountText": "¿No tienes una cuenta?",
+                "registerBtn": "Registrarse",
+                "error": {
+                    "invalidCredentials": "Nombre de usuario o contraseña incorrectos.",
+                    "unknown": "No se puede iniciar sesión. Por favor, inténtalo de nuevo más tarde."
+                }
+            },
+            "register": {
+                "title": "Registrarse",
+                "fullNameInput": "¿Cuál es tu nombre?",
+                "usernameInput": "Nombre de usuario",
+                "passwordInput": "Contraseña",
+                "reEnterPasswordInput": "Reingresar contraseña",
+                "registerBtn": "Registrarse",
+                "loginBtn": "Iniciar sesión",
+                "haveAccountText": "¿Ya tienes una cuenta?",
+                "error": {
+                    "passwordLength": "La contraseña debe tener entre 6 y 18 caracteres.",
+                    "passwordNotMatch": "Las contraseñas no coinciden.",
+                    "usernameTaken": "El nombre de usuario ya está en uso.",
+                    "unknown": "No se puede registrar. Por favor, inténtalo de nuevo más tarde."
+                },
+                "success": "¡Cuenta registrada exitosamente!"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "Una increíble plataforma de juegos",
+                "text1": "100% Gratis",
+                "text2": "Multijugador",
+                "text3": "Amigable"
+            },
+            "introduceSection2": {
+                "title1": "Tabla de clasificación",
+                "content1": "¡Desafía a los mejores jugadores del mundo con nuestro sistema único de torneos diarios y conviértete en el número uno! ¿Tienes lo que se necesita para estar a la altura del desafío?",
+                "title2": "Juega con amigos",
+                "content2": "Juega con cualquier persona en todo el mundo en tiempo real compartiendo un enlace único. Con solo un clic, estarás conectado.",
+                "title3": "Tienda en línea",
+                "content3": "Cuanto más juegas, más monedas del juego ganas. Puedes usar estas monedas para obtener avatares y emojis únicos para comunicarte con tus oponentes.",
+                "title4": "Haz amigos y chatea",
+                "content4": "Hazte amigo de tus camaradas y amigos. Chatea y desafíense mutuamente después de horas estresantes de trabajo o estudio. Trae alegría y emoción a tu día."
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "Tienda"
+            },
+            "tab": {
+                "ownedLabel": "Poseídos",
+                "notOwnedLabel": "Premium"
+            },
+            "confirmBuyModal": {
+                "title": "Confirmar compra"
+            },
+            "error": {
+                "itemNotFound": "El artículo no existe.",
+                "cannotGetItemList": "No se puede obtener la lista de artículos."
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "Jugar con un amigo",
+                "playWithRandom": "Partida aleatoria",
+                "gameInstructions": "Instrucciones del juego"
+            },
+            "ranking": {
+                "title": "Tabla de clasificación"
+            },
+            "ticTacToe": {
+                "description": "Un juego de estrategia en el que los jugadores se turnan para marcar 'X' u 'O' en las celdas vacías del tablero. El objetivo es alinear 3 de tus símbolos horizontal, vertical o diagonalmente antes que tu oponente. El juego termina cuando alguien gana o cuando todas las celdas se llenan sin un ganador."
+            },
+            "fifteenPuzzle": {
+                "description": "Un juego de rompecabezas que se juega en un tablero de 4x4 con 15 fichas numeradas del 1 al 15 y un espacio vacío. Los jugadores mueven las fichas deslizándolas hacia el espacio vacío para organizar los números secuencialmente del 1 al 15. Este juego mejora el pensamiento lógico y las habilidades de resolución de problemas."
+            },
+            "memory": {
+                "description": "Un juego de prueba de memoria en el que los jugadores se turnan para voltear dos cartas. Si coinciden, el jugador anota y continúa; si no, las cartas se vuelven a voltear. El objetivo es encontrar todos los pares coincidentes."
+            }
+        },
+        "account": {
+            "title": "Mi cuenta",
+            "displayName": "Nombre para mostrar",
+            "password": "Contraseña",
+            "changePasswordBtn": "Cambiar contraseña",
+            "changeProfileImageBtn": "Cambiar",
+            "deleteAccountTitle": "Eliminar cuenta",
+            "deleteAccountDescription": "Eliminar tu cuenta borrará permanentemente tu cuenta, juegos y clasificaciones. Esta acción no se puede deshacer.",
+            "deleteAccountBtn": "Eliminar cuenta"
+        },
+        "gameInstructions": {
+            "title": "Instrucciones del juego",
+            "ticTacToe": {
+                "objectiveTitle": "Objetivo:",
+                "objectiveContent": "Alinear 3 de tus símbolos (X o O) consecutivamente en una fila, columna o diagonal en el tablero.",
+                "instructionsTitle": "Cómo jugar:",
+                "instructionsContent": "Dos jugadores se turnan para marcar sus símbolos en las celdas vacías del tablero. El primer jugador en alinear 3 símbolos consecutivamente gana. Si todas las celdas se llenan sin un ganador, el juego es un empate."
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "Objetivo:",
+                "objectiveContent": "Ordenar las fichas numeradas del 1 al 15 en orden de izquierda a derecha, de arriba a abajo en un tablero de 4x4, dejando el último espacio vacío.",
+                "instructionsTitle": "Cómo jugar:",
+                "instructionsContent": "El tablero tiene 16 fichas, incluyendo un espacio vacío. Los jugadores pueden deslizar las fichas adyacentes al espacio vacío. El objetivo es reorganizar las fichas en el orden correcto."
+            },
+            "memory": {
+                "objectiveTitle": "Objetivo:",
+                "objectiveContent": "Encontrar todos los pares de imágenes coincidentes en el tablero.",
+                "instructionsTitle": "Cómo jugar:",
+                "instructionsContent": "El tablero contiene un conjunto de cartas boca abajo con imágenes. Los jugadores voltean dos cartas por turno. Si coinciden, las cartas permanecen volteadas; de lo contrario, se vuelven a voltear. Continúa hasta que se encuentren todos los pares."
+            }
+        },
+        "room": {
+            "leaveRoom": "Salir de la sala",
+            "shareLinkTitle": "Comparte este enlace con un amigo:",
+            "PreparingRoomTitle": "Preparando la sala",
+            "youAreFirstTurn": "Es tu primer turno.",
+            "opponentIsFirstTurn": "Es el primer turno del oponente.",
+            "youWin": "¡Has ganado!",
+            "opponentWin": "¡El oponente ha ganado!",
+            "drawMatch": "¡La partida es un empate!",
+            "loadingTheGame": "Cargando datos del juego, por favor espere...",
+            "opponentCancelRequest": "El oponente ha rechazado la solicitud.",
+            "opponentWantToPlayAgain": "El oponente quiere volver a jugar.",
+            "playAgain": "Volver a jugar",
+            "sentPlayAgainRequest": "Solicitud enviada",
+            "sendFirstMessageTitle": "Envía el primer mensaje.",
+            "youHere": "Estás aquí",
+            "opponentHere": "El oponente está aquí",
+            "15PuzzleMoveInstruction": "Mueve las fichas en la cuadrícula para ordenarlas del 1 al 15.",
+            "error": {
+                "sendPlayAgainRequestFail": "No se puede enviar la solicitud",
+                "roomNotFound": "Sala no encontrada.",
+                "playAgainFailure": "El oponente ha abandonado la sala o la sala ha sido cancelada.",
+                "screenSizeNotSupported": "El juego requiere un tamaño de pantalla más grande.",
+                "unknown": "Error desconocido."
+            }
+        },
+        "error": {
+            "title": "Ha ocurrido un error en el sistema. Por favor, inténtelo de nuevo más tarde.",
+            "tryAgain": "Intentar de nuevo"
+        }
+    }
+}

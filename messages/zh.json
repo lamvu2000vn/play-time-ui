@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "欢迎！",
+        "homePage": "主页",
+        "logout": "登出",
+        "submit": "确定",
+        "cancel": "取消",
+        "loading": "加载中...",
+        "error": {
+            "requiredField": "此字段为必填项。",
+            "minLength": "最小长度为 {min} 个字符。",
+            "maxLength": "最大长度为 {max} 个字符。",
+            "noWhitespace": "字段不能包含空格。",
+            "noSpecialCharacters": "字段不能包含特殊字符。"
+        },
+        "notification": {
+            "title": "通知",
+            "options": {
+                "readAll": "全部标记为已读",
+                "deleteAll": "全部删除"
+            }
+        },
+        "sidebar": {
+            "messageLink": "消息",
+            "FriendLink": "好友",
+            "HistoryLink": "历史记录",
+            "HomeLink": "主页",
+            "StoreLink": "商店",
+            "gameInstructionsLink": "游戏说明",
+            "gameSectionTitle": "游戏",
+            "userInfo": {
+                "accountManagerLink": "账户管理",
+                "myStatistics": "我的统计",
+                "changeProfileImage": "更改头像"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "胜场：{times}",
+            "loseTimes": "败场：{times}",
+            "drawTimes": "平局：{times}",
+            "history": "历史记录"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "我的统计",
+                "totalWins": "胜场",
+                "totalLoses": "败场",
+                "totalDraws": "平局",
+                "totalWinRate": "胜率",
+                "level": "等级",
+                "error": {
+                    "unknown": "无法加载游戏统计信息。请刷新页面或稍后重试。"
+                }
+            },
+            "historyModal": {
+                "title": "历史记录",
+                "pageLabel": "第 {page} 页",
+                "winLabel": "胜",
+                "loseLabel": "负",
+                "drawLabel": "平",
+                "totalMatchesLabel": "总计：{totalMatch} 场比赛",
+                "searchingHistory": "正在获取历史数据...",
+                "noHistoryFound": "未找到历史记录。",
+                "error": {
+                    "unknown": "无法加载历史数据。请刷新页面或稍后重试。"
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "确认购买："
+            },
+            "confirmLeaveMatchModal": {
+                "title": "离开比赛",
+                "content": "确认离开比赛？对手将被判胜。"
+            },
+            "lookingForGameModal": {
+                "content": "正在寻找对手",
+                "lookingForOpponentNotification": "正在搜索合适的对手，请稍候。",
+                "opponentNotFoundNotification": "目前没有找到对手。请稍后重试。"
+            },
+            "settingModal": {
+                "title": "设置",
+                "systemType": "系统",
+                "soundType": "声音",
+                "languageType": "语言",
+                "theme": "主题",
+                "backgroundImage": "背景图像",
+                "image": "图像 {number}",
+                "language": "语言",
+                "BackgroundMusicVolume": "背景音乐",
+                "SystemSoundVolume": "系统声音"
+            },
+            "gameSetup": {
+                "title": "创建新房间",
+                "gameName": "游戏",
+                "createRoom": "创建房间",
+                "ticTacToe": {
+                    "boardSize": "棋盘大小",
+                    "size3x3Description": "3x3（经典）",
+                    "size5x5Description": "5x5（连成4个获胜）",
+                    "timePerTurn": "每回合时间",
+                    "seconds": "{seconds} 秒",
+                    "playTurn": "轮到",
+                    "firstTurn": "{firstTurn, select, me {我先手} opponent {对手先手} other {随机}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "比赛时长",
+                    "minutes": "{minutes} 分钟"
+                },
+                "memory": {
+                    "theme": "卡牌主题",
+                    "themeValue": "{theme, select, fruit {水果} other {动物}}",
+                    "numOfCardsLabel": "卡片数量",
+                    "numOfCards": "{number} 张卡片",
+                    "timeForMatch": "比赛时长",
+                    "minutes": "{minutes} 分钟"
+                },
+                "error": {
+                    "createRoomFailure": "无法创建新房间，请稍后重试。"
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "游戏需要屏幕大小至少为 {width}px。"
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "登录",
+                "usernameInput": "用户名",
+                "passwordInput": "密码",
+                "loginBtn": "登录",
+                "forgotPasswordBtn": "忘记密码？",
+                "rememberMeText": "记住账号",
+                "haveNoAccountText": "没有帐户？",
+                "registerBtn": "登记",
+                "error": {
+                    "invalidCredentials": "用户名或密码无效。",
+                    "unknown": "无法登录。请稍后重试。"
+                }
+            },
+            "register": {
+                "title": "登记",
+                "fullNameInput": "你叫什么名字？",
+                "usernameInput": "用户名",
+                "passwordInput": "密码",
+                "reEnterPasswordInput": "重新输入密码",
+                "registerBtn": "登记",
+                "loginBtn": "登录",
+                "haveAccountText": "已经有帐户？",
+                "error": {
+                    "passwordLength": "密码必须为 6-18 个字符。",
+                    "passwordNotMatch": "密码不匹配。",
+                    "usernameTaken": "用户名已被占用。",
+                    "unknown": "无法注册。"
+                },
+                "success": "帐号注册成功！"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "一个很棒的游戏平台",
+                "text1": "100% 免费",
+                "text2": "多人游戏",
+                "text3": "友好的"
+            },
+            "introduceSection2": {
+                "title1": "排行榜",
+                "content1": "通过我们独特的每日锦标赛系统挑战全球最优秀的玩家并成为第一！",
+                "title2": "和朋友一起玩",
+                "content2": "通过分享独特的链接，与世界各地的任何人实时玩耍。",
+                "title3": "网上商店",
+                "content3": "您玩的越多，您赚取的游戏金币就越多。",
+                "title4": "交朋友并聊天",
+                "content4": "与你的同志和朋友交朋友。"
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "店铺"
+            },
+            "tab": {
+                "ownedLabel": "拥有",
+                "notOwnedLabel": "优质的"
+            },
+            "confirmBuyModal": {
+                "title": "确认购买"
+            },
+            "error": {
+                "itemNotFound": "项目不存在。",
+                "cannotGetItemList": "无法获取项目列表。"
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "和朋友一起玩",
+                "playWithRandom": "随机匹配",
+                "gameInstructions": "游戏说明"
+            },
+            "ranking": {
+                "title": "排行榜"
+            },
+            "ticTacToe": {
+                "description": "一种策略游戏，玩家轮流在棋盘上的空格中标记“X”或“O”。"
+            },
+            "fifteenPuzzle": {
+                "description": "一款在 4x4 棋盘上玩的益智游戏，棋盘上有 15 个编号为 1 到 15 的图块和一个空槽。"
+            },
+            "memory": {
+                "description": "一种记忆测试游戏，玩家轮流翻转两张牌。"
+            }
+        },
+        "account": {
+            "title": "我的账户",
+            "displayName": "显示名称",
+            "password": "密码",
+            "changePasswordBtn": "更改密码",
+            "changeProfileImageBtn": "改变",
+            "deleteAccountTitle": "删除帐户",
+            "deleteAccountDescription": "删除您的帐户将永久删除您的帐户、游戏和排名。",
+            "deleteAccountBtn": "删除帐户"
+        },
+        "gameInstructions": {
+            "title": "游戏说明",
+            "ticTacToe": {
+                "objectiveTitle": "客观的：",
+                "objectiveContent": "将 3 个符号（X 或 O）在板上的行、列或对角线上连续对齐。",
+                "instructionsTitle": "玩法：",
+                "instructionsContent": "两名玩家轮流在棋盘上的空单元格中标记他们的符号。"
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "客观的：",
+                "objectiveContent": "将编号为 1 到 15 的图块按照从左到右、从上到下的顺序排列在 4x4 板上，将最后一个插槽留空。",
+                "instructionsTitle": "玩法：",
+                "instructionsContent": "棋盘上有 16 个方块，包括 1 个空槽。"
+            },
+            "memory": {
+                "objectiveTitle": "客观的：",
+                "objectiveContent": "找到板上所有匹配的图像对。",
+                "instructionsTitle": "玩法：",
+                "instructionsContent": "该板包含一组正面朝下的带有图像的卡片。"
+            }
+        },
+        "room": {
+            "leaveRoom": "留出空间",
+            "shareLinkTitle": "与朋友分享此链接：",
+            "PreparingRoomTitle": "准备室",
+            "youAreFirstTurn": "你是第一个回合。",
+            "opponentIsFirstTurn": "对手是第一个回合。",
+            "youWin": "你赢了！",
+            "opponentWin": "对手赢了！",
+            "drawMatch": "比赛结果是平局！",
+            "loadingTheGame": "正在加载游戏数据，请稍候...",
+            "opponentCancelRequest": "对手拒绝了这一请求。",
+            "opponentWantToPlayAgain": "对手想再玩一次。",
+            "playAgain": "再玩一次",
+            "sentPlayAgainRequest": "请求已发送",
+            "sendFirstMessageTitle": "发送第一条消息。",
+            "youHere": "你在这里",
+            "opponentHere": "对手在这里",
+            "15PuzzleMoveInstruction": "在网格中移动拼图块，将它们从1排列到15。",
+            "error": {
+                "sendPlayAgainRequestFail": "无法发送请求",
+                "roomNotFound": "未找到房间。",
+                "playAgainFailure": "对手已离开房间或房间已被取消。",
+                "screenSizeNotSupported": "游戏需要更大的屏幕尺寸。",
+                "unknown": "未知错误。"
+            }
+        },
+        "error": {
+            "title": "系统发生错误，请稍后再试。",
+            "tryAgain": "重试"
+        }
+    }
+}

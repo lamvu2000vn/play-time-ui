@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "स्वागत!",
+        "homePage": "होम",
+        "logout": "लॉग आउट",
+        "submit": "ठीक है",
+        "cancel": "रद्द करें",
+        "loading": "लोड हो रहा है...",
+        "error": {
+            "requiredField": "यह फ़ील्ड आवश्यक है।",
+            "minLength": "न्यूनतम लंबाई {min} अक्षर है।",
+            "maxLength": "अधिकतम लंबाई {max} अक्षर है।",
+            "noWhitespace": "फील्ड में कोई व्हाइटस्पेस नहीं होना चाहिए।",
+            "noSpecialCharacters": "फील्ड में कोई विशेष पात्र नहीं होना चाहिए।"
+        },
+        "notification": {
+            "title": "सूचना",
+            "options": {
+                "readAll": "सभी को पढ़ा हुआ चिह्नित करें",
+                "deleteAll": "सभी को हटाएँ"
+            }
+        },
+        "sidebar": {
+            "messageLink": "संदेश",
+            "FriendLink": "मित्र",
+            "HistoryLink": "इतिहास",
+            "HomeLink": "होम",
+            "StoreLink": "स्टोर",
+            "gameInstructionsLink": "खेल निर्देश",
+            "gameSectionTitle": "खेल",
+            "userInfo": {
+                "accountManagerLink": "खाता प्रबंधन",
+                "myStatistics": "मेरे आँकड़े",
+                "changeProfileImage": "प्रोफ़ाइल चित्र बदलें"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "जीत: {times}",
+            "loseTimes": "हार: {times}",
+            "drawTimes": "ड्रॉ: {times}",
+            "history": "इतिहास"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "मेरे आँकड़े",
+                "totalWins": "जीत",
+                "totalLoses": "हार",
+                "totalDraws": "ड्रॉ",
+                "totalWinRate": "जीत दर",
+                "level": "स्तर",
+                "error": {
+                    "unknown": "खेल के आँकड़े लोड करने में असमर्थ। कृपया पृष्ठ को ताज़ा करें या बाद में पुनः प्रयास करें।"
+                }
+            },
+            "historyModal": {
+                "title": "इतिहास",
+                "pageLabel": "पृष्ठ {page}",
+                "winLabel": "जीत",
+                "loseLabel": "हार",
+                "drawLabel": "ड्रॉ",
+                "totalMatchesLabel": "कुल: {totalMatch} मैच",
+                "searchingHistory": "इतिहास डेटा प्राप्त किया जा रहा है...",
+                "noHistoryFound": "कोई इतिहास नहीं मिला।",
+                "error": {
+                    "unknown": "इतिहास डेटा लोड करने में असमर्थ। कृपया पृष्ठ को ताज़ा करें या बाद में पुनः प्रयास करें।"
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "खरीद की पुष्टि करें:"
+            },
+            "confirmLeaveMatchModal": {
+                "title": "मैच छोड़ें",
+                "content": "क्या मैच छोड़ना चाहते हैं? प्रतिद्वंद्वी को जीत का श्रेय दिया जाएगा।"
+            },
+            "lookingForGameModal": {
+                "content": "एक प्रतिद्वंद्वी की तलाश में",
+                "lookingForOpponentNotification": "एक उपयुक्त प्रतिद्वंद्वी की खोज की जा रही है, कृपया प्रतीक्षा करें।",
+                "opponentNotFoundNotification": "इस समय कोई प्रतिद्वंद्वी नहीं मिला। कृपया बाद में पुनः प्रयास करें।"
+            },
+            "settingModal": {
+                "title": "सेटिंग्स",
+                "systemType": "सिस्टम",
+                "soundType": "ध्वनि",
+                "languageType": "भाषा",
+                "theme": "थीम",
+                "backgroundImage": "पृष्ठभूमि छवि",
+                "image": "छवि {number}",
+                "language": "भाषा",
+                "BackgroundMusicVolume": "पृष्ठभूमि संगीत",
+                "SystemSoundVolume": "सिस्टम ध्वनियाँ"
+            },
+            "gameSetup": {
+                "title": "नया कमरा बनाएँ",
+                "gameName": "खेल",
+                "createRoom": "कमरा बनाएँ",
+                "ticTacToe": {
+                    "boardSize": "बोर्ड का आकार",
+                    "size3x3Description": "3x3 (क्लासिक)",
+                    "size5x5Description": "5x5 (जीतने के लिए 4 कनेक्ट करें)",
+                    "timePerTurn": "प्रति बारी समय",
+                    "seconds": "{seconds} सेकंड",
+                    "playTurn": "बारी",
+                    "firstTurn": "{firstTurn, select, me {मैं पहले शुरू करता हूँ} opponent {प्रतिद्वंद्वी पहले शुरू करता है} other {यादृच्छिक}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "मैच की अवधि",
+                    "minutes": "{minutes} मिनट"
+                },
+                "memory": {
+                    "theme": "कार्ड थीम",
+                    "themeValue": "{theme, select, fruit {फल} other {जानवर}}",
+                    "numOfCardsLabel": "कार्डों की संख्या",
+                    "numOfCards": "{number} कार्ड",
+                    "timeForMatch": "मैच की अवधि",
+                    "minutes": "{minutes} मिनट"
+                },
+                "error": {
+                    "createRoomFailure": "नया कमरा बनाने में असमर्थ, कृपया बाद में पुनः प्रयास करें।"
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "इस खेल के लिए कम से कम {width}px स्क्रीन आकार की आवश्यकता है।"
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "लॉग इन करें",
+                "usernameInput": "उपयोगकर्ता नाम",
+                "passwordInput": "पासवर्ड",
+                "loginBtn": "लॉग इन करें",
+                "forgotPasswordBtn": "पासवर्ड भूल गए?",
+                "rememberMeText": "मुझे याद करो",
+                "haveNoAccountText": "कोई खाता नहीं है?",
+                "registerBtn": "पंजीकरण करवाना",
+                "error": {
+                    "invalidCredentials": "अमान्य उपयोगकर्ता नाम या पासवर्ड।",
+                    "unknown": "लॉग इन करने में असमर्थ। कृपया बाद में पुनः प्रयास करें।"
+                }
+            },
+            "register": {
+                "title": "पंजीकरण करवाना",
+                "fullNameInput": "तुम्हारा नाम क्या है?",
+                "usernameInput": "उपयोगकर्ता नाम",
+                "passwordInput": "पासवर्ड",
+                "reEnterPasswordInput": "पासवर्ड फिर से दर्ज करें",
+                "registerBtn": "पंजीकरण करवाना",
+                "loginBtn": "लॉग इन करें",
+                "haveAccountText": "क्या आपके पास पहले से एक खाता मौजूद है?",
+                "error": {
+                    "passwordLength": "पासवर्ड 6-18 अक्षर का होना चाहिए.",
+                    "passwordNotMatch": "सांकेतिक शब्द मेल नहीं खाते।",
+                    "usernameTaken": "उपयोगकर्ता का नाम पहले से लिया है।",
+                    "unknown": "पंजीकरण करने में असमर्थ. "
+                },
+                "success": "खाता सफलतापूर्वक दर्ज!"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "एक अद्भुत गेमिंग प्लेटफार्म",
+                "text1": "100% मुफ़्त",
+                "text2": "मल्टीप्लेयर",
+                "text3": "दोस्ताना"
+            },
+            "introduceSection2": {
+                "title1": "लीडरबोर्ड",
+                "content1": "हमारी अनूठी दैनिक टूर्नामेंट प्रणाली के साथ दुनिया भर के सर्वश्रेष्ठ खिलाड़ियों को चुनौती दें और नंबर वन बनें! ",
+                "title2": "दोस्तों के साथ खेलने",
+                "content2": "एक अद्वितीय लिंक साझा करके वास्तविक समय में दुनिया भर में किसी के भी साथ खेलें। ",
+                "title3": "ऑनलाइन स्टोर",
+                "content3": "जितना अधिक आप खेलेंगे, उतने अधिक इन-गेम सिक्के अर्जित करेंगे। ",
+                "title4": "दोस्त बनाओ और चैट करो",
+                "content4": "अपने साथियों और दोस्तों से दोस्ती करें. "
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "इकट्ठा करना"
+            },
+            "tab": {
+                "ownedLabel": "स्वामित्व",
+                "notOwnedLabel": "अधिमूल्य"
+            },
+            "confirmBuyModal": {
+                "title": "खरीद की पुष्टि करें"
+            },
+            "error": {
+                "itemNotFound": "आइटम मौजूद नहीं है.",
+                "cannotGetItemList": "आइटम सूची लाने में असमर्थ."
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "किसी मित्र के साथ खेलें",
+                "playWithRandom": "यादृच्छिक मिलान",
+                "gameInstructions": "खेल निर्देश"
+            },
+            "ranking": {
+                "title": "लीडरबोर्ड"
+            },
+            "ticTacToe": {
+                "description": "एक रणनीति खेल जहां खिलाड़ी बोर्ड पर खाली कोशिकाओं में 'X' या 'O' अंकित करते हैं। "
+            },
+            "fifteenPuzzle": {
+                "description": "1 से 15 तक 15 क्रमांकित टाइलों और एक खाली स्लॉट के साथ 4x4 बोर्ड पर खेला जाने वाला एक पहेली खेल। "
+            },
+            "memory": {
+                "description": "एक स्मृति-परीक्षण खेल जहां खिलाड़ी बारी-बारी से दो कार्ड उछालते हैं। "
+            }
+        },
+        "account": {
+            "title": "मेरा खाता",
+            "displayName": "प्रदर्शित होने वाला नाम",
+            "password": "पासवर्ड",
+            "changePasswordBtn": "पासवर्ड बदलें",
+            "changeProfileImageBtn": "परिवर्तन",
+            "deleteAccountTitle": "खाता हटा दो",
+            "deleteAccountDescription": "अपना खाता हटाने से आपका खाता, गेम और रैंकिंग स्थायी रूप से मिट जाएगी। ",
+            "deleteAccountBtn": "खाता हटा दो"
+        },
+        "gameInstructions": {
+            "title": "खेल निर्देश",
+            "ticTacToe": {
+                "objectiveTitle": "उद्देश्य:",
+                "objectiveContent": "अपने 3 प्रतीकों (X या O) को बोर्ड पर एक पंक्ति, स्तंभ या विकर्ण में लगातार संरेखित करें।",
+                "instructionsTitle": "कैसे खेलने के लिए:",
+                "instructionsContent": "दो खिलाड़ी बारी-बारी से बोर्ड पर खाली सेल में अपने प्रतीक चिन्ह अंकित करते हैं। "
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "उद्देश्य:",
+                "objectiveContent": "1 से 15 तक क्रमांकित टाइलों को 4x4 बोर्ड पर बाएं से दाएं, ऊपर से नीचे क्रम में व्यवस्थित करें, अंतिम स्लॉट खाली छोड़ दें।",
+                "instructionsTitle": "कैसे खेलने के लिए:",
+                "instructionsContent": "बोर्ड में 16 टाइलें हैं, जिनमें एक खाली स्लॉट भी शामिल है। "
+            },
+            "memory": {
+                "objectiveTitle": "उद्देश्य:",
+                "objectiveContent": "बोर्ड पर मेल खाती छवियों के सभी जोड़े ढूंढें।",
+                "instructionsTitle": "कैसे खेलने के लिए:",
+                "instructionsContent": "बोर्ड में छवियों के साथ फेस-डाउन कार्ड का एक सेट होता है। "
+            }
+        },
+        "room": {
+            "leaveRoom": "कमरा छोड़ो",
+            "shareLinkTitle": "इस लिंक को किसी मित्र के साथ साझा करें:",
+            "PreparingRoomTitle": "तैयारी कक्ष",
+            "youAreFirstTurn": "आप पहली बारी हैं.",
+            "opponentIsFirstTurn": "विरोधी पहली बारी है.",
+            "youWin": "आप जीते!",
+            "opponentWin": "प्रतिद्वंद्वी जीत गया!",
+            "drawMatch": "मुकाबला अनिर्णित रहा!",
+            "loadingTheGame": "गेम डेटा लोड हो रहा है, कृपया प्रतीक्षा करें...",
+            "opponentCancelRequest": "प्रतिद्वंद्वी ने अनुरोध अस्वीकार कर दिया है.",
+            "opponentWantToPlayAgain": "प्रतिद्वंद्वी फिर से खेलना चाहता है.",
+            "playAgain": "फिर से चालू करें",
+            "sentPlayAgainRequest": "निमंत्रण भेजा गया",
+            "sendFirstMessageTitle": "पहला संदेश भेजें.",
+            "youHere": "आप यहाँ हैं",
+            "opponentHere": "विरोधी यहाँ हैं",
+            "15PuzzleMoveInstruction": "ग्रिड में टाइल्स को स्थानांतरित करें ताकि उन्हें 1 से 15 तक क्रमबद्ध किया जा सके।",
+            "error": {
+                "sendPlayAgainRequestFail": "अनुरोध भेजने में असमर्थ",
+                "roomNotFound": "कमरा नहीं मिला.",
+                "playAgainFailure": "प्रतिद्वंद्वी ने कमरा छोड़ दिया है या कमरा रद्द कर दिया गया है।",
+                "screenSizeNotSupported": "गेम को इससे बड़ी स्क्रीन आकार की आवश्यकता है।",
+                "unknown": "अज्ञात त्रुटि।"
+            }
+        },
+        "error": {
+            "title": "सिस्टम में त्रुटि हो गई है। कृपया बाद में पुनः प्रयास करें।",
+            "tryAgain": "पुनः प्रयास करें"
+        }
+    }
+}

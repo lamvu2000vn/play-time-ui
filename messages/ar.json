@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "مرحباً!",
+        "homePage": "الرئيسية",
+        "logout": "تسجيل الخروج",
+        "submit": "موافق",
+        "cancel": "إلغاء",
+        "loading": "جاري التحميل...",
+        "error": {
+            "requiredField": "هذا الحقل مطلوب.",
+            "minLength": "الحد الأدنى للطول هو {min} حرفًا.",
+            "maxLength": "الحد الأقصى للطول هو {max} حرفًا.",
+            "noWhitespace": "يجب ألا يحتوي الحقل على مسافات.",
+            "noSpecialCharacters": "يجب ألا يحتوي الحقل على أحرف خاصة."
+        },
+        "notification": {
+            "title": "إشعار",
+            "options": {
+                "readAll": "وضع علامة 'مقروءة' على الكل",
+                "deleteAll": "حذف الكل"
+            }
+        },
+        "sidebar": {
+            "messageLink": "الرسائل",
+            "FriendLink": "الأصدقاء",
+            "HistoryLink": "السجل",
+            "HomeLink": "الرئيسية",
+            "StoreLink": "المتجر",
+            "gameInstructionsLink": "تعليمات اللعبة",
+            "gameSectionTitle": "الألعاب",
+            "userInfo": {
+                "accountManagerLink": "إدارة الحساب",
+                "myStatistics": "إحصائياتي",
+                "changeProfileImage": "تغيير صورة الملف الشخصي"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "الانتصارات: {times}",
+            "loseTimes": "الخسائر: {times}",
+            "drawTimes": "التعادلات: {times}",
+            "history": "السجل"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "إحصائياتي",
+                "totalWins": "الانتصارات",
+                "totalLoses": "الخسائر",
+                "totalDraws": "التعادلات",
+                "totalWinRate": "معدل الفوز",
+                "level": "المستوى",
+                "error": {
+                    "unknown": "تعذر تحميل إحصائيات اللعبة. يرجى تحديث الصفحة أو المحاولة مرة أخرى لاحقًا."
+                }
+            },
+            "historyModal": {
+                "title": "السجل",
+                "pageLabel": "صفحة {page}",
+                "winLabel": "فوز",
+                "loseLabel": "خسارة",
+                "drawLabel": "تعادل",
+                "totalMatchesLabel": "المجموع: {totalMatch} مباراة",
+                "searchingHistory": "جاري جلب بيانات السجل...",
+                "noHistoryFound": "لم يتم العثور على سجل.",
+                "error": {
+                    "unknown": "تعذر تحميل بيانات السجل. يرجى تحديث الصفحة أو المحاولة مرة أخرى لاحقًا."
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "تأكيد الشراء:"
+            },
+            "confirmLeaveMatchModal": {
+                "title": "مغادرة المباراة",
+                "content": "هل أنت متأكد من مغادرة المباراة؟ سيتم احتساب الفوز للخصم."
+            },
+            "lookingForGameModal": {
+                "content": "البحث عن خصم",
+                "lookingForOpponentNotification": "جاري البحث عن خصم مناسب، يرجى الانتظار.",
+                "opponentNotFoundNotification": "لم يتم العثور على خصوم في الوقت الحالي. يرجى المحاولة مرة أخرى لاحقًا."
+            },
+            "settingModal": {
+                "title": "الإعدادات",
+                "systemType": "النظام",
+                "soundType": "الصوت",
+                "languageType": "اللغة",
+                "theme": "السمة",
+                "backgroundImage": "صورة الخلفية",
+                "image": "الصورة {number}",
+                "language": "اللغة",
+                "BackgroundMusicVolume": "موسيقى الخلفية",
+                "SystemSoundVolume": "أصوات النظام"
+            },
+            "gameSetup": {
+                "title": "إنشاء غرفة جديدة",
+                "gameName": "اللعبة",
+                "createRoom": "إنشاء غرفة",
+                "ticTacToe": {
+                    "boardSize": "حجم اللوحة",
+                    "size3x3Description": "3x3 (كلاسيكي)",
+                    "size5x5Description": "5x5 (وصل 4 للفوز)",
+                    "timePerTurn": "المدة الزمنية لكل دور",
+                    "seconds": "{seconds} ثانية",
+                    "playTurn": "الدور",
+                    "firstTurn": "{firstTurn, select, me {أبدأ أولاً} opponent {الخصم يبدأ أولاً} other {عشوائي}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "مدة المباراة",
+                    "minutes": "{minutes} دقيقة"
+                },
+                "memory": {
+                    "theme": "سمة البطاقات",
+                    "themeValue": "{theme, select, fruit {فواكه} other {حيوانات}}",
+                    "numOfCardsLabel": "عدد البطاقات",
+                    "numOfCards": "{number} بطاقات",
+                    "timeForMatch": "مدة المباراة",
+                    "minutes": "{minutes} دقيقة"
+                },
+                "error": {
+                    "createRoomFailure": "تعذر إنشاء غرفة جديدة، يرجى المحاولة مرة أخرى لاحقًا."
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "تتطلب اللعبة شاشة بحجم {width}px على الأقل."
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "تسجيل الدخول",
+                "usernameInput": "اسم المستخدم",
+                "passwordInput": "كلمة المرور",
+                "loginBtn": "تسجيل الدخول",
+                "forgotPasswordBtn": "هل نسيت كلمة المرور؟",
+                "rememberMeText": "تذكرني",
+                "haveNoAccountText": "ليس لديك حساب؟",
+                "registerBtn": "تسجيل",
+                "error": {
+                    "invalidCredentials": "اسم مستخدم أو كلمة مرور غير صحيحة.",
+                    "unknown": "تعذر تسجيل الدخول. يرجى المحاولة مرة أخرى لاحقًا."
+                }
+            },
+            "register": {
+                "title": "تسجيل",
+                "fullNameInput": "ما هو اسمك؟",
+                "usernameInput": "اسم المستخدم",
+                "passwordInput": "كلمة المرور",
+                "reEnterPasswordInput": "إعادة إدخال كلمة المرور",
+                "registerBtn": "تسجيل",
+                "loginBtn": "تسجيل الدخول",
+                "haveAccountText": "لديك حساب بالفعل؟",
+                "error": {
+                    "passwordLength": "يجب أن تتكون كلمة المرور من 6-18 حرفًا.",
+                    "passwordNotMatch": "كلمتا المرور غير متطابقتين.",
+                    "usernameTaken": "اسم المستخدم مُستخدم بالفعل.",
+                    "unknown": "تعذر التسجيل. يرجى المحاولة مرة أخرى لاحقًا."
+                },
+                "success": "تم تسجيل الحساب بنجاح!"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "منصة ألعاب رائعة",
+                "text1": "مجاني 100٪",
+                "text2": "متعدد اللاعبين",
+                "text3": "ودود"
+            },
+            "introduceSection2": {
+                "title1": "لوحة المتصدرين",
+                "content1": "تحدى أفضل اللاعبين في جميع أنحاء العالم من خلال نظام البطولات اليومية الفريد لدينا وكن رقم واحد! هل لديك ما يلزم للارتقاء إلى مستوى التحدي؟",
+                "title2": "العب مع الأصدقاء",
+                "content2": "العب مع أي شخص حول العالم في الوقت الفعلي من خلال مشاركة رابط فريد. بنقرة واحدة فقط، سيتم توصيلك.",
+                "title3": "المتجر الإلكتروني",
+                "content3": "كلما لعبت أكثر، زادت العملات داخل اللعبة التي تكسبها. يمكنك استخدام هذه العملات للحصول على صور رمزية ورموز تعبيرية فريدة للتواصل مع خصومك.",
+                "title4": "كوّن صداقات ودردش",
+                "content4": "صادق رفاقك وأصدقائك. دردش وتحدى بعضكما البعض بعد ساعات عمل أو دراسة مرهقة. أدخل الفرح والإثارة على يومك."
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "المتجر"
+            },
+            "tab": {
+                "ownedLabel": "مملوكة",
+                "notOwnedLabel": "مميزة"
+            },
+            "confirmBuyModal": {
+                "title": "تأكيد الشراء"
+            },
+            "error": {
+                "itemNotFound": "العنصر غير موجود.",
+                "cannotGetItemList": "تعذر جلب قائمة العناصر."
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "العب مع صديق",
+                "playWithRandom": "مباراة عشوائية",
+                "gameInstructions": "تعليمات اللعبة"
+            },
+            "ranking": {
+                "title": "لوحة المتصدرين"
+            },
+            "ticTacToe": {
+                "description": "لعبة إستراتيجية يتناوب فيها اللاعبون على وضع علامة 'X' أو 'O' في خلايا فارغة على اللوحة. الهدف هو محاذاة 3 من رموزك أفقيًا أو رأسيًا أو قطريًا قبل خصمك. تنتهي اللعبة عندما يفوز شخص ما أو عندما تمتلئ جميع الخلايا بدون فائز."
+            },
+            "fifteenPuzzle": {
+                "description": "لعبة ألغاز تُلعَب على لوحة 4x4 بها 15 مربعًا مرقمة من 1 إلى 15 وفتحة فارغة واحدة. يُحرّك اللاعبون المربعات عن طريق تحريكها إلى الفتحة الفارغة لترتيب الأرقام بالتسلسل من 1 إلى 15. تُحسّن هذه اللعبة التفكير المنطقي ومهارات حل المشكلات."
+            },
+            "memory": {
+                "description": "لعبة اختبار للذاكرة يتناوب فيها اللاعبون على قلب بطاقتين. إذا تطابقتا، يسجل اللاعب نقاطًا ويستمر؛ إذا لم تتطابقا، تُقلب البطاقات مرة أخرى. الهدف هو العثور على جميع الأزواج المتطابقة."
+            }
+        },
+        "account": {
+            "title": "حسابي",
+            "displayName": "اسم العرض",
+            "password": "كلمة المرور",
+            "changePasswordBtn": "تغيير كلمة المرور",
+            "changeProfileImageBtn": "تغيير",
+            "deleteAccountTitle": "حذف الحساب",
+            "deleteAccountDescription": "سيؤدي حذف حسابك إلى محو حسابك وألعابك وتصنيفاتك نهائيًا. لا يمكن التراجع عن هذا الإجراء.",
+            "deleteAccountBtn": "حذف الحساب"
+        },
+        "gameInstructions": {
+            "title": "تعليمات اللعبة",
+            "ticTacToe": {
+                "objectiveTitle": "الهدف:",
+                "objectiveContent": "محاذاة 3 من رموزك (X أو O) على التوالي في صف أو عمود أو قطري على اللوحة.",
+                "instructionsTitle": "كيفية اللعب:",
+                "instructionsContent": "يتناوب لاعبان على وضع رموزهما في خلايا فارغة على اللوحة. يفوز أول لاعب يُحاذي 3 رموز على التوالي. إذا امتلأت جميع الخلايا بدون فائز، تكون اللعبة تعادلًا."
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "الهدف:",
+                "objectiveContent": "ترتيب المربعات المرقمة من 1 إلى 15 بالترتيب من اليسار إلى اليمين، من أعلى إلى أسفل على لوحة 4x4، مع ترك الفتحة الأخيرة فارغة.",
+                "instructionsTitle": "كيفية اللعب:",
+                "instructionsContent": "تحتوي اللوحة على 16 مربعًا، بما في ذلك فتحة فارغة واحدة. يمكن للاعبين تحريك المربعات المجاورة إلى الفتحة الفارغة. الهدف هو إعادة ترتيب المربعات بالترتيب الصحيح."
+            },
+            "memory": {
+                "objectiveTitle": "الهدف:",
+                "objectiveContent": "العثور على جميع أزواج الصور المتطابقة على اللوحة.",
+                "instructionsTitle": "كيفية اللعب:",
+                "instructionsContent": "تحتوي اللوحة على مجموعة من البطاقات المقلوبة التي عليها صور. يقلب اللاعبون بطاقتين في كل دور. إذا تطابقتا، تظل البطاقات مقلوبة؛ وإلا، تُقلب مرة أخرى. استمر حتى يتم العثور على جميع الأزواج."
+            }
+        },
+        "room": {
+            "leaveRoom": "مغادرة الغرفة",
+            "shareLinkTitle": "شارك هذا الرابط مع صديق:",
+            "PreparingRoomTitle": "جارٍ تجهيز الغرفة",
+            "youAreFirstTurn": "دورك الأول.",
+            "opponentIsFirstTurn": "دور الخصم الأول.",
+            "youWin": "لقد فزت!",
+            "opponentWin": "لقد فاز الخصم!",
+            "drawMatch": "المباراة تعادل!",
+            "loadingTheGame": "جارٍ تحميل بيانات اللعبة، يرجى الانتظار...",
+            "opponentCancelRequest": "لقد رفض الخصم الطلب.",
+            "opponentWantToPlayAgain": "الخصم يريد اللعب مرة أخرى.",
+            "playAgain": "العب مرة أخرى",
+            "sentPlayAgainRequest": "تم إرسال الطلب",
+            "sendFirstMessageTitle": "أرسل الرسالة الأولى.",
+            "youHere": "أنت هنا",
+            "opponentHere": "الخصم هنا",
+            "15PuzzleMoveInstruction": "حرّك البلاط في الشبكة لترتيبها من 1 إلى 15.",
+            "error": {
+                "sendPlayAgainRequestFail": "تعذر إرسال الطلب",
+                "roomNotFound": "لم يتم العثور على الغرفة.",
+                "playAgainFailure": "لقد غادر الخصم الغرفة أو تم إلغاء الغرفة.",
+                "screenSizeNotSupported": "العبة تتطلب حجم شاشة أكبر.",
+                "unknown": "خطأ غير معروف."
+            }
+        },
+        "error": {
+            "title": "حدث خطأ في النظام. الرجاء المحاولة مرة أخرى لاحقًا.",
+            "tryAgain": "حاول مرة أخرى"
+        }
+    }
+}

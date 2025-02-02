@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "Bienvenue !",
+        "homePage": "Accueil",
+        "logout": "Déconnexion",
+        "submit": "OK",
+        "cancel": "Annuler",
+        "loading": "Chargement...",
+        "error": {
+            "requiredField": "Ce champ est obligatoire.",
+            "minLength": "La longueur minimale est de {min} caractères.",
+            "maxLength": "La longueur maximale est de {max} caractères.",
+            "noWhitespace": "Le champ ne doit pas contenir d'espaces.",
+            "noSpecialCharacters": "Le champ ne doit pas contenir de caractères spéciaux."
+        },
+        "notification": {
+            "title": "Notification",
+            "options": {
+                "readAll": "Tout marquer comme lu",
+                "deleteAll": "Tout supprimer"
+            }
+        },
+        "sidebar": {
+            "messageLink": "Messages",
+            "FriendLink": "Amis",
+            "HistoryLink": "Historique",
+            "HomeLink": "Accueil",
+            "StoreLink": "Magasin",
+            "gameInstructionsLink": "Instructions du jeu",
+            "gameSectionTitle": "Jeux",
+            "userInfo": {
+                "accountManagerLink": "Gestion du compte",
+                "myStatistics": "Mes statistiques",
+                "changeProfileImage": "Changer la photo de profil"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "Victoires : {times}",
+            "loseTimes": "Défaites : {times}",
+            "drawTimes": "Matchs nuls : {times}",
+            "history": "Historique"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "Mes statistiques",
+                "totalWins": "Victoires",
+                "totalLoses": "Défaites",
+                "totalDraws": "Matchs nuls",
+                "totalWinRate": "Taux de victoire",
+                "level": "Niveau",
+                "error": {
+                    "unknown": "Impossible de charger les statistiques du jeu. Veuillez actualiser la page ou réessayer plus tard."
+                }
+            },
+            "historyModal": {
+                "title": "Historique",
+                "pageLabel": "Page {page}",
+                "winLabel": "Victoire",
+                "loseLabel": "Défaite",
+                "drawLabel": "Match nul",
+                "totalMatchesLabel": "Total : {totalMatch} matchs",
+                "searchingHistory": "Récupération des données d'historique...",
+                "noHistoryFound": "Aucun historique trouvé.",
+                "error": {
+                    "unknown": "Impossible de charger les données d'historique. Veuillez actualiser la page ou réessayer plus tard."
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "Confirmer l'achat :"
+            },
+            "confirmLeaveMatchModal": {
+                "title": "Quitter le match",
+                "content": "Confirmer la sortie du match ? L'adversaire sera crédité d'une victoire."
+            },
+            "lookingForGameModal": {
+                "content": "Recherche d'un adversaire",
+                "lookingForOpponentNotification": "Recherche d'un adversaire approprié, veuillez patienter.",
+                "opponentNotFoundNotification": "Aucun adversaire trouvé pour le moment. Veuillez réessayer plus tard."
+            },
+            "settingModal": {
+                "title": "Paramètres",
+                "systemType": "Système",
+                "soundType": "Son",
+                "languageType": "Langue",
+                "theme": "Thème",
+                "backgroundImage": "Image de fond",
+                "image": "Image {number}",
+                "language": "Langue",
+                "BackgroundMusicVolume": "Musique de fond",
+                "SystemSoundVolume": "Sons du système"
+            },
+            "gameSetup": {
+                "title": "Créer une nouvelle salle",
+                "gameName": "Jeu",
+                "createRoom": "Créer une salle",
+                "ticTacToe": {
+                    "boardSize": "Taille du plateau",
+                    "size3x3Description": "3x3 (Classique)",
+                    "size5x5Description": "5x5 (Aligner 4 pour gagner)",
+                    "timePerTurn": "Temps par tour",
+                    "seconds": "{seconds} secondes",
+                    "playTurn": "Tour",
+                    "firstTurn": "{firstTurn, select, me {Je commence en premier} opponent {L'adversaire commence en premier} other {Aléatoire}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "Durée du match",
+                    "minutes": "{minutes} minutes"
+                },
+                "memory": {
+                    "theme": "Thème des cartes",
+                    "themeValue": "{theme, select, fruit {Fruits} other {Animaux}}",
+                    "numOfCardsLabel": "Nombre de cartes",
+                    "numOfCards": "{number} cartes",
+                    "timeForMatch": "Durée du match",
+                    "minutes": "{minutes} minutes"
+                },
+                "error": {
+                    "createRoomFailure": "Impossible de créer une nouvelle salle, veuillez réessayer plus tard."
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "Le jeu nécessite une taille d'écran d'au moins {width}px."
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "Connexion",
+                "usernameInput": "Nom d'utilisateur",
+                "passwordInput": "Mot de passe",
+                "loginBtn": "Se connecter",
+                "forgotPasswordBtn": "Mot de passe oublié ?",
+                "rememberMeText": "Se souvenir de moi",
+                "haveNoAccountText": "Vous n'avez pas de compte ?",
+                "registerBtn": "S'inscrire",
+                "error": {
+                    "invalidCredentials": "Nom d'utilisateur ou mot de passe incorrect.",
+                    "unknown": "Impossible de se connecter. Veuillez réessayer plus tard."
+                }
+            },
+            "register": {
+                "title": "Inscription",
+                "fullNameInput": "Quel est votre nom ?",
+                "usernameInput": "Nom d'utilisateur",
+                "passwordInput": "Mot de passe",
+                "reEnterPasswordInput": "Confirmer le mot de passe",
+                "registerBtn": "S'inscrire",
+                "loginBtn": "Se connecter",
+                "haveAccountText": "Vous avez déjà un compte ?",
+                "error": {
+                    "passwordLength": "Le mot de passe doit contenir entre 6 et 18 caractères.",
+                    "passwordNotMatch": "Les mots de passe ne correspondent pas.",
+                    "usernameTaken": "Ce nom d'utilisateur est déjà pris.",
+                    "unknown": "Impossible de s'inscrire. Veuillez réessayer plus tard."
+                },
+                "success": "Compte créé avec succès !"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "Une plateforme de jeu géniale",
+                "text1": "100% Gratuit",
+                "text2": "Multijoueur",
+                "text3": "Convivial"
+            },
+            "introduceSection2": {
+                "title1": "Classement",
+                "content1": "Défiez les meilleurs joueurs du monde grâce à notre système unique de tournois quotidiens et devenez le numéro un ! Avez-vous ce qu'il faut pour relever le défi ?",
+                "title2": "Jouer avec des amis",
+                "content2": "Jouez avec n'importe qui dans le monde en temps réel en partageant un lien unique. En un seul clic, vous serez connecté.",
+                "title3": "Boutique en ligne",
+                "content3": "Plus vous jouez, plus vous gagnez de pièces en jeu. Vous pouvez utiliser ces pièces pour obtenir des avatars et des emojis uniques pour communiquer avec vos adversaires.",
+                "title4": "Se faire des amis et discuter",
+                "content4": "Liez-vous d'amitié avec vos camarades et amis. Discutez et défiez-vous après des heures stressantes de travail ou d'études. Apportez de la joie et de l'excitation à votre journée."
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "Boutique"
+            },
+            "tab": {
+                "ownedLabel": "Possédés",
+                "notOwnedLabel": "Premium"
+            },
+            "confirmBuyModal": {
+                "title": "Confirmer l'achat"
+            },
+            "error": {
+                "itemNotFound": "L'article n'existe pas.",
+                "cannotGetItemList": "Impossible de récupérer la liste des articles."
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "Jouer avec un ami",
+                "playWithRandom": "Match aléatoire",
+                "gameInstructions": "Instructions du jeu"
+            },
+            "ranking": {
+                "title": "Classement"
+            },
+            "ticTacToe": {
+                "description": "Un jeu de stratégie où les joueurs marquent à tour de rôle 'X' ou 'O' dans des cases vides sur le plateau. Le but est d'aligner 3 de vos symboles horizontalement, verticalement ou en diagonale avant votre adversaire. La partie se termine lorsque quelqu'un gagne ou lorsque toutes les cases sont remplies sans vainqueur."
+            },
+            "fifteenPuzzle": {
+                "description": "Un jeu de puzzle joué sur un plateau 4x4 avec 15 tuiles numérotées de 1 à 15 et un emplacement vide. Les joueurs déplacent les tuiles en les faisant glisser dans l'emplacement vide pour organiser les nombres séquentiellement de 1 à 15. Ce jeu améliore la pensée logique et les compétences en résolution de problèmes."
+            },
+            "memory": {
+                "description": "Un jeu de mémoire où les joueurs retournent à tour de rôle deux cartes. Si elles correspondent, le joueur marque un point et continue ; sinon, les cartes sont retournées. L'objectif est de trouver toutes les paires correspondantes."
+            }
+        },
+        "account": {
+            "title": "Mon compte",
+            "displayName": "Nom d'affichage",
+            "password": "Mot de passe",
+            "changePasswordBtn": "Changer le mot de passe",
+            "changeProfileImageBtn": "Modifier",
+            "deleteAccountTitle": "Supprimer le compte",
+            "deleteAccountDescription": "La suppression de votre compte effacera définitivement votre compte, vos jeux et vos classements. Cette action est irréversible.",
+            "deleteAccountBtn": "Supprimer le compte"
+        },
+        "gameInstructions": {
+            "title": "Instructions du jeu",
+            "ticTacToe": {
+                "objectiveTitle": "Objectif :",
+                "objectiveContent": "Aligner 3 de vos symboles (X ou O) consécutivement sur une ligne, une colonne ou une diagonale du plateau.",
+                "instructionsTitle": "Comment jouer :",
+                "instructionsContent": "Deux joueurs marquent à tour de rôle leurs symboles dans des cases vides sur le plateau. Le premier joueur qui aligne 3 symboles consécutivement gagne. Si toutes les cases sont remplies sans vainqueur, la partie est nulle."
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "Objectif :",
+                "objectiveContent": "Disposer les tuiles numérotées de 1 à 15 dans l'ordre de gauche à droite, de haut en bas sur un plateau 4x4, en laissant le dernier emplacement vide.",
+                "instructionsTitle": "Comment jouer :",
+                "instructionsContent": "Le plateau comporte 16 tuiles, dont un emplacement vide. Les joueurs peuvent faire glisser les tuiles adjacentes dans l'emplacement vide. Le but est de réorganiser les tuiles dans le bon ordre."
+            },
+            "memory": {
+                "objectiveTitle": "Objectif :",
+                "objectiveContent": "Trouver toutes les paires d'images correspondantes sur le plateau.",
+                "instructionsTitle": "Comment jouer :",
+                "instructionsContent": "Le plateau contient un ensemble de cartes faces cachées avec des images. Les joueurs retournent deux cartes par tour. Si elles correspondent, les cartes restent retournées ; sinon, elles sont retournées. Continuez jusqu'à ce que toutes les paires soient trouvées."
+            }
+        },
+        "room": {
+            "leaveRoom": "Quitter la salle",
+            "shareLinkTitle": "Partager ce lien avec un ami :",
+            "PreparingRoomTitle": "Préparation de la salle",
+            "youAreFirstTurn": "C'est votre tour de commencer.",
+            "opponentIsFirstTurn": "C'est au tour de l'adversaire de commencer.",
+            "youWin": "Vous avez gagné !",
+            "opponentWin": "L'adversaire a gagné !",
+            "drawMatch": "Le match est nul !",
+            "loadingTheGame": "Chargement des données du jeu, veuillez patienter...",
+            "opponentCancelRequest": "L'adversaire a refusé la demande.",
+            "opponentWantToPlayAgain": "L'adversaire veut rejouer.",
+            "playAgain": "Rejouer",
+            "sentPlayAgainRequest": "Requête envoyée",
+            "sendFirstMessageTitle": "Envoyez le premier message.",
+            "youHere": "Vous êtes ici",
+            "opponentHere": "L'adversaire est ici",
+            "15PuzzleMoveInstruction": "Déplacez les tuiles dans la grille pour les arranger de 1 à 15.",
+            "error": {
+                "sendPlayAgainRequestFail": "Impossible d'envoyer la requête",
+                "roomNotFound": "Salle non trouvée.",
+                "playAgainFailure": "L'adversaire a quitté la salle ou la salle a été annulée.",
+                "screenSizeNotSupported": "Le jeu nécessite un écran plus grand.",
+                "unknown": "Erreur inconnue."
+            }
+        },
+        "error": {
+            "title": "Une erreur s'est produite dans le système. Veuillez réessayer plus tard.",
+            "tryAgain": "Réessayer"
+        }
+    }
+}

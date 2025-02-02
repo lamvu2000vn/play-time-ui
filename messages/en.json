@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "Welcome!",
+        "homePage": "Home",
+        "logout": "Logout",
+        "submit": "OK",
+        "cancel": "Cancel",
+        "loading": "Loading...",
+        "error": {
+            "requiredField": "This field is required.",
+            "minLength": "Minimum length is {min} characters.",
+            "maxLength": "Maximum length is {max} characters.",
+            "noWhitespace": "Field must not contain whitespace.",
+            "noSpecialCharacters": "Field must not contain special characters."
+        },
+        "notification": {
+            "title": "Notification",
+            "options": {
+                "readAll": "Mark all as read",
+                "deleteAll": "Delete all"
+            }
+        },
+        "sidebar": {
+            "messageLink": "Messages",
+            "FriendLink": "Friends",
+            "HistoryLink": "History",
+            "HomeLink": "Home",
+            "StoreLink": "Store",
+            "gameInstructionsLink": "Game Instructions",
+            "gameSectionTitle": "Games",
+            "userInfo": {
+                "accountManagerLink": "Account Management",
+                "myStatistics": "My Statistics",
+                "changeProfileImage": "Change Profile Picture"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "Wins: {times}",
+            "loseTimes": "Losses: {times}",
+            "drawTimes": "Draws: {times}",
+            "history": "History"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "My Statistics",
+                "totalWins": "Wins",
+                "totalLoses": "Losses",
+                "totalDraws": "Draws",
+                "totalWinRate": "Win Rate",
+                "level": "Level",
+                "error": {
+                    "unknown": "Unable to load game statistics. Please refresh the page or try again later."
+                }
+            },
+            "historyModal": {
+                "title": "History",
+                "pageLabel": "Page {page}",
+                "winLabel": "Win",
+                "loseLabel": "Loss",
+                "drawLabel": "Draw",
+                "totalMatchesLabel": "Total: {totalMatch} matches",
+                "searchingHistory": "Fetching history data...",
+                "noHistoryFound": "No history found.",
+                "error": {
+                    "unknown": "Unable to load history data. Please refresh the page or try again later."
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "Confirm purchase:"
+            },
+            "confirmLeaveMatchModal": {
+                "title": "Leave Match",
+                "content": "Confirm leaving the match? The opponent will be credited with a win."
+            },
+            "lookingForGameModal": {
+                "content": "Looking for an opponent",
+                "lookingForOpponentNotification": "Searching for a suitable opponent, please wait.",
+                "opponentNotFoundNotification": "No opponents found at the moment. Please try again later."
+            },
+            "settingModal": {
+                "title": "Settings",
+                "systemType": "System",
+                "soundType": "Sound",
+                "languageType": "Language",
+                "theme": "Theme",
+                "backgroundImage": "Background Image",
+                "image": "Image {number}",
+                "language": "Language",
+                "BackgroundMusicVolume": "Background",
+                "SystemSoundVolume": "System"
+            },
+            "gameSetup": {
+                "title": "Create New Room",
+                "gameName": "Game",
+                "createRoom": "Create Room",
+                "ticTacToe": {
+                    "boardSize": "Board Size",
+                    "size3x3Description": "3x3 (Classic)",
+                    "size5x5Description": "5x5 (Connect 4 to Win)",
+                    "timePerTurn": "Time per Turn",
+                    "seconds": "{seconds} seconds",
+                    "playTurn": "Turn",
+                    "firstTurn": "{firstTurn, select, me {I start first} opponent {Opponent starts first} other {Random}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "Match Duration",
+                    "minutes": "{minutes} minutes"
+                },
+                "memory": {
+                    "theme": "Card Theme",
+                    "themeValue": "{theme, select, fruit {Fruits} other {Animals}}",
+                    "numOfCardsLabel": "Number of Cards",
+                    "numOfCards": "{number} cards",
+                    "timeForMatch": "Match Duration",
+                    "minutes": "{minutes} minutes"
+                },
+                "error": {
+                    "createRoomFailure": "Unable to create a new room, please try again later."
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "The game requires a screen size of at least {width}px."
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "Login",
+                "usernameInput": "Username",
+                "passwordInput": "Password",
+                "loginBtn": "Login",
+                "forgotPasswordBtn": "Forgot Password?",
+                "rememberMeText": "Remember me",
+                "haveNoAccountText": "Don't have an account?",
+                "registerBtn": "Register",
+                "error": {
+                    "invalidCredentials": "Invalid username or password.",
+                    "unknown": "Unable to log in. Please try again later."
+                }
+            },
+            "register": {
+                "title": "Register",
+                "fullNameInput": "What's your name?",
+                "usernameInput": "Username",
+                "passwordInput": "Password",
+                "reEnterPasswordInput": "Re-enter Password",
+                "registerBtn": "Register",
+                "loginBtn": "Login",
+                "haveAccountText": "Already have an account?",
+                "error": {
+                    "passwordLength": "Password must be 6-18 characters.",
+                    "passwordNotMatch": "Passwords do not match.",
+                    "usernameTaken": "Username is already taken.",
+                    "unknown": "Unable to register. Please try again later."
+                },
+                "success": "Account registered successfully!"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "An awesome gaming platform",
+                "text1": "100% Free",
+                "text2": "Multiplayer",
+                "text3": "Friendly"
+            },
+            "introduceSection2": {
+                "title1": "Leaderboard",
+                "content1": "Challenge the best players worldwide with our unique daily tournament system and become the Number One! Do you have what it takes to rise to the challenge?",
+                "title2": "Play with friends",
+                "content2": "Play with anyone around the world in real-time by sharing a unique link. With just one click, you'll be connected.",
+                "title3": "Online Store",
+                "content3": "The more you play, the more in-game coins you earn. You can use these coins to get unique avatars and emojis to communicate with your opponents.",
+                "title4": "Make friends and chat",
+                "content4": "Befriend your comrades and friends. Chat and challenge each other after stressful hours of work or study. Bring joy and excitement into your day."
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "Store"
+            },
+            "tab": {
+                "ownedLabel": "Owned",
+                "notOwnedLabel": "Premium"
+            },
+            "confirmBuyModal": {
+                "title": "Confirm Purchase"
+            },
+            "error": {
+                "itemNotFound": "Item does not exist.",
+                "cannotGetItemList": "Unable to fetch item list."
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "Play with a friend",
+                "playWithRandom": "Random match",
+                "gameInstructions": "Game instructions"
+            },
+            "ranking": {
+                "title": "Leaderboard"
+            },
+            "ticTacToe": {
+                "description": "A strategy game where players take turns marking 'X' or 'O' in empty cells on the board. The goal is to align 3 of your symbols horizontally, vertically, or diagonally before your opponent. The game ends when someone wins or when all cells are filled with no winner."
+            },
+            "fifteenPuzzle": {
+                "description": "A puzzle game played on a 4x4 board with 15 numbered tiles from 1 to 15 and one empty slot. Players move tiles by sliding them into the empty slot to arrange the numbers sequentially from 1 to 15. This game enhances logical thinking and problem-solving skills."
+            },
+            "memory": {
+                "description": "A memory-testing game where players take turns flipping two cards. If they match, the player scores and continues; if not, the cards are flipped back over. The objective is to find all matching pairs."
+            }
+        },
+        "account": {
+            "title": "My Account",
+            "displayName": "Display Name",
+            "password": "Password",
+            "changePasswordBtn": "Change Password",
+            "changeProfileImageBtn": "Change",
+            "deleteAccountTitle": "Delete Account",
+            "deleteAccountDescription": "Deleting your account will permanently erase your account, games, and rankings. This action cannot be undone.",
+            "deleteAccountBtn": "Delete Account"
+        },
+        "gameInstructions": {
+            "title": "Game Instructions",
+            "ticTacToe": {
+                "objectiveTitle": "Objective:",
+                "objectiveContent": "Align 3 of your symbols (X or O) consecutively in a row, column, or diagonal on the board.",
+                "instructionsTitle": "How to Play:",
+                "instructionsContent": "Two players take turns marking their symbols in empty cells on the board. The first player to align 3 symbols consecutively wins. If all cells are filled with no winner, the game is a draw."
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "Objective:",
+                "objectiveContent": "Arrange the numbered tiles from 1 to 15 in order from left to right, top to bottom on a 4x4 board, leaving the last slot empty.",
+                "instructionsTitle": "How to Play:",
+                "instructionsContent": "The board has 16 tiles, including one empty slot. Players can slide adjacent tiles into the empty slot. The goal is to rearrange the tiles in the correct order."
+            },
+            "memory": {
+                "objectiveTitle": "Objective:",
+                "objectiveContent": "Find all pairs of matching images on the board.",
+                "instructionsTitle": "How to Play:",
+                "instructionsContent": "The board contains a set of face-down cards with images. Players flip two cards per turn. If they match, the cards remain flipped; otherwise, they are flipped back. Continue until all pairs are found."
+            }
+        },
+        "room": {
+            "leaveRoom": "Leave Room",
+            "shareLinkTitle": "Share this link with a friend:",
+            "PreparingRoomTitle": "Preparing Room",
+            "youAreFirstTurn": "You are the first turn.",
+            "opponentIsFirstTurn": "Opponent is the first turn.",
+            "youWin": "You won!",
+            "opponentWin": "Opponent won!",
+            "drawMatch": "The match is a draw!",
+            "loadingTheGame": "Loading game data, please wait...",
+            "opponentCancelRequest": "The opponent has declined the request.",
+            "opponentWantToPlayAgain": "The opponent wants to play again.",
+            "playAgain": "Play Again",
+            "sentPlayAgainRequest": "Request sent",
+            "sendFirstMessageTitle": "Send the first message.",
+            "youHere": "You are here",
+            "opponentHere": "Opponent is here",
+            "15PuzzleMoveInstruction": "Move the tiles in the grid to arrange them from 1 to 15.",
+            "error": {
+                "sendPlayAgainRequestFail": "Unable to send request",
+                "roomNotFound": "Room not found.",
+                "playAgainFailure": "The opponent has left the room or the room has been canceled.",
+                "screenSizeNotSupported": "The game requires a screen size larger than this.",
+                "unknown": "Unknown error."
+            }
+        },
+        "error": {
+            "title": "An error has occurred in the system. Please try again later.",
+            "tryAgain": "Try again"
+        }
+    }
+}

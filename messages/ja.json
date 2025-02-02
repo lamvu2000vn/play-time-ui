@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "ようこそ！",
+        "homePage": "ホーム",
+        "logout": "ログアウト",
+        "submit": "OK",
+        "cancel": "キャンセル",
+        "loading": "読み込み中...",
+        "error": {
+            "requiredField": "この項目は必須です。",
+            "minLength": "最小文字数は{min}文字です。",
+            "maxLength": "最大文字数は{max}文字です。",
+            "noWhitespace": "フィールドには空白を含めることはできません。",
+            "noSpecialCharacters": "フィールドには特殊文字を含めることはできません。"
+        },
+        "notification": {
+            "title": "お知らせ",
+            "options": {
+                "readAll": "すべて既読にする",
+                "deleteAll": "すべて削除"
+            }
+        },
+        "sidebar": {
+            "messageLink": "メッセージ",
+            "FriendLink": "友達",
+            "HistoryLink": "履歴",
+            "HomeLink": "ホーム",
+            "StoreLink": "ストア",
+            "gameInstructionsLink": "ゲーム説明",
+            "gameSectionTitle": "ゲーム",
+            "userInfo": {
+                "accountManagerLink": "アカウント管理",
+                "myStatistics": "自分の統計",
+                "changeProfileImage": "プロフィール画像を変更"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "勝利：{times}回",
+            "loseTimes": "敗北：{times}回",
+            "drawTimes": "引き分け：{times}回",
+            "history": "履歴"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "自分の統計",
+                "totalWins": "勝利",
+                "totalLoses": "敗北",
+                "totalDraws": "引き分け",
+                "totalWinRate": "勝率",
+                "level": "レベル",
+                "error": {
+                    "unknown": "ゲーム統計を読み込めませんでした。ページを更新するか、後でもう一度お試しください。"
+                }
+            },
+            "historyModal": {
+                "title": "履歴",
+                "pageLabel": "ページ{page}",
+                "winLabel": "勝利",
+                "loseLabel": "敗北",
+                "drawLabel": "引き分け",
+                "totalMatchesLabel": "合計：{totalMatch}試合",
+                "searchingHistory": "履歴データを取得中...",
+                "noHistoryFound": "履歴が見つかりませんでした。",
+                "error": {
+                    "unknown": "履歴データを読み込めませんでした。ページを更新するか、後でもう一度お試しください。"
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "購入の確認："
+            },
+            "confirmLeaveMatchModal": {
+                "title": "対戦を中断",
+                "content": "対戦を中断しますか？相手に勝利が与えられます。"
+            },
+            "lookingForGameModal": {
+                "content": "対戦相手を探しています",
+                "lookingForOpponentNotification": "適切な対戦相手を検索中です。お待ちください。",
+                "opponentNotFoundNotification": "現在、対戦相手が見つかりません。後でもう一度お試しください。"
+            },
+            "settingModal": {
+                "title": "設定",
+                "systemType": "システム",
+                "soundType": "サウンド",
+                "languageType": "言語",
+                "theme": "テーマ",
+                "backgroundImage": "背景画像",
+                "image": "画像 {number}",
+                "language": "言語",
+                "BackgroundMusicVolume": "背景音楽",
+                "SystemSoundVolume": "システム音"
+            },
+            "gameSetup": {
+                "title": "新しいルームを作成",
+                "gameName": "ゲーム",
+                "createRoom": "ルームを作成",
+                "ticTacToe": {
+                    "boardSize": "盤のサイズ",
+                    "size3x3Description": "3x3（クラシック）",
+                    "size5x5Description": "5x5（四目並べ）",
+                    "timePerTurn": "持ち時間",
+                    "seconds": "{seconds}秒",
+                    "playTurn": "順番",
+                    "firstTurn": "{firstTurn, select, me {自分が先攻} opponent {相手が先攻} other {ランダム}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "制限時間",
+                    "minutes": "{minutes}分"
+                },
+                "memory": {
+                    "theme": "カードテーマ",
+                    "themeValue": "{theme, select, fruit {フルーツ} other {動物}}",
+                    "numOfCardsLabel": "カードの枚数",
+                    "numOfCards": "{number} 枚のカード",
+                    "timeForMatch": "制限時間",
+                    "minutes": "{minutes}分"
+                },
+                "error": {
+                    "createRoomFailure": "新しいルームを作成できませんでした。後でもう一度お試しください。"
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "このゲームは少なくとも {width}px の画面サイズが必要です。"
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "ログイン",
+                "usernameInput": "ユーザー名",
+                "passwordInput": "パスワード",
+                "loginBtn": "ログイン",
+                "forgotPasswordBtn": "パスワードをお忘れですか？",
+                "rememberMeText": "私を覚えてますか",
+                "haveNoAccountText": "アカウントをお持ちでない場合は、",
+                "registerBtn": "登録する",
+                "error": {
+                    "invalidCredentials": "ユーザー名またはパスワードが無効です。",
+                    "unknown": "ログインできません。後でもう一度お試しください。"
+                }
+            },
+            "register": {
+                "title": "登録する",
+                "fullNameInput": "あなたの名前は何ですか？",
+                "usernameInput": "ユーザー名",
+                "passwordInput": "パスワード",
+                "reEnterPasswordInput": "パスワード再入力",
+                "registerBtn": "登録する",
+                "loginBtn": "ログイン",
+                "haveAccountText": "すでにアカウントをお持ちですか?",
+                "error": {
+                    "passwordLength": "パスワードは 6 ～ 18 文字にする必要があります。",
+                    "passwordNotMatch": "パスワードが一致しません。",
+                    "usernameTaken": "ユーザー名はすでに使用されています。",
+                    "unknown": "登録できません。"
+                },
+                "success": "アカウントが正常に登録されました！"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "素晴らしいゲームプラットフォーム",
+                "text1": "完全無料",
+                "text2": "マルチプレイヤー",
+                "text3": "フレンドリー"
+            },
+            "introduceSection2": {
+                "title1": "リーダーボード",
+                "content1": "独自のデイリートーナメントシステムで世界中のトッププレイヤーに挑戦し、ナンバーワンを目指しましょう！",
+                "title2": "友達と遊ぶ",
+                "content2": "固有のリンクを共有することで、世界中の誰とでもリアルタイムでプレイできます。",
+                "title3": "オンラインストア",
+                "content3": "プレイすればするほど、より多くのゲーム内コインを獲得できます。",
+                "title4": "友達を作ってチャットしましょう",
+                "content4": "同志や友達と仲良くなりましょう。"
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "店"
+            },
+            "tab": {
+                "ownedLabel": "所有",
+                "notOwnedLabel": "プレミアム"
+            },
+            "confirmBuyModal": {
+                "title": "購入の確認"
+            },
+            "error": {
+                "itemNotFound": "項目が存在しません。",
+                "cannotGetItemList": "アイテムリストを取得できません。"
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "友達と遊ぶ",
+                "playWithRandom": "ランダムマッチ",
+                "gameInstructions": "ゲームの説明書"
+            },
+            "ranking": {
+                "title": "リーダーボード"
+            },
+            "ticTacToe": {
+                "description": "プレイヤーが順番にボード上の空のセルに「X」または「O」をマークする戦略ゲームです。"
+            },
+            "fifteenPuzzle": {
+                "description": "1 ～ 15 の番号が付けられた 15 枚のタイルと 1 つの空のスロットを備えた 4x4 ボードでプレイされるパズル ゲーム。"
+            },
+            "memory": {
+                "description": "プレイヤーが順番に 2 枚のカードを裏返す、記憶力をテストするゲームです。"
+            }
+        },
+        "account": {
+            "title": "私のアカウント",
+            "displayName": "表示名",
+            "password": "パスワード",
+            "changePasswordBtn": "パスワードを変更する",
+            "changeProfileImageBtn": "変化",
+            "deleteAccountTitle": "アカウントの削除",
+            "deleteAccountDescription": "アカウントを削除すると、アカウント、ゲーム、ランキングが完全に消去されます。",
+            "deleteAccountBtn": "アカウントの削除"
+        },
+        "gameInstructions": {
+            "title": "ゲームの説明書",
+            "ticTacToe": {
+                "objectiveTitle": "客観的：",
+                "objectiveContent": "ボード上の行、列、または対角線上に 3 つのシンボル (X または O) を連続して並べます。",
+                "instructionsTitle": "遊び方:",
+                "instructionsContent": "2 人のプレイヤーが順番にボード上の空のセルにシンボルをマークします。 "
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "客観的：",
+                "objectiveContent": "1 から 15 までの番号のタイルを 4x4 ボード上に左から右、上から下の順に配置し、最後のスロットは空のままにします。",
+                "instructionsTitle": "遊び方:",
+                "instructionsContent": "ボードには 16 個のタイルがあり、そのうち 1 個の空きスロットが含まれます。"
+            },
+            "memory": {
+                "objectiveTitle": "客観的：",
+                "objectiveContent": "ボード上で一致する画像のペアをすべて見つけます。",
+                "instructionsTitle": "遊び方:",
+                "instructionsContent": "ボードには、画像が描かれた裏向きのカードのセットが含まれています。"
+            }
+        },
+        "room": {
+            "leaveRoom": "部屋を出る",
+            "shareLinkTitle": "このリンクを友達と共有します:",
+            "PreparingRoomTitle": "準備室",
+            "youAreFirstTurn": "あなたが最初のターンです。",
+            "opponentIsFirstTurn": "相手は1ターン目です。",
+            "youWin": "あなたは勝ちました！",
+            "opponentWin": "相手が勝ちました！",
+            "drawMatch": "試合は引き分けです！",
+            "loadingTheGame": "ゲームデータをロードしています。お待ちください...",
+            "opponentCancelRequest": "相手はリクエストを拒否しました。",
+            "opponentWantToPlayAgain": "相手はもう一度プレーしたいと考えています。",
+            "playAgain": "もう一度プレイする",
+            "sentPlayAgainRequest": "リクエストを送信しました",
+            "sendFirstMessageTitle": "最初のメッセージを送信します。",
+            "youHere": "あなたはここにいます",
+            "opponentHere": "対戦相手はここにいます",
+            "15PuzzleMoveInstruction": "グリッド内のタイルを移動させて、1から15まで並べてください。",
+            "error": {
+                "sendPlayAgainRequestFail": "リクエストを送信できません",
+                "roomNotFound": "部屋が見つかりません。",
+                "playAgainFailure": "相手が退室したか、ルームがキャンセルされました。",
+                "screenSizeNotSupported": "ゲームにはより大きな画面サイズが必要です。",
+                "unknown": "不明なエラー。"
+            }
+        },
+        "error": {
+            "title": "システムでエラーが発生しました。後でもう一度お試しください。",
+            "tryAgain": "再試行"
+        }
+    }
+}

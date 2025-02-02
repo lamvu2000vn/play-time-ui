@@ -1,0 +1,275 @@
+{
+    "common": {
+        "welcome": "Xin chào!",
+        "homePage": "Trang chủ",
+        "logout": "Đăng xuất",
+        "submit": "OK",
+        "cancel": "Hủy",
+        "loading": "Đang tải...",
+        "error": {
+            "requiredField": "Trường này không được để trống.",
+            "minLength": "Độ dài tối thiểu là {min} ký tự.",
+            "maxLength": "Độ dài tối đa là {max} ký tự.",
+            "noWhitespace": "Trường không được chứa khoảng trắng.",
+            "noSpecialCharacters": "Trường không được chứa ký tự đặc biệt."
+        },
+        "notification": {
+            "title": "Thông báo",
+            "options": {
+                "readAll": "Đã đọc tất cả",
+                "deleteAll": "Xóa tất cả"
+            }
+        },
+        "sidebar": {
+            "messageLink": "Nhắn tin",
+            "FriendLink": "Bạn bè",
+            "HistoryLink": "Lịch sử",
+            "HomeLink": "Trang chủ",
+            "StoreLink": "Cửa hàng",
+            "gameInstructionsLink": "Hướng dẫn trò chơi",
+            "gameSectionTitle": "Trò chơi",
+            "userInfo": {
+                "accountManagerLink": "Quản lý tài khoản",
+                "myStatistics": "Thống kê của tôi",
+                "changeProfileImage": "Thay đổi ảnh đại diện"
+            }
+        },
+        "gameStatistics": {
+            "winTimes": "Thắng: {times}",
+            "loseTimes": "Thua: {times}",
+            "drawTimes": "Hòa: {times}",
+            "history": "Lịch sử"
+        },
+        "modal": {
+            "statisticModal": {
+                "title": "Thống kê của tôi",
+                "totalWins": "Lần thắng",
+                "totalLoses": "Lần thua",
+                "totalDraws": "Lần hòa",
+                "totalWinRate": "Tỷ lệ thắng",
+                "level": "Cấp độ",
+                "error": {
+                    "unknown": "Không thể tải thống kê trò chơi. Vui lòng tải lại trang hoặc thử lại sau."
+                }
+            },
+            "historyModal": {
+                "title": "Lịch sử",
+                "pageLabel": "Trang {page}",
+                "winLabel": "Thắng",
+                "loseLabel": "Thua",
+                "drawLabel": "Hòa",
+                "totalMatchesLabel": "Tổng: {totalMatch} trận",
+                "searchingHistory": "Đang lấy thông tin lịch sử...",
+                "noHistoryFound": "Chưa có thông tin lịch sử.",
+                "error": {
+                    "unknown": "Không thể tải thông tin lịch sử. Vui lòng tải lại trang hoặc thử lại sau."
+                }
+            },
+            "confirmBuyItemModal": {
+                "title": "Xác nhận mua:"
+            },
+            "confirmLeaveMatchModal": {
+                "title": "Rời trận đấu",
+                "content": "Xác nhận rời trận đấu? Kết quả thắng được tính cho đối thủ."
+            },
+            "lookingForGameModal": {
+                "content": "Đang tìm kiếm đối thủ",
+                "lookingForOpponentNotification": "Đang tìm đối thủ đẳng cấp tương đồng, vui lòng chờ.",
+                "opponentNotFoundNotification": "Hiện không tìm thấy đối thủ nào. Vui lòng quay lại sau."
+            },
+            "settingModal": {
+                "title": "Cài đặt",
+                "systemType": "Hệ thống",
+                "soundType": "Âm thanh",
+                "languageType": "Ngôn ngữ",
+                "theme": "Chủ đề",
+                "backgroundImage": "Ảnh nền",
+                "image": "Ảnh {number}",
+                "language": "Ngôn ngữ",
+                "BackgroundMusicVolume": "Nhạc nền",
+                "SystemSoundVolume": "Hệ thống"
+            },
+            "gameSetup": {
+                "title": "Tạo phòng mới",
+                "gameName": "Trò chơi",
+                "createRoom": "Tạo phòng",
+                "ticTacToe": {
+                    "boardSize": "Kích thước bảng",
+                    "size3x3Description": "3x3 (Cổ điển)",
+                    "size5x5Description": "5x5 (Nối 4 điểm để thắng)",
+                    "timePerTurn": "Thời gian mỗi lượt",
+                    "seconds": "{seconds} giây",
+                    "playTurn": "Lượt chơi",
+                    "firstTurn": "{firstTurn, select, me {Tôi bắt đầu trước} opponent {Đối thủ bắt đầu trước} other {Ngẫu nhiên}}"
+                },
+                "fifteenPuzzle": {
+                    "timeForMatch": "Thời gian cho trận đấu",
+                    "minutes": "{minutes} phút"
+                },
+                "memory": {
+                    "theme": "Chủ đề thẻ",
+                    "themeValue": "{theme, select, fruit {Trái cây} other {Động vật}}",
+                    "numOfCardsLabel": "Số lượng thẻ",
+                    "numOfCards": "{number} thẻ",
+                    "timeForMatch": "Thời gian cho trận đấu",
+                    "minutes": "{minutes} phút"
+                },
+                "error": {
+                    "createRoomFailure": "Không thể tạo phòng mới, vui lòng thử lại sau."
+                }
+            },
+            "RequireLargerScreenModal": {
+                "content": "Trò chơi yêu cầu màn hình có kích thước từ {width}px trở lên."
+            }
+        }
+    },
+    "page": {
+        "auth": {
+            "login": {
+                "title": "Đăng nhập",
+                "usernameInput": "Tên đăng nhập",
+                "passwordInput": "Mật khẩu",
+                "loginBtn": "Đăng nhập",
+                "forgotPasswordBtn": "Quên mật khẩu?",
+                "rememberMeText": "Ghi nhớ tôi",
+                "haveNoAccountText": "Chưa có tài khoản?",
+                "registerBtn": "Đăng ký",
+                "error": {
+                    "invalidCredentials": "Tên đăng nhập hoặc mật khẩu không đúng.",
+                    "unknown": "Không thể đăng nhập. Vui lòng thử lại sau."
+                }
+            },
+            "register": {
+                "title": "Đăng ký",
+                "fullNameInput": "Tên bạn là gì",
+                "usernameInput": "Tên đăng nhập",
+                "passwordInput": "Mật khẩu",
+                "reEnterPasswordInput": "Nhập lại mật khẩu",
+                "registerBtn": "Đăng ký",
+                "loginBtn": "Đăng nhập",
+                "haveAccountText": "Đã có tài khoản?",
+                "error": {
+                    "passwordLength": "Mật khẩu phải từ 6 - 18 ký tự",
+                    "passwordNotMatch": "Mật khẩu không khớp.",
+                    "usernameTaken": "Tên đăng nhập đã tồn tại.",
+                    "unknown": "Không thể đăng ký. Vui lòng thử lại sau."
+                },
+                "success": "Đăng ký tài khoản thành công!"
+            }
+        },
+        "home": {
+            "introduceSection1": {
+                "title": "Một nền tảng chơi game xịn sò",
+                "text1": "Miễn phí 100%",
+                "text2": "Nhiều người chơi",
+                "text3": "Thân thiện"
+            },
+            "introduceSection2": {
+                "title1": "Bảng xếp hạng",
+                "content1": "Thử thách những người chơi giỏi nhất trên toàn thế giới với hệ thống giải đấu hàng ngày độc đáo của chúng tôi và trở thành Người Số một! Bạn có đủ khả năng cho thử thách không?",
+                "title2": "Chơi với bạn",
+                "content2": "Chơi với bất kỳ ai trên thế giới trong thời gian thực bằng cách chia sẻ một liên kết duy nhất. Chỉ với một cú nhấp chuột, các bạn sẽ được kết nối với nhau.",
+                "title3": "Cửa hàng trực tuyến",
+                "content3": "Bạn càng chơi nhiều, bạn càng kiếm được nhiều xu trong trò chơi. Bạn có thể sử dụng những xu đó để lấy những hình đại diện và biểu tượng cảm xúc độc lạ để giao tiếp với đối thủ của mình.",
+                "title4": "Kết bạn và trò chuyện",
+                "content4": "Kết bạn cùng với những người chiến hữu, bạn bè của mình. Nhắn tin trò chuyện và thách đấu cùng bạn bè sau những giờ làm việc, học tập căng thẳng. Mang lại những tiếng cười sảng khoái, tin thần phấn khởi."
+            }
+        },
+        "store": {
+            "breadcrumb": {
+                "root": "Cửa hàng"
+            },
+            "tab": {
+                "ownedLabel": "Sở hữu",
+                "notOwnedLabel": "Cao cấp"
+            },
+            "confirmBuyModal": {
+                "title": "Xác nhận mua"
+            },
+            "error": {
+                "itemNotFound": "Vật phẩm không tồn tại.",
+                "cannotGetItemList": "Không thể lấy danh sách vật phẩm."
+            }
+        },
+        "game": {
+            "menu": {
+                "playWithFriend": "Chơi cùng bạn",
+                "playWithRandom": "Đấu ngẫu nhiên",
+                "gameInstructions": "Hướng dẫn trò chơi"
+            },
+            "ranking": {
+                "title": "Bảng xếp hạng"
+            },
+            "ticTacToe": {
+                "description": "Trò chơi chiến thuật, người chơi lần lượt đánh dấu 'X' hoặc 'O' vào ô trống trên bảng. Mục tiêu là sắp xếp được 3 ký hiệu của mình theo hàng ngang, dọc, hoặc chéo trước đối thủ. Trò chơi kết thúc khi có người thắng hoặc khi toàn bộ ô đều được điền mà không ai thắng."
+            },
+            "fifteenPuzzle": {
+                "description": "Trò chơi giải đố trên một bảng 4x4 chứa 15 ô số từ 1 đến 15 và 1 ô trống. Người chơi di chuyển các ô xung quanh bằng cách đẩy chúng vào ô trống, nhằm sắp xếp lại các số theo thứ tự từ 1 đến 15. Đây là trò chơi rèn luyện tư duy logic và kỹ năng giải quyết vấn đề."
+            },
+            "memory": {
+                "description": "Trò chơi kiểm tra trí nhớ, Người chơi lần lượt lật 2 thẻ, nếu chúng giống nhau, người chơi được cộng điểm và tiếp tục; nếu không, thẻ được úp lại. Mục tiêu là tìm hết các cặp thẻ giống nhau."
+            }
+        },
+        "account": {
+            "title": "Tài khoản của tôi",
+            "displayName": "Tên hiển thị",
+            "password": "Mật khẩu",
+            "changePasswordBtn": "Đổi mật khẩu",
+            "changeProfileImageBtn": "Thay đổi",
+            "deleteAccountTitle": "Xóa tài khoản",
+            "deleteAccountDescription": "Việc xóa tài khoản sẽ xóa vĩnh viễn tài khoản, trò chơi, thứ hạng của bạn. Không thể hoàn tác hành động này.",
+            "deleteAccountBtn": "Xóa tài khoản"
+        },
+        "gameInstructions": {
+            "title": "Hướng dẫn trò chơi",
+            "ticTacToe": {
+                "objectiveTitle": "Mục tiêu:",
+                "objectiveContent": "Xếp được 3 ký hiệu của mình (X hoặc O) liên tiếp theo hàng ngang, hàng dọc hoặc đường chéo trên bảng.",
+                "instructionsTitle": "Cách chơi:",
+                "instructionsContent": "Trò chơi có hai người chơi lần lượt đánh dấu ký hiệu của mình vào một ô trống trên bảng. Người chơi đầu tiên xếp được 3 ký hiệu liên tiếp sẽ chiến thắng. Nếu tất cả ô đã được điền mà không ai chiến thắng, trò chơi sẽ hòa."
+            },
+            "fifteenPuzzle": {
+                "objectiveTitle": "Mục tiêu:",
+                "objectiveContent": "Di chuyển các ô số từ 1 đến 15 sao cho chúng nằm đúng thứ tự từ 1 đến 15, từ trái sang phải và từ trên xuống dưới trên bảng 4x4, với ô cuối cùng là ô trống.",
+                "instructionsTitle": "Cách chơi:",
+                "instructionsContent": "Bảng có 16 ô, trong đó có một ô trống. Người chơi có thể di chuyển các ô số liền kề vào vị trí của ô trống. Mục tiêu là sắp xếp lại các ô theo thứ tự."
+            },
+            "memory": {
+                "objectiveTitle": "Mục tiêu:",
+                "objectiveContent": "Tìm tất cả các cặp hình giống nhau trên bảng.",
+                "instructionsTitle": "Cách chơi:",
+                "instructionsContent": "Trên bảng có một loạt các ô úp mặt chứa hình ảnh. Người chơi lật hai ô trong mỗi lượt. Nếu hai ô giống nhau, chúng sẽ được giữ lật; nếu không giống, chúng sẽ úp lại. Tiếp tục cho đến khi tìm hết các cặp."
+            }
+        },
+        "room": {
+            "leaveRoom": "Rời khỏi phòng",
+            "shareLinkTitle": "Chia sẻ liên kết này với một người bạn:",
+            "PreparingRoomTitle": "Đang chuẩn bị phòng",
+            "youAreFirstTurn": "Bạn lượt đầu tiên.",
+            "opponentIsFirstTurn": "Đối thủ lượt đầu tiên.",
+            "youWin": "Bạn đã thắng!",
+            "opponentWin": "Đối thủ đã thắng!",
+            "drawMatch": "Trận đấu hòa!",
+            "loadingTheGame": "Đang tải thông tin trận đấu, vui lòng đợi...",
+            "opponentCancelRequest": "Đối thủ đã từ chối yêu cầu.",
+            "opponentWantToPlayAgain": "Đối thủ muốn chơi lại.",
+            "playAgain": "Chơi lại",
+            "sentPlayAgainRequest": "Đã gửi yêu cầu",
+            "sendFirstMessageTitle": "Hãy gửi tin nhắn đầu tiên.",
+            "youHere": "Bạn ở đây",
+            "opponentHere": "Đối thủ ở đây",
+            "15PuzzleMoveInstruction": "Di chuyển các ô trong lưới để đặt hàng chúng từ 1 đến 15.",
+            "error": {
+                "sendPlayAgainRequestFail": "Không thể gửi yêu cầu",
+                "roomNotFound": "Phòng không tồn tại.",
+                "playAgainFailure": "Đối thủ đã rời khỏi phòng hoặc phòng đã bị hủy.",
+                "screenSizeNotSupported": "Trò chơi yêu cầu kích thước màn hình lớn hơn.",
+                "unknown": "Lỗi không xác định."
+            }
+        },
+        "error": {
+            "title": "Hệ thống đã xảy ra lỗi. Vui lòng quay lại sau.",
+            "tryAgain": "Thử lại"
+        }
+    }
+}
