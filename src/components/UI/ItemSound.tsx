@@ -33,7 +33,7 @@ export default function ItemSound(props: Props) {
 
     return (
         <div onMouseEnter={handleMouseEnter}>
-            <audio ref={ref} hidden src="/assets/sounds/swipe.mp3" muted />
+            <audio ref={ref} hidden src="/assets/sounds/swipe-3.mp3" muted />
             {children}
         </div>
     );

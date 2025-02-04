@@ -55,23 +55,23 @@ export default function UserCoin(props: Props) {
     }, [audio?.coinUpdate, newCoin]);
 
     return (
-        <>
+        <div className="bg-base-100 rounded-box">
             {size === "md" ? (
-                <div className="pl-2 pr-3 h-10 flex items-center gap-2 border-2 rounded-lg border-yellow-500 text-yellow-500">
+                <div className="pl-2 pr-3 h-10 flex items-center gap-2 border-2 rounded-box border-yellow-500 text-yellow-500">
                     <PiCoinVertical className="w-6 h-6" />
                     <div className="text-lg font-semibold">{moneyFormat(currentCoin)}</div>
                 </div>
             ) : size === "lg" ? (
-                <div className="pl-2 pr-3 h-14 flex items-center gap-2 border-2 rounded-lg border-yellow-500 text-yellow-500">
+                <div className="pl-2 pr-3 h-14 flex items-center gap-2 border-2 rounded-box border-yellow-500 text-yellow-500">
                     <PiCoinVertical className="w-10 h-10" />
                     <div className="font-semibold text-2xl">{moneyFormat(currentCoin)}</div>
                 </div>
             ) : (
-                <div className="h-6 pl-1 pr-2 flex items-center gap-1 border-2 rounded-md border-yellow-500 text-yellow-500">
+                <div className="h-6 pl-1 pr-2 flex items-center gap-1 border-2 rounded-box border-yellow-500 text-yellow-500">
                     <PiCoinVerticalBold />
                     <div className="font-semibold text-xs">{moneyFormat(currentCoin)}</div>
                 </div>
             )}
-        </>
+        </div>
     );
 }

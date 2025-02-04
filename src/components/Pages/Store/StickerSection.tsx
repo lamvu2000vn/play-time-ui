@@ -59,7 +59,7 @@ export default function StickerSection(props: Props) {
                     />
                 </TabsContainer.TabItems>
                 <TabsContainer.TabContent>
-                    <div className="gap-6 columns-2 md:columns-3">
+                    <div className="gap-6 columns-2 md:columns-3 lg:columns-4">
                         {tabActive === "allItems"
                             ? itemList.map((item) => (
                                   <StickerItem key={item._id} item={item} showPrice onClick={handleClickItem} />

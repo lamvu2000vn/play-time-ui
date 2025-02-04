@@ -11,7 +11,7 @@ import {GameSetupModal, RequireLargerScreenModal} from "@/components/UI/Modal";
 import LookingForGameModal from "@/components/UI/Modal/LookingForGameModal";
 import UserService from "@/services/UserService";
 import {useAuth} from "@/helpers/hooks/useAuth";
-import GameInfo from "@/components/Pages/Game/GameInfo";
+import GameIntroduction from "@/components/Pages/Game/GameIntroduction";
 import Menu from "@/components/Pages/Game/Menu";
 import {useRouter} from "next/navigation";
 import WebSocketService from "@/services/WebSocketService";
@@ -20,7 +20,7 @@ import {showToast} from "@/helpers/utils/utils";
 import {GameAvailable, WSCallbackFunc} from "@/helpers/shared/types";
 import socket from "@/libs/socket.io/socket";
 import {CreateRoomData} from "@/helpers/shared/interfaces/wsInterface";
-import GameStatistics from "@/components/Pages/Game/GameStatistics";
+import PlayerStatistics from "@/components/Pages/Game/PlayerStatistics";
 import {checkScreenWidthValid} from "@/helpers/utils/checkScreenWidthValid";
 
 interface Props {
@@ -175,12 +175,12 @@ export default function Page(props: Props) {
                         unmounted: {transform: "translateY(3rem)", opacity: 0},
                     }}
                 >
-                    <GameInfo gameInfo={gameInfo} gameStatistics={gameStatistics} />
+                    <GameIntroduction gameInfo={gameInfo} gameStatistics={gameStatistics} />
                     <div className="flex flex-wrap gap-4">
                         <div className="basis-full lg:basis-2/5">
                             <div className="w-full h-full flex flex-col items-stretch">
                                 <Card className="mb-4">
-                                    <GameStatistics gameStatistics={gameStatistics} />
+                                    <PlayerStatistics gameStatistics={gameStatistics} />
                                 </Card>
                                 <div className="flex-1 h-full">
                                     <Card className="h-full">

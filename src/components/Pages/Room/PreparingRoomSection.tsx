@@ -1,4 +1,4 @@
-import {Button, Card, Container} from "@/components/UI";
+import {Card, Container} from "@/components/UI";
 import {useTranslations} from "next-intl";
 import Image from "next/image";
 
@@ -20,11 +20,6 @@ export default function PreparingRoomSection() {
                         <span>{translation("PreparingRoomTitle")}</span>
                         <span className="loading loading-dots loading-sm"></span>
                     </div>
-                    {/* <div className="flex justify-center">
-                        <Button type="button" outlinebutton="true" className="w-[10rem]">
-                            Hủy
-                        </Button>
-                    </div> */}
                 </div>
             </Card>
         </Container>

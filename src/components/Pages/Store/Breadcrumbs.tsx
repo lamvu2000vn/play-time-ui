@@ -16,6 +16,7 @@ interface Crumb {
 export default function Breadcrumbs() {
     const [breadcrumbs, setBreadcrumbs] = useState<Crumb[]>([]);
     const pathname = usePathname();
+    console.log("🚀 ~ Breadcrumbs ~ pathname:", pathname);
     const page = useTranslations("page.store");
 
     const storeBreadcrumbs: {
@@ -48,11 +49,9 @@ export default function Breadcrumbs() {
     };
 
     useEffect(() => {
-        if (pathname === "/store") {
-            setBreadcrumbs([storeBreadcrumbs.store]);
-        } else if (pathname === "/store/sticker") {
+        if (pathname.includes("store/sticker")) {
             setBreadcrumbs([storeBreadcrumbs.store, storeBreadcrumbs.sticker]);
-        } else if (pathname === "/store/avatar") {
+        } else if (pathname.includes("store/avatar")) {
             setBreadcrumbs([storeBreadcrumbs.store, storeBreadcrumbs.avatar]);
         } else {
             setBreadcrumbs([storeBreadcrumbs.store]);

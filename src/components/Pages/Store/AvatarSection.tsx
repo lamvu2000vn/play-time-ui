@@ -60,7 +60,7 @@ export default function AvatarSection(props: Props) {
                     />
                 </TabsContainer.TabItems>
                 <TabsContainer.TabContent>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {tabActive === "allItems"
                             ? itemList.map((item) => (
                                   <AvatarItem key={item._id} item={item} showPrice onClick={handleClickItem} />

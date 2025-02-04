@@ -13,6 +13,7 @@ export default function Audio() {
             <audio id="loseAudio" hidden src="/assets/sounds/lose.mp3" muted />
             <audio id="drawAudio" hidden src="/assets/sounds/draw.mp3" muted />
             <audio id="playAgainAudio" hidden src="/assets/sounds/play-again.mp3" muted />
+            <audio id="welcomeAudio" hidden src="/assets/sounds/welcome.mp3" muted />
         </div>
     );
 }

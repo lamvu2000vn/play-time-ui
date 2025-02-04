@@ -9,7 +9,7 @@ interface Props {
     gameStatistics: GameStatistics | null;
 }
 
-export default function GameStatistics(props: Props) {
+export default function PlayerStatistics(props: Props) {
     const {gameStatistics} = props;
     const translation = useTranslations("common.gameStatistics");
     const {show} = useVisibility();

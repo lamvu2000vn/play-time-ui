@@ -12,6 +12,7 @@ import MyTransition from "@/components/MyTransition";
 import AuthService from "@/services/AuthService";
 import {ApiResponse, LoginDataResponse, LoginPayload} from "@/helpers/shared/interfaces/apiInterface";
 import {useTranslations} from "next-intl";
+import useAudio from "@/helpers/hooks/useAudio";
 
 interface Props {
     show: boolean;
@@ -26,6 +27,7 @@ interface Props {
 export default function LoginSection(props: Props) {
     const router = useRouter();
     const {auth, login} = useAuth();
+    const audio = useAudio();
 
     const pageTranslation = useTranslations("page.auth.login");
     const commonTranslation = useTranslations("common");
@@ -57,6 +59,7 @@ export default function LoginSection(props: Props) {
                 {commonTranslation("welcome")} <b>{data.user.name}</b>
             </div>
         );
+        audio?.welcome.play();
     };
 
     useEffect(() => {

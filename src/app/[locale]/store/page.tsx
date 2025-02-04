@@ -11,7 +11,7 @@ export default function Page() {
 
     return (
         <Layout>
-            <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {itemTypeList.map((itemType) => (
                     <Link key={itemType._id} href={`/store/${itemType.alternativeName}`}>
                         <CardImage>

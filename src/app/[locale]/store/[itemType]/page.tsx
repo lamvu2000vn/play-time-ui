@@ -104,7 +104,7 @@ export default function Page(props: Props) {
 
 const Skeleton = () => {
     return (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <div className="flex flex-col items-stretch gap-4">
                 <div className="skeleton aspect-square"></div>
                 <div className="skeleton h-8"></div>

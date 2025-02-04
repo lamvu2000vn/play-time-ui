@@ -8,7 +8,7 @@ interface Props {
     gameStatistics: GameStatistics | null;
 }
 
-export default function GameInfo(props: Props) {
+export default function GameIntroduction(props: Props) {
     const {gameInfo, gameStatistics} = props;
     const translation = useTranslations("page.game");
 

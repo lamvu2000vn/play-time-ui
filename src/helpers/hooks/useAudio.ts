@@ -21,6 +21,7 @@ interface IAudio {
     lose: IAudioState;
     draw: IAudioState;
     playAgain: IAudioState;
+    welcome: IAudioState;
 }
 
 export default function useAudio() {
@@ -42,6 +43,7 @@ export default function useAudio() {
             {key: "lose", selector: "audio#loseAudio"},
             {key: "draw", selector: "audio#drawAudio"},
             {key: "playAgain", selector: "audio#playAgainAudio"},
+            {key: "welcome", selector: "audio#welcomeAudio"},
         ],
         []
     );

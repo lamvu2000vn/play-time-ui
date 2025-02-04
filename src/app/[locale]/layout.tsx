@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import {Roboto} from "next/font/google";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
 import App from "./App";
@@ -13,8 +13,10 @@ import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {notFound} from "next/navigation";
 import {routing} from "@/i18n/routing";
+import {Locales} from "@/helpers/shared/types";
 
-const inter = Inter({
+const roboto = Roboto({
+    weight: ["400"],
     subsets: ["latin"],
     display: "swap",
 });
@@ -32,7 +34,7 @@ export default async function RootLayout({
     params: {locale: string};
 }>) {
     // Ensure that the incoming `locale` is valid
-    if (!routing.locales.includes(locale as any)) {
+    if (!routing.locales.includes(locale as Locales)) {
         notFound();
     }
 
@@ -42,7 +44,7 @@ export default async function RootLayout({
 
     return (
         <html data-theme="myLightTheme" lang={locale}>
-            <body className={`${inter.className} antialiased`}>
+            <body className={`${roboto.className} antialiased`}>
                 <NextIntlClientProvider messages={messages}>
                     <StoreProvider>
                         <AuthMiddleware>
