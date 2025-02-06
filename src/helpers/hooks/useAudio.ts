@@ -25,8 +25,7 @@ interface IAudio {
 }
 
 export default function useAudio() {
-    const deviceInfo = useRecoilValue(deviceInfoState)!;
-    const {backgroundMusicVolume, systemSoundVolume} = deviceInfo;
+    const {backgroundMusicVolume, systemSoundVolume} = useRecoilValue(deviceInfoState)!;
     const [audio, setAudio] = useState<IAudio | null>(null);
 
     const audioConfig = useMemo<{key: keyof IAudio; selector: string}[]>(
@@ -56,7 +55,9 @@ export default function useAudio() {
                 audio.muted = false;
                 audio.currentTime = currentTime;
 
-                audio.play();
+                audio.play().catch((error) => {
+                    console.log(error);
+                });
             }
         };
 

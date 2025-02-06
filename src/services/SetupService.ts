@@ -1,8 +1,6 @@
-import {DeviceInfo, GameInfo, ItemType} from "@/helpers/shared/interfaces/commonInterface";
+import {DeviceInfo} from "@/helpers/shared/interfaces/commonInterface";
 import {getDeviceInfo} from "@/helpers/utils/getDeviceInfo";
-import GameService from "./GameService";
 import {webSocketConnect} from "@/libs/socket.io/webSocketConnect";
-import ItemTypeService from "./ItemTypeService";
 
 interface SetupResult<D> {
     status: boolean;
@@ -23,31 +21,5 @@ export default class SetupService {
 
             return {status: true, data: null};
         }
-    };
-
-    static fetchGameList = async (): Promise<SetupResult<GameInfo[] | null>> => {
-        const response = await GameService.getAll();
-
-        if (!response || response.status !== 200 || !response.data.length) {
-            return {status: false, data: null};
-        }
-
-        return {
-            status: true,
-            data: response.data,
-        };
-    };
-
-    static fetchItemTypeList = async (): Promise<SetupResult<ItemType[] | null>> => {
-        const response = await ItemTypeService.getAll();
-
-        if (!response || response.status !== 200 || !response.data.length) {
-            return {status: false, data: null};
-        }
-
-        return {
-            status: true,
-            data: response.data,
-        };
     };
 }

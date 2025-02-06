@@ -10,9 +10,10 @@ import {useRouter} from "next/navigation";
 import {useAuth} from "@/helpers/hooks/useAuth";
 import MyTransition from "@/components/MyTransition";
 import AuthService from "@/services/AuthService";
-import {ApiResponse, LoginDataResponse, LoginPayload} from "@/helpers/shared/interfaces/apiInterface";
+import {LoginPayload} from "@/helpers/shared/interfaces/apiInterface";
 import {useTranslations} from "next-intl";
 import useAudio from "@/helpers/hooks/useAudio";
+import {setDefaultAccessToken} from "@/libs/axios/apiClient";
 
 interface Props {
     show: boolean;
@@ -40,7 +41,7 @@ export default function LoginSection(props: Props) {
             return;
         }
 
-        const {status, data} = response as ApiResponse<LoginDataResponse>;
+        const {status, data} = response;
 
         if (status !== 200) {
             switch (status) {
@@ -53,7 +54,8 @@ export default function LoginSection(props: Props) {
             }
         }
 
-        login(data.user, data.accessToken);
+        login(data.user);
+        setDefaultAccessToken(data.accessToken);
         showToast(
             <div>
                 {commonTranslation("welcome")} <b>{data.user.name}</b>

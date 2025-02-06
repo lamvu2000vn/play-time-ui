@@ -1,7 +1,7 @@
 export default function Audio() {
     return (
         <div>
-            <audio id="backgroundAudio" hidden src="/assets/sounds/background.mp3" loop muted />
+            <audio id="backgroundAudio" hidden src="/assets/sounds/background-3.mp3" loop muted />
             <audio id="coinUpdateAudio" hidden src="/assets/sounds/coin-update.mp3" muted />
             <audio id="gameStartAudio" hidden src="/assets/sounds/game-start.mp3" muted />
             <audio id="levelUpAudio" hidden src="/assets/sounds/level-up.mp3" muted />

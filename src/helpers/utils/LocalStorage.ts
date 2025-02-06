@@ -11,18 +11,6 @@ export default class LocalStorage {
         localStorage.removeItem(key);
     }
 
-    static getAccessToken(): string {
-        return this.get("playtimeAccessToken");
-    }
-
-    static setAccessToken(token: string) {
-        return this.set("playtimeAccessToken", token);
-    }
-
-    static removeAccessToken() {
-        return this.remove("playtimeAccessToken");
-    }
-
     static getTheme(): string {
         return this.get("playtimeTheme");
     }

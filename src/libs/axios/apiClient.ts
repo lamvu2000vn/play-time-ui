@@ -1,29 +1,17 @@
 import {ApiResponse, RefreshTokenDataResponse} from "@/helpers/shared/interfaces/apiInterface";
-import LocalStorage from "@/helpers/utils/LocalStorage";
 import axios, {AxiosError} from "axios";
 
-const apiClient = axios.create({
+export const apiClient = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
     timeout: 30000,
     withCredentials: true,
 });
 
-apiClient.interceptors.request.use(
-    (config) => {
-        const accessToken = LocalStorage.getAccessToken();
-        // Do something before request is sent
-        if (accessToken) {
-            config.headers["Authorization"] = `Bearer ${accessToken}`;
-        }
-        return config;
-    },
-    (error) => {
-        // Do something with request error
-        return Promise.reject(error);
-    }
-);
+export const setDefaultAccessToken = (accessToken: string) => {
+    apiClient.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+};
 
-// Function lấy refresh token
+// Get new access token
 const refreshAccessToken = async (): Promise<string | null> => {
     const response = await axios<Promise<ApiResponse<RefreshTokenDataResponse>>>({
         url: process.env.NEXT_PUBLIC_API_URL + "/auth/token",
@@ -51,7 +39,8 @@ apiClient.interceptors.response.use(
                 const newAccessToken = await refreshAccessToken();
 
                 if (newAccessToken) {
-                    LocalStorage.setAccessToken(newAccessToken);
+                    originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+                    setDefaultAccessToken(newAccessToken);
                     return apiClient(originalRequest);
                 }
             } catch (refreshError: unknown) {
@@ -66,5 +55,3 @@ apiClient.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-
-export {apiClient};

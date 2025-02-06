@@ -14,6 +14,7 @@ import {getMessages} from "next-intl/server";
 import {notFound} from "next/navigation";
 import {routing} from "@/i18n/routing";
 import {Locales} from "@/helpers/shared/types";
+import FetchData from "./FetchData";
 
 const roboto = Roboto({
     weight: ["400"],
@@ -47,13 +48,15 @@ export default async function RootLayout({
             <body className={`${roboto.className} antialiased`}>
                 <NextIntlClientProvider messages={messages}>
                     <StoreProvider>
-                        <AuthMiddleware>
-                            <AppSetup>
-                                <Audio />
-                                <App>{children}</App>
-                            </AppSetup>
-                        </AuthMiddleware>
-                        <Toastify />
+                        <AppSetup>
+                            <Toastify />
+                            <Audio />
+                            <AuthMiddleware>
+                                <FetchData>
+                                    <App>{children}</App>
+                                </FetchData>
+                            </AuthMiddleware>
+                        </AppSetup>
                     </StoreProvider>
                 </NextIntlClientProvider>
             </body>

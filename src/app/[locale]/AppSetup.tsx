@@ -4,10 +4,10 @@ import MyError from "@/components/Pages/MyError";
 import {LoadingScreen} from "@/components/UI";
 import useUserActivation from "@/helpers/hooks/useUserActivation";
 import {changeTheme} from "@/helpers/utils/utils";
-import {deviceInfoState, gameListState, itemTypeListState} from "@/libs/recoil/atom";
+import {deviceInfoState} from "@/libs/recoil/atom";
 import SetupService from "@/services/SetupService";
 import {useCallback, useEffect, useState} from "react";
-import {useRecoilState, useSetRecoilState} from "recoil";
+import {useRecoilState} from "recoil";
 
 interface Props {
     children: React.ReactNode;
@@ -17,27 +17,18 @@ export default function AppSetup(props: Props) {
     const {children} = props;
 
     const [deviceInfo, setDeviceInfo] = useRecoilState(deviceInfoState);
-    const setGameList = useSetRecoilState(gameListState);
-    const setItemTypeList = useSetRecoilState(itemTypeListState);
     const [loading, setLoading] = useState<boolean>(true);
     const [setupSuccess, setSetupSuccess] = useState<boolean>(false);
     const isUserActive = useUserActivation();
 
     const setup = useCallback(async (): Promise<boolean> => {
         try {
-            const [webSocketResult, deviceInfoResult, gameListResult, itemTypeListResult] = await Promise.all([
+            const [webSocketResult, deviceInfoResult] = await Promise.all([
                 SetupService.connectWebsocket(),
                 SetupService.initializeDeviceInfo(),
-                SetupService.fetchGameList(),
-                SetupService.fetchItemTypeList(),
             ]);
 
-            if (
-                !webSocketResult.status ||
-                !deviceInfoResult.status ||
-                !gameListResult.status ||
-                !itemTypeListResult.status
-            ) {
+            if (!webSocketResult.status || !deviceInfoResult.status) {
                 return false;
             }
 
@@ -48,8 +39,6 @@ export default function AppSetup(props: Props) {
             }
 
             setDeviceInfo(deviceInfo);
-            setGameList(gameListResult.data!);
-            setItemTypeList(itemTypeListResult.data!);
 
             return true;
         } catch (err) {
@@ -57,7 +46,7 @@ export default function AppSetup(props: Props) {
 
             return false;
         }
-    }, [setDeviceInfo, setGameList, setItemTypeList]);
+    }, [setDeviceInfo]);
 
     useEffect(() => {
         (async () => {
@@ -71,6 +60,7 @@ export default function AppSetup(props: Props) {
         if (isUserActive) {
             setDeviceInfo((prevState) => ({
                 ...prevState!,
+                backgroundMusicVolume: 0.7,
                 systemSoundVolume: 0.7,
             }));
         }

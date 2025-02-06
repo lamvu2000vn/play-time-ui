@@ -98,7 +98,7 @@ function BackgroundImage({
 
     return (
         <div
-            className={`flex flex-col items-stretch border-2 rounded-lg ${activeClasses}`}
+            className={`relative flex flex-col items-stretch border-2 rounded-lg ${activeClasses}`}
             onClick={() => onChangeImage(image)}
         >
             <div className="w-full aspect-video relative">
