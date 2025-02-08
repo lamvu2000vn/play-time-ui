@@ -20,7 +20,7 @@ export default function ImageWithSkeleton(props: ImageWithSkeletonProps) {
         <div className={`overflow-hidden ${props.className || ""}`} style={{width: props.width, height: props.height}}>
             {isLoading && <div className="skeleton w-full h-full"></div>}
             <Image
-                src={props.fromClient ? props.src : process.env.NEXT_PUBLIC_SERVER_URL + props.src}
+                src={props.src}
                 width={props.width}
                 height={props.height}
                 fill={props.fill}

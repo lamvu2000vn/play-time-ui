@@ -24,7 +24,7 @@ export default function OpponentMessage(props: Props) {
                 <div className="chat-bubble bg-base-100 shadow-custom-1">
                     <div className="w-full">
                         <Image
-                            src={process.env.NEXT_PUBLIC_SERVER_URL + message.content}
+                            src={message.content}
                             alt="GIF"
                             width={0}
                             height={0}

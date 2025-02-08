@@ -36,7 +36,7 @@ function GIFImageComponent(props: ImageProps) {
     return (
         <div className="w-full p-3">
             <Image
-                src={process.env.NEXT_PUBLIC_SERVER_URL + props.src}
+                src={props.src}
                 alt="GIF"
                 width={0}
                 height={0}

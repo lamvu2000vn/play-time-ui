@@ -57,7 +57,7 @@ export default function StickerPopup(props: Props) {
                                 onClick={() => handleSendSticker(sticker)}
                             >
                                 <Image
-                                    src={process.env.NEXT_PUBLIC_SERVER_URL + sticker.itemId.imageUrl}
+                                    src={sticker.itemId.imageUrl}
                                     alt="GIF"
                                     width={0}
                                     height={0}
