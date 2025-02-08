@@ -29,6 +29,7 @@ export default function ImageWithSkeleton(props: ImageWithSkeletonProps) {
                 loading="lazy"
                 onLoad={() => setIsLoading(false)}
                 unoptimized={props.unoptimized}
+                quality={100}
             />
         </div>
     );
