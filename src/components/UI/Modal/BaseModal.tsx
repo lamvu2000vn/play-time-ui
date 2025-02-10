@@ -24,7 +24,7 @@ export default function BaseModal(props: Props) {
             <MyTransition
                 in={props.show}
                 timeout={300}
-                className="fixed z-[1000] left-1/2 top-1/2 w-full max-w-[90%] h-max max-h-[90%] sm:max-h-[50rem] sm:w-max sm:max-w-full overflow-hidden bg-base-100 rounded-box flex"
+                className="fixed z-[1000] left-1/2 top-1/2 w-full max-w-[95%] h-max max-h-[90%] sm:max-h-[50rem] sm:w-max sm:max-w-full overflow-hidden bg-base-100 rounded-box flex"
                 defaultStyles={{
                     width: props.width,
                     transform: "translate(-50%, -3rem)",

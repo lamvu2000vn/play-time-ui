@@ -140,10 +140,10 @@ export default memo(function HistoryModal(props: Props) {
                                             className={`px-2 py-4 mb-3 rounded-box ${bgColor} text-neutral`}
                                         >
                                             <div className="w-full flex items-stretch">
-                                                <div className="w-0 sm:w-24 overflow-hidden">
+                                                <div className="w-12 sm:w-24 overflow-hidden">
                                                     <div className="w-full h-full flex items-center justify-center">
                                                         <span
-                                                            className={`${agbalumo.className} ${TextColor} text-3xl -rotate-[30deg]`}
+                                                            className={`${agbalumo.className} ${TextColor} text-base sm:text-3xl -rotate-[30deg]`}
                                                         >
                                                             {matchResult === "win"
                                                                 ? historyTranslation("winLabel")
