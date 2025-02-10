@@ -16,7 +16,6 @@ interface Crumb {
 export default function Breadcrumbs() {
     const [breadcrumbs, setBreadcrumbs] = useState<Crumb[]>([]);
     const pathname = usePathname();
-    console.log("🚀 ~ Breadcrumbs ~ pathname:", pathname);
     const page = useTranslations("page.store");
 
     const storeBreadcrumbs: {

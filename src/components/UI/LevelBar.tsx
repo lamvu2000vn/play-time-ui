@@ -24,7 +24,7 @@ export default function LevelBar(props: Props) {
         );
 
         if (newGameStatistics) {
-            audio?.levelUpdate.play();
+            audio.levelUpdate.play();
         }
 
         // Hàm cập nhật tiến trình mượt mà
@@ -44,16 +44,16 @@ export default function LevelBar(props: Props) {
         animationFrame = requestAnimationFrame(updateStep);
 
         return () => cancelAnimationFrame(animationFrame); // Cleanup nếu component unmount
-    }, [audio?.levelUpdate, currentGameStatistics, newGameStatistics]);
+    }, [audio.levelUpdate, currentGameStatistics, newGameStatistics]);
 
     useEffect(() => {
         // Khi đạt 100% và có newGameStatistics, reset và cập nhật
         if (percentStep === 100 && newGameStatistics) {
             setPercentStep(0);
             SetCurrentGameStatistics(newGameStatistics);
-            audio?.levelUp.play();
+            audio.levelUp.play();
         }
-    }, [audio?.levelUp, newGameStatistics, percentStep]);
+    }, [audio.levelUp, newGameStatistics, percentStep]);
 
     return (
         <div className="relative w-full h-4 rounded-lg bg-base-300">

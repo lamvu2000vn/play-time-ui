@@ -54,7 +54,6 @@ const nextConfig = {
             {
                 protocol: process.env.REMOTE_PATTERN_PROTOCOL,
                 hostname: process.env.REMOTE_PATTERN_HOSTNAME,
-                port: process.env.NODE_ENV === "development" ? process.env.REMOTE_PATTERN_PORT : undefined,
                 pathname: process.env.REMOTE_PATTERN_PATHNAME,
             },
         ],

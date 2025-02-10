@@ -17,19 +17,19 @@ export default function SoundEffect(props: Props) {
     // Stop playing background music
     useEffect(() => {
         if (matchStatus === "progressing") {
-            audio?.background.pause();
-            audio?.gameStart.play();
+            audio.background.pause();
+            audio.gameStart.play();
         }
-    }, [audio?.background, audio?.gameStart, matchStatus]);
+    }, [audio.background, audio.gameStart, matchStatus]);
 
     // Play sound effect when game is completed
     useEffect(() => {
         if (winner === "me") {
-            audio?.win.play();
+            audio.win.play();
         } else if (winner === "opponent") {
-            audio?.lose.play();
+            audio.lose.play();
         }
-    }, [audio?.lose, audio?.win, winner]);
+    }, [audio.lose, audio.win, winner]);
 
     return children;
 }

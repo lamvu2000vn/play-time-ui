@@ -20,7 +20,7 @@ export default function MyError({error, reset}: Props) {
                 <div className="p-8">
                     <div className="flex flex-col items-center gap-6">
                         <div className="w-[15rem] sm:w-[20rem] relative aspect-square rounded-full overflow-hidden">
-                            <ImageWithSkeleton src="/assets/images/error-animated.gif" fill fromClient />
+                            <ImageWithSkeleton src="/assets/images/error-animated.gif" fill />
                         </div>
                         <h1 className="font-semibold text-xl sm:text-2xl text-center">{translation("title")}</h1>
                         <Button type="button" onClick={() => reset && reset()}>

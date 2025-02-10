@@ -49,10 +49,10 @@ export default function UserCoin(props: Props) {
         if (newCoin) {
             setTimeout(() => {
                 setTargetCoin(newCoin);
-                audio?.coinUpdate.play();
+                audio.coinUpdate.play();
             }, 2000);
         }
-    }, [audio?.coinUpdate, newCoin]);
+    }, [audio.coinUpdate, newCoin]);
 
     return (
         <div className="bg-base-100 rounded-box">

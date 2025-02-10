@@ -184,7 +184,6 @@ export default memo(function HistoryModal(props: Props) {
                                                                 <div className="relative w-7 aspect-square">
                                                                     <ImageWithSkeleton
                                                                         src="/assets/images/versus.png"
-                                                                        fromClient
                                                                         fill
                                                                     />
                                                                 </div>

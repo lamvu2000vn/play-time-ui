@@ -5,7 +5,7 @@ import {useRecoilValue} from "recoil";
 interface IAudioState {
     play: (currentTime?: number) => void;
     pause: () => void;
-    isPlaying: boolean;
+    isPlaying: () => boolean;
 }
 
 interface IAudio {
@@ -24,9 +24,77 @@ interface IAudio {
     welcome: IAudioState;
 }
 
+const defaultAudioState: IAudio = {
+    background: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    coinUpdate: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    gameStart: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    levelUp: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    levelUpdate: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    receiveMessage: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    sendMessage: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    pencilCheckMark: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    win: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    lose: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    draw: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    playAgain: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+    welcome: {
+        play: () => {},
+        pause: () => {},
+        isPlaying: () => false,
+    },
+};
+
 export default function useAudio() {
     const {backgroundMusicVolume, systemSoundVolume} = useRecoilValue(deviceInfoState)!;
-    const [audio, setAudio] = useState<IAudio | null>(null);
+    const [audio, setAudio] = useState<IAudio>(defaultAudioState);
 
     const audioConfig = useMemo<{key: keyof IAudio; selector: string}[]>(
         () => [
@@ -88,7 +156,7 @@ export default function useAudio() {
             acc[key] = {
                 play: createPlayMethod(selector),
                 pause: createPauseMethod(selector),
-                isPlaying: checkIsPlaying(selector),
+                isPlaying: () => checkIsPlaying(selector),
             };
             return acc;
         }, {} as IAudio);

@@ -5,6 +5,7 @@ import {SettingModal} from "@/components/UI/Modal";
 import HistoryModal from "@/components/UI/Modal/HistoryModal";
 import StatisticsModal from "@/components/UI/Modal/StatisticsModal";
 import useAudio from "@/helpers/hooks/useAudio";
+import useUserActivation from "@/helpers/hooks/useUserActivation";
 import useVisibility from "@/helpers/hooks/useVisibility";
 import {LG_SCREEN} from "@/helpers/shared/constants";
 import {deviceInfoState} from "@/libs/recoil/atom";
@@ -20,14 +21,22 @@ export default function App(props: Props) {
     const deviceInfo = useRecoilValue(deviceInfoState);
     const {visibility, hide, show} = useVisibility();
     const audio = useAudio();
+    const userActivation = useUserActivation();
 
     const pathname = usePathname();
 
+    // Stop background music when the game is started
     useEffect(() => {
-        if (!pathname.includes("/room") && !audio?.background.isPlaying) {
-            audio?.background.play(0);
+        if (userActivation && pathname.includes("/room")) {
+            audio.background.pause();
+            return;
         }
-    }, [audio?.background, pathname]);
+
+        if (userActivation && !audio.background.isPlaying()) {
+            audio.background.play(0);
+            return;
+        }
+    }, [audio.background, pathname, userActivation]);
 
     // Handle show sidebar
     useEffect(() => {

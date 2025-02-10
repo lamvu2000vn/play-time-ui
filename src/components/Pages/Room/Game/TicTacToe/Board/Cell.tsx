@@ -28,9 +28,9 @@ export default memo(function Cell(props: Props) {
 
     useEffect(() => {
         if (markBy) {
-            audio?.pencilCheckMark.play();
+            audio.pencilCheckMark.play();
         }
-    }, [audio?.pencilCheckMark, markBy]);
+    }, [audio.pencilCheckMark, markBy]);
 
     useEffect(() => {
         if (click) {

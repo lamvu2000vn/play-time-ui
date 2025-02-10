@@ -20,8 +20,8 @@ export default function PlayAgainToast(props: Props) {
     const translation = useTranslations("page.room");
 
     useEffect(() => {
-        audio?.playAgain.play();
-    }, [audio?.playAgain]);
+        audio.playAgain.play();
+    }, [audio.playAgain]);
 
     if (requester._id === user._id) return null;
 

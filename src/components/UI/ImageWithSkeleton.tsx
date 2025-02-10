@@ -5,7 +5,6 @@ import {useState} from "react";
 
 export interface ImageWithSkeletonProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     src: string;
-    fromClient?: boolean;
     width?: number;
     height?: number;
     className?: string;

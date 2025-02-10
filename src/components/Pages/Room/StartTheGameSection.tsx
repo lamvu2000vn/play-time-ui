@@ -91,9 +91,9 @@ export default function StartTheGameSection(props: Props) {
             setMessages((prevMessages) => [...prevMessages, payload]);
 
             if (payload.sender._id === user._id) {
-                audio?.sendMessage.play();
+                audio.sendMessage.play();
             } else {
-                audio?.receiveMessage.play();
+                audio.receiveMessage.play();
             }
         };
 
@@ -157,8 +157,8 @@ export default function StartTheGameSection(props: Props) {
             socket.off("opponentLeavedMatch", handleOpponentLeavedMatch);
         };
     }, [
-        audio?.receiveMessage,
-        audio?.sendMessage,
+        audio.receiveMessage,
+        audio.sendMessage,
         baseMatchInfo,
         gameName,
         getDataWhenTimeOut,

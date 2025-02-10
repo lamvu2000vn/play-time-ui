@@ -103,7 +103,7 @@ function BackgroundImage({
         >
             <div className="w-full aspect-video relative">
                 <div className="w-full h-full grayscale">
-                    <ImageWithSkeleton src={`/assets/images/backgrounds/${image}`} fill fromClient />
+                    <ImageWithSkeleton src={`/assets/images/backgrounds/${image}`} fill />
                 </div>
             </div>
             <div className="w-full h-8 flex items-center justify-center gap-2 border-t-2 text-sm">

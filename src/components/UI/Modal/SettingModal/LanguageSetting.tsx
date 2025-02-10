@@ -86,7 +86,7 @@ function Button({flagUrl, label, locale, active}: {flagUrl: string; label: strin
             className={`w-max h-9 rounded-full bg-base-100 box-border flex items-center justify-center border-2 border-gray-200 overflow-hidden ${activeClasses}`}
         >
             <div className="w-9 h-9 relative aspect-square">
-                <ImageWithSkeleton src={flagUrl} fill fromClient />
+                <ImageWithSkeleton src={flagUrl} fill />
             </div>
             <div className="w-max h-full px-3 flex items-center justify-center font-semibold text-sm">{label}</div>
             {active && (

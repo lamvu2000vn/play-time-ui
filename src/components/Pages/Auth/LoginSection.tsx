@@ -61,7 +61,7 @@ export default function LoginSection(props: Props) {
                 {commonTranslation("welcome")} <b>{data.user.name}</b>
             </div>
         );
-        audio?.welcome.play();
+        audio.welcome.play();
     };
 
     useEffect(() => {

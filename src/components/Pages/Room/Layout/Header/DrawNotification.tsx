@@ -8,8 +8,8 @@ export default function DrawNotification() {
     const audio = useAudio();
 
     useEffect(() => {
-        audio?.draw.play();
-    }, [audio?.draw]);
+        audio.draw.play();
+    }, [audio.draw]);
 
     return (
         <div className="absolute left-0 top-0 z-10 w-full h-24">
