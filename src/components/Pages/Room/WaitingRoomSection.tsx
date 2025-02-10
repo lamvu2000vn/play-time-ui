@@ -1,6 +1,5 @@
 import {Button, Container, DividerBar, Input} from "@/components/UI";
 import {FaClipboardCheck, FaCopy} from "react-icons/fa";
-import {QRCodeCanvas} from "qrcode.react";
 import {useEffect, useState} from "react";
 import {useAuth} from "@/helpers/hooks/useAuth";
 import {useRecoilState} from "recoil";
@@ -8,6 +7,7 @@ import {roomInfoState} from "@/libs/recoil/atom";
 import WebSocketService from "@/services/WebSocketService";
 import {useTranslations} from "next-intl";
 import {usePathname, useRouter} from "@/i18n/routing";
+import {useQRCode} from "next-qrcode";
 
 export default function WaitingRoomSection() {
     const {auth} = useAuth();
@@ -16,6 +16,7 @@ export default function WaitingRoomSection() {
     const router = useRouter();
     const pathname = usePathname();
     const translation = useTranslations("page.room");
+    const {Canvas} = useQRCode();
 
     const shareLinkValue = window.location.origin + pathname;
 
@@ -70,8 +71,18 @@ export default function WaitingRoomSection() {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <div className="p-3 bg-base-100 rounded-box border-2">
-                        <QRCodeCanvas value={shareLinkValue} />
+                    <div className="bg-base-100 rounded-box overflow-hidden border-2">
+                        <Canvas
+                            text={shareLinkValue}
+                            options={{
+                                errorCorrectionLevel: "M",
+                                margin: 4,
+                                color: {
+                                    dark: "#333",
+                                    light: "#fff",
+                                },
+                            }}
+                        />
                     </div>
                 </div>
                 <DividerBar />
