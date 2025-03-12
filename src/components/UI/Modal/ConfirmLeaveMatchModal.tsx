@@ -1,10 +1,12 @@
 import {memo, useRef, useState} from "react";
 import BaseModal from "./BaseModal";
 import WebSocketService from "@/services/WebSocketService";
-import {useAuth} from "@/helpers/hooks/useAuth";
 import SubmitButton from "../Forms/SubmitButton";
 import {useTranslations} from "next-intl";
 import CancelButton from "../Buttons/CancelButton";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {selectUser} from "@/libs/redux/features/auth/authSlice";
+import {clearRoomInfo} from "@/libs/redux/features/roomInfo/roomInfoSlice";
 
 interface Props {
     show: boolean;
@@ -16,10 +18,10 @@ const TIME_OUT = 10000; // 10 seconds
 
 export default memo(function ConfirmLeaveMatchModal(props: Props) {
     const {show, roomId, onClose} = props;
-    const {auth} = useAuth();
-    const user = auth.user!;
+    const user = useAppSelector(selectUser);
     const [submitting, setSubmitting] = useState<boolean>(false);
     const translation = useTranslations("common.modal.confirmLeaveMatchModal");
+    const dispatch = useAppDispatch();
 
     const timer = useRef<NodeJS.Timeout | null>(null);
 
@@ -37,7 +39,9 @@ export default memo(function ConfirmLeaveMatchModal(props: Props) {
 
         if (status === "not ok" || message === "Room not found") {
             clearTimeout(timer.current);
+            dispatch(clearRoomInfo());
             window.location.href = "/";
+            return;
         }
 
         clearTimeout(timer.current);

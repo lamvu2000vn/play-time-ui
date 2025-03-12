@@ -1,16 +1,15 @@
 import {Textarea} from "@/components/UI";
-import {useAuth} from "@/helpers/hooks/useAuth";
 import {ChatContent, PaidItem} from "@/helpers/shared/interfaces/commonInterface";
-import {matchInfoState} from "@/libs/recoil/atom";
 import WebSocketService from "@/services/WebSocketService";
 import {Formik, FormikProps} from "formik";
 import {useState} from "react";
 import {IoSend} from "react-icons/io5";
 import {LuSticker} from "react-icons/lu";
-import {useRecoilValue} from "recoil";
 import * as Yup from "yup";
 import StickerPopup from "./StickerPopup";
 import {useTranslations} from "next-intl";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {selectUser} from "@/libs/redux/features/auth/authSlice";
 
 interface Props {
     stickers: PaidItem[];
@@ -19,9 +18,8 @@ interface Props {
 export default function ChatForm(props: Props) {
     const {stickers} = props;
 
-    const {auth} = useAuth();
-    const user = auth.user!;
-    const matchInfo = useRecoilValue(matchInfoState)!;
+    const user = useAppSelector(selectUser);
+    const matchInfo = useAppSelector((state) => state.matchInfo)!;
     const [showStickerPopup, setShowStickerPopup] = useState<boolean>(false);
     const translation = useTranslations("common");
 
@@ -93,14 +91,14 @@ export default function ChatForm(props: Props) {
                             )}
                         </div>
                         <div
-                            className="basis-12 h-10 flex-shrink-0 flex items-center justify-center cursor-pointer"
+                            className="basis-12 h-10 shrink-0 flex items-center justify-center cursor-pointer"
                             onClick={handleToggleStickerPopup}
                         >
                             <LuSticker className="w-6 h-6" />
                         </div>
                         <button
                             type="submit"
-                            className="basis-12 h-10 flex-shrink-0 flex items-center justify-center cursor-pointer"
+                            className="basis-12 h-10 shrink-0 flex items-center justify-center cursor-pointer"
                         >
                             <IoSend className="w-6 h-6 text-primary" />
                         </button>

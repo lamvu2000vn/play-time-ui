@@ -10,7 +10,7 @@ export default forwardRef(function Card(props: Props, ref: React.ForwardedRef<HT
     return (
         <div
             ref={ref}
-            className={`p-4 sm:p-5 md:p-6 rounded-box bg-base-100 cursor-default shadow-custom-1 ${
+            className={`p-4 sm:p-5 md:p-6 rounded-2xl bg-base-100 cursor-default shadow-custom-1 ${
                 props.className || ""
             }`}
             style={props.style}

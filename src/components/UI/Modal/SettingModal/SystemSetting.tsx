@@ -1,21 +1,21 @@
 import {useTranslations} from "next-intl";
 import {SettingItem} from "./SettingModal";
-import LocalStorage from "@/helpers/utils/LocalStorage";
+import LocalStorage from "@/helpers/utils/classes/LocalStorage";
 import {changeTheme} from "@/helpers/utils/utils";
-import {useRecoilState} from "recoil";
-import {backgroundImageState, deviceInfoState} from "@/libs/recoil/atom";
 import {BsFillMoonStarsFill, BsSunFill} from "react-icons/bs";
 import ImageWithSkeleton from "../../ImageWithSkeleton";
 import {useMemo} from "react";
 import {BackgroundImageAvailable, Theme} from "@/helpers/shared/types";
 import {FaCheck} from "react-icons/fa6";
 import {usePathname} from "@/i18n/routing";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {selectDeviceInfo, updateDeviceInfo} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
 
 export default function SystemSetting() {
-    const [deviceInfo, setDeviceInfo] = useRecoilState(deviceInfoState);
+    const deviceInfo = useAppSelector(selectDeviceInfo);
+    const {theme, backgroundImage} = deviceInfo;
+    const dispatch = useAppDispatch();
     const translation = useTranslations("common.modal.settingModal");
-    const {theme} = deviceInfo!;
-    const [backgroundImage, setBackgroundImage] = useRecoilState(backgroundImageState);
     const pathname = usePathname();
 
     const backgroundImages = useMemo<BackgroundImageAvailable[]>(
@@ -24,17 +24,18 @@ export default function SystemSetting() {
     );
 
     const handleSwitchTheme = () => {
-        const newTheme: Theme = theme === "myLightTheme" ? "myDarkTheme" : "myLightTheme";
+        const newTheme: Theme = theme === "light" ? "dark" : "light";
         LocalStorage.setTheme(newTheme);
         changeTheme(newTheme);
-        setDeviceInfo((prevState) => ({
-            ...prevState!,
-            theme: newTheme,
-        }));
+        dispatch(
+            updateDeviceInfo({
+                theme: newTheme,
+            })
+        );
     };
 
     const handleChangeBackgroundImage = (image: BackgroundImageAvailable) => {
-        setBackgroundImage(image);
+        dispatch(updateDeviceInfo({backgroundImage: image}));
         LocalStorage.setBackgroundImage(image);
     };
 
@@ -47,7 +48,7 @@ export default function SystemSetting() {
                         <SettingItem.Content>
                             <SettingItem.FuncBtn onClickLeft={handleSwitchTheme} onClickRight={handleSwitchTheme}>
                                 <div className="w-full flex justify-center text-primary">
-                                    {theme === "myDarkTheme" ? (
+                                    {theme === "dark" ? (
                                         <BsFillMoonStarsFill className="w-6 h-6" />
                                     ) : (
                                         <BsSunFill className="w-6 h-6" />

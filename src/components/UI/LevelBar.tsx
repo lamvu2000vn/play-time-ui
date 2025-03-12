@@ -1,59 +1,22 @@
 "use client";
 
-import useAudio from "@/helpers/hooks/useAudio";
-import {GameStatistics} from "@/helpers/shared/interfaces/commonInterface";
-import {useEffect, useState} from "react";
+import {useLevelProgressAnimationFrame} from "@/helpers/hooks";
+import {selectPlayerMatchStatistics} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {useEffect} from "react";
 
-interface Props {
-    currentGameStatistics: GameStatistics;
-    newGameStatistics?: GameStatistics;
-}
-
-export default function LevelBar(props: Props) {
-    const {newGameStatistics} = props;
-    const [currentGameStatistics, SetCurrentGameStatistics] = useState<GameStatistics>(props.currentGameStatistics);
-    const [percentStep, setPercentStep] = useState<number>(0);
-    const audio = useAudio();
+export default function LevelBar() {
+    const newGameStatistics = useAppSelector(selectPlayerMatchStatistics)?.gameStatistics;
+    const {level, percentageStep, scoreForNextLevel, start, totalScoreStep} = useLevelProgressAnimationFrame();
 
     useEffect(() => {
-        // Xác định tổng điểm và phần trăm mục tiêu
-        const totalScore = newGameStatistics ? newGameStatistics.totalScore : currentGameStatistics.totalScore;
-        const targetPercent = Math.min(
-            (totalScore * 100) / currentGameStatistics.scoreStatistics.scoreForNextLevel,
-            100
+        setTimeout(
+            () => {
+                start();
+            },
+            newGameStatistics ? 2000 : 0
         );
-
-        if (newGameStatistics) {
-            audio.levelUpdate.play();
-        }
-
-        // Hàm cập nhật tiến trình mượt mà
-        let animationFrame: number;
-        const updateStep = () => {
-            setPercentStep((prevStep) => {
-                if (prevStep >= targetPercent) {
-                    cancelAnimationFrame(animationFrame);
-                    return targetPercent; // Dừng khi đạt mục tiêu
-                }
-                return prevStep + 1; // Tăng 1 mỗi frame
-            });
-            animationFrame = requestAnimationFrame(updateStep);
-        };
-
-        // Bắt đầu animation
-        animationFrame = requestAnimationFrame(updateStep);
-
-        return () => cancelAnimationFrame(animationFrame); // Cleanup nếu component unmount
-    }, [audio.levelUpdate, currentGameStatistics, newGameStatistics]);
-
-    useEffect(() => {
-        // Khi đạt 100% và có newGameStatistics, reset và cập nhật
-        if (percentStep === 100 && newGameStatistics) {
-            setPercentStep(0);
-            SetCurrentGameStatistics(newGameStatistics);
-            audio.levelUp.play();
-        }
-    }, [audio.levelUp, newGameStatistics, percentStep]);
+    }, [newGameStatistics, start]);
 
     return (
         <div className="relative w-full h-4 rounded-lg bg-base-300">
@@ -61,9 +24,12 @@ export default function LevelBar(props: Props) {
                 <div
                     className="absolute z-10 left-0 top-0 h-full rounded-lg bg-primary overflow-hidden"
                     style={{
-                        width: `${percentStep}%`,
+                        width: `${percentageStep}%`,
                     }}
                 ></div>
+                <div className="absolute z-20 left-2 top-0 h-full flex items-center font-semibold text-xs text-neutral leading-0">
+                    {totalScoreStep}/{scoreForNextLevel}
+                </div>
             </div>
             <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
                 <div
@@ -72,9 +38,7 @@ export default function LevelBar(props: Props) {
                         clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
                     }}
                 >
-                    <span className="text-sm font-bold text-neutral">
-                        {currentGameStatistics.scoreStatistics.currentLevel}
-                    </span>
+                    <span className="text-sm font-bold text-neutral">{level}</span>
                 </div>
             </div>
         </div>

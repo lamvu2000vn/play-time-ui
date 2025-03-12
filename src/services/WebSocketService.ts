@@ -8,8 +8,6 @@ import {
     WSResponse,
     LeaveRoomPayload,
     RequestPlayAgainPayload,
-    AcceptPlayAgainRequestPayload,
-    RejectPlayAgainRequestPayload,
     MatchStatistics,
 } from "@/helpers/shared/interfaces/wsInterface";
 import socket from "@/libs/socket.io/socket";
@@ -48,11 +46,11 @@ export default class WebSocketService {
         return (await socket.emitWithAck("requestPlayAgain", payload)) as Promise<WSResponse<object>>;
     }
 
-    static async acceptPlayAgainRequest(payload: AcceptPlayAgainRequestPayload) {
+    static async acceptPlayAgainRequest(payload: {roomId: string}) {
         return (await socket.emitWithAck("acceptPlayAgainRequest", payload)) as Promise<WSResponse<object>>;
     }
 
-    static async rejectPlayAgainRequest(payload: RejectPlayAgainRequestPayload) {
+    static async rejectPlayAgainRequest(payload: {roomId: string}) {
         return (await socket.emitWithAck("rejectPlayAgainRequest", payload)) as Promise<WSResponse<object>>;
     }
 
@@ -65,12 +63,6 @@ export default class WebSocketService {
 
     static async ticTacToePlayerMove(payload: TicTacToePlayerMovePayload) {
         return (await socket.emitWithAck("ticTacToePlayerMove", payload)) as Promise<WSResponse<object>>;
-    }
-
-    static async matchDrawn(roomId: string, gameId: string) {
-        return (await socket.emitWithAck("matchDrawn", {roomId, gameId})) as Promise<
-            WSResponse<MatchStatistics | null>
-        >;
     }
 
     // ======================== START 15 PUZZLE =============================

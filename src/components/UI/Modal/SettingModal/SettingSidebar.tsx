@@ -88,8 +88,8 @@ function Label({htmlFor, children}: {htmlFor: string; children: React.ReactNode}
     return (
         <label
             htmlFor={htmlFor}
-            className="cursor-pointer w-full h-[3.5rem] px-3 sm:px-0 flex items-center justify-center gap-2 text-base rounded-box hover:bg-base-200
-            peer-checked:bg-primary/20 peer-checked:font-semibold peer-disabled:text-base-300 peer-disabled:hover:bg-transparent"
+            className="cursor-pointer w-full h-[3.5rem] px-3 sm:px-0 flex items-center justify-center gap-2 text-base rounded-2xl hover:bg-base-200
+            peer-checked:bg-primary/20 peer-checked:hover:bg-primary/20 peer-checked:font-semibold peer-disabled:text-base-300 peer-disabled:hover:bg-transparent"
         >
             {children}
         </label>

@@ -1,4 +1,4 @@
-import useAudio from "@/helpers/hooks/useAudio";
+import {useAudio} from "@/helpers/hooks";
 import {MatchStatus, TicTacToePlayerType, Position, PlayerTurn, TicTacToeBoardSize} from "@/helpers/shared/types";
 import Image from "next/image";
 import {memo, useEffect, useState} from "react";

@@ -1,15 +1,13 @@
-import {useRecoilValue} from "recoil";
 import PlaceholderImage from "./PlaceholderImage";
-import {baseMatchInfoState, matchInfoState} from "@/libs/recoil/atom";
 import Chat from "./Chat";
-import {useContext} from "react";
-import {GameContext} from "@/helpers/contexts";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {selectMessages} from "@/libs/redux/features/inMatchData/inMatchDataSlice";
 
 export default function ChatSidebar() {
-    const {messages} = useContext(GameContext);
-
-    const matchInfo = useRecoilValue(matchInfoState);
-    const baseMatchInfo = useRecoilValue(baseMatchInfoState)!;
+    const messages = useAppSelector(selectMessages);
+    const matchInfo = useAppSelector((state) => state.matchInfo);
+    const baseMatchInfo = useAppSelector(selectBaseMatchInfo)!;
     const {matchStatus} = baseMatchInfo;
 
     const isShowChat = matchInfo && matchStatus === "progressing";

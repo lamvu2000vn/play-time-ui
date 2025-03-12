@@ -1,18 +1,20 @@
 "use client";
 
-import {useRecoilState} from "recoil";
 import Board from "./Board/Board";
-import {baseMatchInfoState, ticTacToeMatchInfoState} from "@/libs/recoil/atom";
-import {useCallback, useContext, useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {showToast} from "@/helpers/utils/utils";
 import socket from "@/libs/socket.io/socket";
 import {Position, TicTacToeBoardMatrix, WSCallbackFunc} from "@/helpers/shared/types";
 import {TicTacToePlayerMovedData} from "@/helpers/shared/interfaces/wsInterface";
 import WebSocketService from "@/services/WebSocketService";
 import {useTranslations} from "next-intl";
-import {finishTheMatch} from "@/helpers/utils/games/baseMatchInfoUtils";
 import {markCell} from "@/helpers/utils/games/ticTacToeUtils";
-import {GameContext} from "@/helpers/contexts";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {finishTheMatch, selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {
+    changeCurrentTurn,
+    selectTicTacToeMatchInfo,
+} from "@/libs/redux/features/ticTacToeMatchInfo/ticTacToeMatchInfoSlice";
 
 export interface Moves {
     myMoves: Position[];
@@ -21,10 +23,9 @@ export interface Moves {
 }
 
 export default function TicTacToeGame() {
-    const {onSetMyMatchStatistics} = useContext(GameContext);
-
-    const [baseMatchInfo, setBaseMatchInfo] = useRecoilState(baseMatchInfoState);
-    const [myMatchInfo, setMyMatchInfo] = useRecoilState(ticTacToeMatchInfoState);
+    const myMatchInfo = useAppSelector(selectTicTacToeMatchInfo)!;
+    const {myInfo, roomId} = useAppSelector(selectBaseMatchInfo);
+    const dispatch = useAppDispatch();
     const [moves, setMoves] = useState<Moves>({
         myMoves: [],
         opponentMoves: [],
@@ -32,13 +33,12 @@ export default function TicTacToeGame() {
     });
     const [boardMatrix, setBoardMatrix] = useState<TicTacToeBoardMatrix>([]);
 
-    const {myInfo, roomId, game} = myMatchInfo!;
-    const {gameSetup, specialData} = game;
+    const {gameSetup, gameSpecialData} = myMatchInfo;
     const translation = useTranslations("page.room");
 
     const handlePlayerMove = useCallback(
         async (position: Position) => {
-            const newBoardMatrix = markCell(boardMatrix, position, specialData.myType);
+            const newBoardMatrix = markCell(boardMatrix, position, gameSpecialData.myType);
 
             await WebSocketService.ticTacToePlayerMove({
                 roomId,
@@ -48,12 +48,14 @@ export default function TicTacToeGame() {
                 newBoardMatrix,
             });
         },
-        [boardMatrix, moves.myMoves, myInfo._id, roomId, specialData.myType]
+        [boardMatrix, moves.myMoves, myInfo._id, roomId, gameSpecialData.myType]
     );
 
     useEffect(() => {
-        showToast(specialData.firstTurn === "me" ? translation("youAreFirstTurn") : translation("opponentIsFirstTurn"));
-    }, [specialData.firstTurn, translation]);
+        showToast(
+            gameSpecialData.firstTurn === "me" ? translation("youAreFirstTurn") : translation("opponentIsFirstTurn")
+        );
+    }, [gameSpecialData.firstTurn, translation]);
 
     // Listen to ws events
     useEffect(() => {
@@ -76,16 +78,11 @@ export default function TicTacToeGame() {
             setBoardMatrix(newBoardMatrix);
 
             if (results) {
-                const myStatistics = matchStatistics![myInfo._id];
+                const myMatchStatistics = matchStatistics && matchStatistics[myInfo._id];
 
-                setBaseMatchInfo(finishTheMatch(baseMatchInfo!, results === "win" ? playerId : undefined));
-                onSetMyMatchStatistics(myStatistics);
+                dispatch(finishTheMatch({winnerId: results === "win" ? playerId : undefined, myMatchStatistics}));
             } else {
-                const updatedInfo = structuredClone(myMatchInfo!);
-                updatedInfo.game.specialData.currentTurn =
-                    updatedInfo.game.specialData.currentTurn === "me" ? "opponent" : "me";
-
-                setMyMatchInfo(updatedInfo);
+                dispatch(changeCurrentTurn());
             }
         };
 
@@ -94,7 +91,7 @@ export default function TicTacToeGame() {
         return () => {
             socket.off("ticTacToePlayerMoved", handlePlayerMoved);
         };
-    }, [baseMatchInfo, myInfo._id, myMatchInfo, onSetMyMatchStatistics, setBaseMatchInfo, setMyMatchInfo]);
+    }, [myInfo._id, dispatch]);
 
     // Initialize Board matrix
     useEffect(() => {

@@ -1,26 +1,54 @@
-import {useRecoilValue} from "recoil";
 import LeftPlayerInfo from "./LeftPlayerInfo";
 import RightPlayerInfo from "./RightPlayerInfo";
 import WinnerNotification from "./WinnerNotification";
 import DrawNotification from "./DrawNotification";
-import {baseMatchInfoState, memoryMatchInfoState, ticTacToeMatchInfoState} from "@/libs/recoil/atom";
 import Timer from "./Timer";
-import {useContext} from "react";
-import {GameContext} from "@/helpers/contexts";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {selectTicTacToeMatchInfo} from "@/libs/redux/features/ticTacToeMatchInfo/ticTacToeMatchInfoSlice";
+import {selectMemoryMatchInfo} from "@/libs/redux/features/memoryMatchInfo/memoryMatchInfoSlice";
+import {selectSeconds} from "@/libs/redux/features/inMatchData/inMatchDataSlice";
+import {useEffect, useState} from "react";
 
 export default function Header() {
-    const {seconds} = useContext(GameContext);
+    const seconds = useAppSelector(selectSeconds);
+    const ticTacToeMatchInfo = useAppSelector(selectTicTacToeMatchInfo);
+    const memoryMatchInfo = useAppSelector(selectMemoryMatchInfo);
+    const baseMatchInfo = useAppSelector(selectBaseMatchInfo)!;
 
-    const ticTacToeMatchInfo = useRecoilValue(ticTacToeMatchInfoState);
-    const memoryMatchInfo = useRecoilValue(memoryMatchInfoState);
-    const baseMatchInfo = useRecoilValue(baseMatchInfoState)!;
+    const [playerTurn, setPlayerTurn] = useState<{isMyTurn: boolean; isOpponentTurn: boolean}>({
+        isMyTurn: true,
+        isOpponentTurn: true,
+    });
+
     const {myInfo, opponentInfo, winner, isDraw} = baseMatchInfo;
 
-    const currentTurn =
-        ticTacToeMatchInfo?.game.specialData.currentTurn || memoryMatchInfo?.game.specialData.currentTurn;
+    useEffect(() => {
+        setPlayerTurn(() => {
+            if (ticTacToeMatchInfo) {
+                const {currentTurn} = ticTacToeMatchInfo.gameSpecialData;
 
-    const isMyTurn = currentTurn ? currentTurn === "me" : true;
-    const isOpponentTurn = currentTurn ? currentTurn === "opponent" : true;
+                return {
+                    isMyTurn: currentTurn === "me",
+                    isOpponentTurn: currentTurn === "opponent",
+                };
+            }
+
+            if (memoryMatchInfo) {
+                const {currentTurn} = memoryMatchInfo.gameSpecialData;
+
+                return {
+                    isMyTurn: currentTurn === "me",
+                    isOpponentTurn: currentTurn === "opponent",
+                };
+            }
+
+            return {
+                isMyTurn: true,
+                isOpponentTurn: true,
+            };
+        });
+    }, [memoryMatchInfo, ticTacToeMatchInfo]);
 
     return (
         <div className="relative w-full h-full bg-base-100 flex items-stretch">
@@ -30,9 +58,9 @@ export default function Header() {
                 <DrawNotification />
             ) : (
                 <>
-                    <LeftPlayerInfo playerInfo={myInfo} isPlayerTurn={isMyTurn} />
+                    <LeftPlayerInfo playerInfo={myInfo} isPlayerTurn={playerTurn.isMyTurn} />
                     <Timer seconds={seconds} />
-                    <RightPlayerInfo playerInfo={opponentInfo} isPlayerTurn={isOpponentTurn} />
+                    <RightPlayerInfo playerInfo={opponentInfo} isPlayerTurn={playerTurn.isOpponentTurn} />
                 </>
             )}
         </div>

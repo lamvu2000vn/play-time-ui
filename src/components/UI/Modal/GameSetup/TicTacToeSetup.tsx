@@ -3,17 +3,17 @@
 import {CreateNewRoom, GameInfo} from "@/helpers/shared/interfaces/commonInterface";
 import {Formik} from "formik";
 import Select from "../../Forms/Select";
-import {useSetRecoilState} from "recoil";
-import {roomInfoState} from "@/libs/recoil/atom";
 import DividerBar from "../../DividerBar";
 import SubmitButton from "../../Forms/SubmitButton";
 import {FiLogIn} from "react-icons/fi";
-import {useAuth} from "@/helpers/hooks/useAuth";
 import WebSocketService from "@/services/WebSocketService";
 import {showToast} from "@/helpers/utils/utils";
 import {ticTacToeDefaultSetup} from "@/helpers/shared/data";
 import {useTranslations} from "next-intl";
 import {TicTacToeGameSetup} from "@/helpers/shared/interfaces/games/ticTacToeInterfaces";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {setRoomInfo} from "@/libs/redux/features/roomInfo/roomInfoSlice";
+import {selectUser} from "@/libs/redux/features/auth/authSlice";
 
 interface Props {
     gameInfo: GameInfo;
@@ -21,9 +21,8 @@ interface Props {
 
 export default function TicTacToeSetup(props: Props) {
     const {gameInfo} = props;
-    const {auth} = useAuth();
-    const user = auth.user!;
-    const setRoomInfo = useSetRecoilState(roomInfoState);
+    const user = useAppSelector(selectUser);
+    const dispatch = useAppDispatch();
     const translation = useTranslations("common.modal.gameSetup");
 
     const handleSubmitGameSetup = async (gameSetup: TicTacToeGameSetup) => {
@@ -40,15 +39,17 @@ export default function TicTacToeSetup(props: Props) {
                 return showToast(translation("error.createRoomFailure"), "error");
             }
 
-            setRoomInfo({
-                roomId: data._id,
-                hostId: data.hostId,
-                joinerId: data.joinerId,
-                gameId: data.gameId,
-                gameSetup: data.gameSetup,
-                matchStatus: data.matchStatus,
-                type: data.type,
-            });
+            dispatch(
+                setRoomInfo({
+                    roomId: data._id,
+                    hostId: data.hostId,
+                    joinerId: data.joinerId,
+                    gameId: data.gameId,
+                    gameSetup: data.gameSetup,
+                    matchStatus: data.matchStatus,
+                    type: data.type,
+                })
+            );
         } catch (error) {
             console.log("🚀 ~ handleSubmitGameSetup ~ error:", error);
         }
@@ -74,7 +75,9 @@ export default function TicTacToeSetup(props: Props) {
                         <label className="relative font-semibold text-lg pl-5 before:content-[''] before:absolute before:left-0 before:top-0 before:w-2 before:h-full before:bg-primary">
                             {translation("gameName")}
                         </label>
-                        <div className="w-full rounded-lg p-3 border mt-2">{gameInfo.name}</div>
+                        <Select invalid="false" value={gameInfo.name} className="mt-1" disabled>
+                            <option value={gameInfo.name}>{gameInfo.name}</option>
+                        </Select>
                     </div>
                     <div className="mb-4">
                         <label

@@ -1,7 +1,7 @@
-import useAudio from "@/helpers/hooks/useAudio";
-import {baseMatchInfoState} from "@/libs/recoil/atom";
+import {useAudio} from "@/helpers/hooks";
+import {selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
 import {useEffect} from "react";
-import {useRecoilValue} from "recoil";
 
 interface Props {
     children: React.ReactNode;
@@ -10,7 +10,7 @@ interface Props {
 export default function SoundEffect(props: Props) {
     const {children} = props;
 
-    const baseMatchInfo = useRecoilValue(baseMatchInfoState)!;
+    const baseMatchInfo = useAppSelector(selectBaseMatchInfo)!;
     const {matchStatus, winner} = baseMatchInfo;
     const audio = useAudio();
 

@@ -1,5 +1,5 @@
 import {MatchStatus, Position, WaitingRoomType, GameAvailable, TicTacToeBoardMatrix} from "../types";
-import {PlayerMatchStatistics, UserInfo} from "./commonInterface";
+import {PlayerMatchStatistics} from "./commonInterface";
 
 export interface JoinRoomPayload {
     roomId: string;
@@ -42,7 +42,7 @@ export interface TicTacToePlayerMovedData {
 export interface CreateRoomData {
     _id: string;
     hostId: string;
-    joinerId: string;
+    joinerId: string | null;
     gameId: string;
     gameSetup: string;
     type: WaitingRoomType;
@@ -59,22 +59,6 @@ export interface OpponentLeavedMatchPayload {
 }
 
 export interface RequestPlayAgainPayload {
-    requesterId: string;
-    roomId: string;
-}
-
-export interface WantToPlayAgainPayload {
-    requester: UserInfo;
-}
-
-export interface AcceptPlayAgainRequestPayload {
-    requesterId: string;
-    requesteeId: string;
-    roomId: string;
-}
-
-export interface RejectPlayAgainRequestPayload {
-    rejecterId: string;
     requesterId: string;
     roomId: string;
 }

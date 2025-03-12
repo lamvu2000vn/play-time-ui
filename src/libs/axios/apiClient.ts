@@ -11,6 +11,8 @@ export const setDefaultAccessToken = (accessToken: string) => {
     apiClient.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 };
 
+export const removeDefaultAccessToken = () => (apiClient.defaults.headers.common["Authorization"] = "");
+
 // Get new access token
 const refreshAccessToken = async (): Promise<string | null> => {
     const response = await axios<Promise<ApiResponse<RefreshTokenDataResponse>>>({

@@ -1,31 +1,34 @@
 "use client";
 
 import {FifteenPuzzleBoardMatrix, WSCallbackFunc} from "@/helpers/shared/types";
-import {baseMatchInfoState, fifteenPuzzleMatchInfoState} from "@/libs/recoil/atom";
 import socket from "@/libs/socket.io/socket";
 import WebSocketService from "@/services/WebSocketService";
-import {useContext, useEffect, useState} from "react";
-import {useRecoilState, useRecoilValue} from "recoil";
+import {useEffect, useState} from "react";
 import MyBoard from "./Board/MyBoard";
 import Instruction from "./Instruction";
 import PlayerZoneNotification from "./PlayerZoneNotification";
 import OpponentBoard from "./Board/OpponentBoard";
 import {FifteenPuzzleOpponentBoardUpdatedPayload} from "@/helpers/shared/interfaces/games/fifteenPuzzleInterfaces";
-import {finishTheMatch} from "@/helpers/utils/games/baseMatchInfoUtils";
-import {GameContext} from "@/helpers/contexts";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {finishTheMatch, selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {selectFifteenPuzzleMatchInfo} from "@/libs/redux/features/fifteenPuzzleMatchInfo/fifteenPuzzleMatchInfoSlice";
+import {selectStopTheMatchState} from "@/libs/redux/features/inMatchData/inMatchDataSlice";
 
 export default function FifteenPuzzleGame() {
-    const {onSetMyMatchStatistics, stopTheMatch} = useContext(GameContext);
+    const isStopTheMatch = useAppSelector(selectStopTheMatchState);
+    const baseMatchInfo = useAppSelector(selectBaseMatchInfo);
+    const myMatchInfo = useAppSelector(selectFifteenPuzzleMatchInfo)!;
 
-    const [baseMatchInfo, setBaseMatchInfo] = useRecoilState(baseMatchInfoState);
-    const myMatchInfo = useRecoilValue(fifteenPuzzleMatchInfoState)!;
+    const {myInfo, opponentInfo, roomId, matchStatus} = baseMatchInfo;
+    const {gameSpecialData} = myMatchInfo;
+
     const [showPlayerZone, setShowPlayerZone] = useState<boolean>(false);
-    const {myInfo, opponentInfo, roomId, game, matchStatus} = myMatchInfo;
-    const {specialData} = game;
-    const [myBoardMatrix, setMyBoardMatrix] = useState<FifteenPuzzleBoardMatrix>(specialData.myBoardMatrix);
+    const [myBoardMatrix, setMyBoardMatrix] = useState<FifteenPuzzleBoardMatrix>(gameSpecialData.myBoardMatrix);
     const [opponentBoardMatrix, setOpponentBoardMatrix] = useState<FifteenPuzzleBoardMatrix>(
-        specialData.opponentBoardMatrix
+        gameSpecialData.opponentBoardMatrix
     );
+
+    const dispatch = useAppDispatch();
 
     const handleWSPlayerMove = async (boardMatrix: FifteenPuzzleBoardMatrix) => {
         const {status, data} = await WebSocketService.fifteenPuzzlePlayerMove({
@@ -36,13 +39,12 @@ export default function FifteenPuzzleGame() {
 
         if (status === "ok" && data.isWin && data.matchStatistics) {
             const {matchStatistics} = data;
-            setBaseMatchInfo(finishTheMatch(baseMatchInfo!, myInfo._id));
-            onSetMyMatchStatistics(matchStatistics[myInfo._id]);
+            dispatch(finishTheMatch({winnerId: myInfo._id, myMatchStatistics: matchStatistics[myInfo._id]}));
         }
     };
 
     const handleUpdateBoardMatrix = (newBoardMatrix: FifteenPuzzleBoardMatrix) => {
-        if (showPlayerZone || stopTheMatch || matchStatus === "completed") return;
+        if (showPlayerZone || isStopTheMatch || matchStatus === "completed") return;
 
         setMyBoardMatrix(newBoardMatrix);
         handleWSPlayerMove(newBoardMatrix);
@@ -62,8 +64,9 @@ export default function FifteenPuzzleGame() {
                 setOpponentBoardMatrix(boardMatrix);
 
                 if (isOpponentWin && matchStatistics) {
-                    setBaseMatchInfo(finishTheMatch(baseMatchInfo!, opponentInfo._id));
-                    onSetMyMatchStatistics(matchStatistics[myInfo._id]);
+                    dispatch(
+                        finishTheMatch({winnerId: opponentInfo._id, myMatchStatistics: matchStatistics[myInfo._id]})
+                    );
                 }
             }
         };
@@ -73,7 +76,7 @@ export default function FifteenPuzzleGame() {
         return () => {
             socket.off("fifteenPuzzleOpponentBoardUpdated", handleOpponentBoardUpdated);
         };
-    }, [baseMatchInfo, myInfo._id, opponentInfo._id, setBaseMatchInfo, onSetMyMatchStatistics]);
+    }, [baseMatchInfo, myInfo._id, opponentInfo._id, dispatch]);
 
     // Handle show player's zone
     useEffect(() => {
@@ -89,7 +92,7 @@ export default function FifteenPuzzleGame() {
     }, []);
 
     return (
-        <div className="w-full h-full flex items-stretch divide-x-2 pt-8">
+        <div className="w-full h-full flex items-stretch divide-x-2 divide-gray-300 pt-8">
             <div className="basis-1/2">
                 <div className="relative w-full h-full">
                     <div className="w-full h-full flex justify-center items-stretch">
@@ -102,7 +105,7 @@ export default function FifteenPuzzleGame() {
                                     />
                                 </div>
                             </div>
-                            <div className="flex-shrink-0 flex items-end">
+                            <div className="shrink-0 flex items-end">
                                 <Instruction />
                             </div>
                         </div>
@@ -119,7 +122,7 @@ export default function FifteenPuzzleGame() {
                                     <OpponentBoard boardMatrix={opponentBoardMatrix} />
                                 </div>
                             </div>
-                            <div className="flex-shrink-0 flex items-end">
+                            <div className="shrink-0 flex items-end">
                                 <Instruction />
                             </div>
                         </div>

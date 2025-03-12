@@ -14,7 +14,7 @@ export default forwardRef(function TextArea(props: Props, ref: React.ForwardedRe
         <textarea
             {...props}
             ref={ref}
-            className={`w-full py-2 px-3 box-border border-2 outline-2 bg-transparent rounded-lg focus:outline
+            className={`w-full py-2 px-3 box-border outline-2 bg-transparent rounded-lg focus:outline
                 focus:border-primary focus:outline-primary disabled:brightness-80 ${invalidClass} ${
                 props.className || ""
             }`}

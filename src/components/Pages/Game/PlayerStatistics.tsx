@@ -3,10 +3,10 @@ import QuickGameStatistics from "./QuickGameStatistics";
 import {GameStatistics} from "@/helpers/shared/interfaces/commonInterface";
 import {MdHistory} from "react-icons/md";
 import {useTranslations} from "next-intl";
-import useVisibility from "@/helpers/hooks/useVisibility";
+import {useVisibility} from "@/helpers/hooks";
 
 interface Props {
-    gameStatistics: GameStatistics | null;
+    gameStatistics: GameStatistics;
 }
 
 export default function PlayerStatistics(props: Props) {
@@ -20,7 +20,7 @@ export default function PlayerStatistics(props: Props) {
 
     return (
         <div className="w-full h-full flex flex-col items-stretch justify-between gap-3">
-            <LevelBar currentGameStatistics={gameStatistics} />
+            <LevelBar />
             <div className="flex items-center flex-wrap text-sm sm:text-base gap-2">
                 <QuickGameStatistics
                     numOfDraw={gameStatistics.numOfDraw}

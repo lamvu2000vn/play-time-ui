@@ -1,5 +1,3 @@
-import {baseMatchInfoState, memoryMatchInfoState} from "@/libs/recoil/atom";
-import {useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
 import Card from "./Card";
 import {useCallback, useContext, useEffect, useState} from "react";
 import {
@@ -8,41 +6,31 @@ import {
     MemoryFlipCardUpPayload,
     MemoryMatchResultsPayload,
 } from "@/helpers/shared/interfaces/games/memoryInterfaces";
-import {GameContext, MemoryGameContext} from "@/helpers/contexts";
+import {MemoryGameContext} from "@/helpers/contexts";
 import WebSocketService from "@/services/WebSocketService";
-import {MemoryMatchInfo, PlayerTurn, WSCallbackFunc} from "@/helpers/shared/types";
+import {WSCallbackFunc} from "@/helpers/shared/types";
 import socket from "@/libs/socket.io/socket";
-import {finishTheMatch} from "@/helpers/utils/games/baseMatchInfoUtils";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {
+    changeCurrentTurn,
+    increaseNumOfCardsOwned,
+    selectMemoryMatchInfo,
+} from "@/libs/redux/features/memoryMatchInfo/memoryMatchInfoSlice";
+import {finishTheMatch, selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
 
 export default function CardBoard() {
-    const {myInfo, roomId} = useRecoilValue(baseMatchInfoState)!;
-    const setBaseMatchInfo = useSetRecoilState(baseMatchInfoState);
-    const [myMatchInfo, setMyMatchInfo] = useRecoilState(memoryMatchInfoState);
+    const baseMatchInfo = useAppSelector(selectBaseMatchInfo);
+    const myMatchInfo = useAppSelector(selectMemoryMatchInfo)!;
+    const dispatch = useAppDispatch();
     const {playFlipCardSound, playCollectCardSound} = useContext(MemoryGameContext);
-    const {onSetMyMatchStatistics} = useContext(GameContext);
 
-    const {game} = myMatchInfo!;
-    const {gameSetup, specialData} = game;
-    // console.log("🚀 ~ CardBoard ~ specialData:", specialData);
+    const {myInfo, roomId} = baseMatchInfo;
+    const {gameSetup, gameSpecialData} = myMatchInfo;
     const numOfCols = Math.sqrt(gameSetup.numOfCards);
 
-    const [cardStates, setCardStates] = useState<MemoryCardState[]>(structuredClone(specialData.cardStates));
-    // console.log("🚀 ~ CardBoard ~ cardStates:", cardStates);
+    const [cardStates, setCardStates] = useState<MemoryCardState[]>(structuredClone(gameSpecialData.cardStates));
     const [openedCardStates, setOpenedCardStates] = useState<MemoryCardState[]>([]);
     const [shouldFinishTheMatch, setShouldFinishTheMatch] = useState<boolean>(false);
-
-    const changeCurrentTurn = useCallback((prevState: MemoryMatchInfo, nextTurn: PlayerTurn): MemoryMatchInfo => {
-        return {
-            ...prevState,
-            game: {
-                ...prevState.game,
-                specialData: {
-                    ...prevState.game.specialData,
-                    currentTurn: nextTurn,
-                },
-            },
-        };
-    }, []);
 
     const flipCardUp = useCallback(async (cardIndex: number) => {
         setCardStates((prevState) =>
@@ -136,24 +124,6 @@ export default function CardBoard() {
         [cardStates, openedCardStates.length, wsFlipCardUp]
     );
 
-    const increaseNumOfCardsOwned = useCallback(
-        (playerTurn: PlayerTurn) => {
-            setMyMatchInfo((prevState) => ({
-                ...prevState!,
-                game: {
-                    ...prevState!.game,
-                    specialData: {
-                        ...prevState!.game.specialData,
-                        numOfMyCards: prevState!.game.specialData.numOfMyCards + (playerTurn === "me" ? 1 : 0),
-                        numOfOpponentCards:
-                            prevState!.game.specialData.numOfOpponentCards + (playerTurn === "opponent" ? 1 : 0),
-                    },
-                },
-            }));
-        },
-        [setMyMatchInfo]
-    );
-
     // Listen to ws events
     useEffect(() => {
         const handleFlipCardUp = async (payload: MemoryFlipCardUpPayload, callback: WSCallbackFunc<object>) => {
@@ -180,10 +150,9 @@ export default function CardBoard() {
             callback({status: "ok", message: "success", data: {}});
 
             const {winnerId, matchStatistics} = payload;
-            const myMatchStatistics = matchStatistics[myInfo._id];
+            const myMatchStatistics = matchStatistics && matchStatistics[myInfo._id];
 
-            setBaseMatchInfo((prevState) => finishTheMatch(prevState!, winnerId));
-            onSetMyMatchStatistics(myMatchStatistics);
+            dispatch(finishTheMatch({winnerId, myMatchStatistics}));
         };
 
         socket.on("memoryFlipCardUp", handleFlipCardUp);
@@ -193,15 +162,7 @@ export default function CardBoard() {
             socket.off("memoryFlipCardUp", handleFlipCardUp);
             socket.off("memoryMatchResults", handleMatchResults);
         };
-    }, [
-        cardStates,
-        flipCardUp,
-        myInfo._id,
-        onSetMyMatchStatistics,
-        openedCardStates.length,
-        playFlipCardSound,
-        setBaseMatchInfo,
-    ]);
+    }, [cardStates, dispatch, flipCardUp, myInfo._id, playFlipCardSound]);
 
     // Check two cards are the same and then finish the match
     useEffect(() => {
@@ -215,7 +176,7 @@ export default function CardBoard() {
                 let shouldFinishTheMatch = false;
 
                 if (isSameCard(card1, card2)) {
-                    increaseNumOfCardsOwned(specialData.currentTurn);
+                    dispatch(increaseNumOfCardsOwned());
                     hideCard(card1.id);
                     playCollectCardSound();
                     shouldFinishTheMatch = cardsAvailable - 2 === 0;
@@ -227,48 +188,40 @@ export default function CardBoard() {
                 if (shouldFinishTheMatch) {
                     setShouldFinishTheMatch(true);
                 } else {
-                    setMyMatchInfo((prevState) =>
-                        changeCurrentTurn(
-                            prevState!,
-                            prevState!.game.specialData.currentTurn === "me" ? "opponent" : "me"
-                        )
-                    );
+                    dispatch(changeCurrentTurn());
                 }
 
                 setOpenedCardStates([]);
             }
         }
     }, [
-        changeCurrentTurn,
+        dispatch,
         flipCardDown,
         getCardsAvailable,
         hideCard,
-        increaseNumOfCardsOwned,
         isFlipped,
         isSameCard,
         openedCardStates,
         playCollectCardSound,
-        setMyMatchInfo,
-        specialData.currentTurn,
     ]);
 
     // Handle finish the match
     useEffect(() => {
-        if (shouldFinishTheMatch && specialData.currentTurn === "me") {
+        if (shouldFinishTheMatch && gameSpecialData.currentTurn === "me") {
             WebSocketService.memoryFinishTheMatch({
                 roomId,
                 playerId: myInfo._id,
-                numOfMyCards: specialData.numOfMyCards,
-                numOfOpponentCards: specialData.numOfOpponentCards,
+                numOfMyCards: gameSpecialData.numOfMyCards,
+                numOfOpponentCards: gameSpecialData.numOfOpponentCards,
             });
         }
     }, [
         myInfo._id,
         roomId,
         shouldFinishTheMatch,
-        specialData.currentTurn,
-        specialData.numOfMyCards,
-        specialData.numOfOpponentCards,
+        gameSpecialData.currentTurn,
+        gameSpecialData.numOfMyCards,
+        gameSpecialData.numOfOpponentCards,
     ]);
 
     return (

@@ -1,13 +1,13 @@
 "use client";
 
 import {Container, ImageWithSkeleton, ItemSound} from "@/components/UI";
-import {gameListState} from "@/libs/recoil/atom";
-import {useRecoilValue} from "recoil";
 import GameListSkeleton from "./GameListSkeleton";
-import Link from "next/link";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {selectGameList} from "@/libs/redux/features/gameList/gameListSlice";
+import {Link} from "@/i18n/routing";
 
 export default function GameList() {
-    const gameList = useRecoilValue(gameListState);
+    const gameList = useAppSelector(selectGameList);
 
     if (gameList.length === 0) return <GameListSkeleton />;
 
@@ -19,7 +19,7 @@ export default function GameList() {
                         <Link
                             key={gameInfo._id}
                             href={`/game/${gameInfo.alternativeName}`}
-                            className="cursor-pointer bg-base-100 shadow-custom-1 rounded-box p-4 transition-all duration-300 hover:scale-105"
+                            className="cursor-pointer bg-base-100 shadow-custom-1 rounded-2xl p-4 transition-all duration-300 hover:scale-105"
                         >
                             <ItemSound>
                                 <div className="flex flex-col gap-4">

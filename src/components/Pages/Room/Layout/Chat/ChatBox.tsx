@@ -1,7 +1,7 @@
 import MyTransition from "@/components/MyTransition";
-import {ElementAvailable} from "@/helpers/hooks/useElementShowState";
 import {ChatContent} from "@/helpers/shared/interfaces/commonInterface";
 import Chat from "./Chat";
+import {ElementAvailable} from "@/helpers/hooks/useElementShowState";
 
 interface Props {
     id: string;
@@ -16,7 +16,7 @@ export default function ChatBox(props: Props) {
         <MyTransition
             in={show}
             timeout={300}
-            className="absolute right-0 bottom-full portrait:aspect-[3/4] landscape:aspect-[4/3] mb-4 portrait:w-[70vw] landscape:w-[50vw] h-auto sm:w-[60vw] bg-base-100 shadow-custom-1 rounded-box overflow-hidden"
+            className="absolute right-0 bottom-full aspect-[3/4] w-[18rem] sm:w-[20rem] md:w-[22rem] mb-4 bg-base-100 shadow-custom-1 rounded-2xl overflow-hidden"
             defaultStyles={{
                 opacity: 0,
                 transform: "translateY(1rem)",

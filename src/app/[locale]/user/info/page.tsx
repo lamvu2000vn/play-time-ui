@@ -1,15 +1,16 @@
 "use client";
 
 import {Button, Container, DividerBar, ImageWithSkeleton} from "@/components/UI";
-import {useAuth} from "@/helpers/hooks/useAuth";
+import {selectUser} from "@/libs/redux/features/auth/authSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
 import {useTranslations} from "next-intl";
 import Link from "next/link";
 import {useEffect, useState} from "react";
 import {FaClipboardCheck, FaCopy, FaKey} from "react-icons/fa";
 
 export default function Page() {
-    const {auth} = useAuth();
-    const user = auth.user!;
+    const user = useAppSelector(selectUser);
+
     const [showSuccessCopy, setShowSuccessCopy] = useState<boolean>(false);
     const translation = useTranslations("page.account");
 
@@ -78,8 +79,8 @@ export default function Page() {
                             <Item.Label text="ID" />
                             <Item.Content>
                                 <div className="w-full flex items-center">
-                                    <div className="p-2 flex-1 flex-shrink truncate">{user._id}</div>
-                                    <div className="basis-10 flex-shrink-0">
+                                    <div className="p-2 flex-1 shrink truncate">{user._id}</div>
+                                    <div className="basis-10 shrink-0">
                                         <Button
                                             type="button"
                                             className="!px-0 w-full rounded-lg rounded-tl-none rounded-bl-none flex items-center justify-center"
@@ -124,11 +125,11 @@ function Item({children}: {children: React.ReactNode}) {
 }
 
 function Label({text}: {text: string}) {
-    return <div className="font-semibold text-base basis-[7rem] flex-shrink-0">{text}</div>;
+    return <div className="font-semibold text-base basis-[7rem] shrink-0">{text}</div>;
 }
 
 function Content({children}: {children: React.ReactNode}) {
-    return <div className="bg-base-200 rounded-lg flex-1 flex-shrink overflow-hidden">{children}</div>;
+    return <div className="bg-base-200 rounded-lg flex-1 shrink overflow-hidden">{children}</div>;
 }
 
 Item.Label = Label;

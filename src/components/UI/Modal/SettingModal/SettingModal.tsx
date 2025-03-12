@@ -53,12 +53,16 @@ export default memo(function SettingModal(props: Props) {
 });
 
 export function SettingItem({children}: {children: React.ReactNode}) {
-    return <div className="w-full min-h-14 py-4 box-border flex items-center text-base border-b">{children}</div>;
+    return (
+        <div className="w-full min-h-14 py-4 box-border flex items-center text-base border-b border-gray-300">
+            {children}
+        </div>
+    );
 }
 
 export function Label({children}: {children: React.ReactNode}) {
     return (
-        <div className="flex-shrink-0 min-w-[8rem] w-max h-full flex items-center justify-start text-base font-semibold">
+        <div className="shrink-0 min-w-[8rem] w-max h-full flex items-center justify-start text-base font-semibold">
             {children}
         </div>
     );
@@ -79,11 +83,11 @@ export function FuncBtn({
 }) {
     return (
         <>
-            <div className="flex-shrink-0 mr-3 cursor-pointer text-primary" onClick={onClickLeft}>
+            <div className="shrink-0 mr-3 cursor-pointer text-primary" onClick={onClickLeft}>
                 <IoMdArrowDropleft className="w-6 h-6" />
             </div>
             <div className="flex-1 flex items-center w-full">{children}</div>
-            <div className="flex-shrink-0 ml-3 cursor-pointer text-primary" onClick={onClickRight}>
+            <div className="shrink-0 ml-3 cursor-pointer text-primary" onClick={onClickRight}>
                 <IoMdArrowDropright className="w-6 h-6" />
             </div>
         </>

@@ -3,38 +3,35 @@
 import AvatarSection from "@/components/Pages/Store/AvatarSection";
 import StickerSection from "@/components/Pages/Store/StickerSection";
 import Layout, {EmptyStore} from "@/components/Pages/Store/Layout";
-import {useAuth} from "@/helpers/hooks/useAuth";
 import {Item, PaidItem} from "@/helpers/shared/interfaces/commonInterface";
 import {ItemType} from "@/helpers/shared/types";
-import {itemTypeListState} from "@/libs/recoil/atom";
 import ItemTypeService from "@/services/ItemTypeService";
 import UserService from "@/services/UserService";
 import {useSearchParams} from "next/navigation";
-import {useEffect, useState} from "react";
-import {useRecoilValue} from "recoil";
+import {use, useEffect, useState} from "react";
 import {useTranslations} from "next-intl";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {selectUser} from "@/libs/redux/features/auth/authSlice";
 
 interface Props {
-    params: {
-        itemType: ItemType;
-    };
+    params: Promise<{itemType: ItemType}>;
 }
 
 export default function Page(props: Props) {
-    const {params} = props;
+    const params = use(props.params);
     const searchParams = useSearchParams();
     const itemSection = searchParams.get("section");
     const pageTranslation = useTranslations("page.store");
 
-    const itemTypeList = useRecoilValue(itemTypeListState);
-    const {auth} = useAuth();
+    const itemTypeList = useAppSelector((state) => state.itemTypeList);
+    const user = useAppSelector(selectUser);
     const [itemList, setItemList] = useState<Item[]>([]);
     const [paidItems, setPaidItems] = useState<PaidItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>("");
 
     useEffect(() => {
-        const typeId = itemTypeList.find((itemType) => itemType.alternativeName === props.params.itemType)?._id;
+        const typeId = itemTypeList.find((itemType) => itemType.alternativeName === params.itemType)?._id;
 
         if (!typeId) {
             setError(pageTranslation("error.itemNotFound"));
@@ -45,7 +42,7 @@ export default function Page(props: Props) {
         (async () => {
             const [allItemsResponse, paidItemsResponse] = await Promise.all([
                 ItemTypeService.getAllItems(typeId),
-                UserService.getPaidItems(auth.user!._id, typeId),
+                UserService.getPaidItems(user._id, typeId),
             ]);
 
             if (
@@ -71,7 +68,7 @@ export default function Page(props: Props) {
             setItemList(allItemsFiltered);
             setLoading(false);
         })();
-    }, [auth, itemTypeList, pageTranslation, props.params.itemType]);
+    }, [itemTypeList, pageTranslation, params.itemType, user._id]);
 
     if (loading) {
         return (

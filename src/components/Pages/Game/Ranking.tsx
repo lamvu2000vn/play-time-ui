@@ -56,7 +56,7 @@ export default function Ranking(props: Props) {
                     return (
                         <div
                             key={index}
-                            className={`w-full h-14 flex items-center justify-between rounded-box mb-2 ${bgColor}`}
+                            className={`w-full h-14 flex items-center justify-between rounded-2xl mb-2 ${bgColor}`}
                         >
                             <div className="w-14 h-14 flex items-center justify-center">
                                 {index === 0 ? (

@@ -264,7 +264,8 @@
                 "roomNotFound": "未找到房间。",
                 "playAgainFailure": "对手已离开房间或房间已被取消。",
                 "screenSizeNotSupported": "游戏需要更大的屏幕尺寸。",
-                "unknown": "未知错误。"
+                "unknown": "未知错误。",
+                "getMatchInfoFailure": "无法获取比赛数据。"
             }
         },
         "error": {

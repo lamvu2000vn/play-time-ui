@@ -3,7 +3,7 @@
 import {useCallback, useEffect, useState} from "react";
 import LoginSection from "../../../components/Pages/Auth/LoginSection";
 import RegisterSection from "../../../components/Pages/Auth/RegisterSection";
-import {useRouter} from "next/navigation";
+import {useRouter} from "@/i18n/routing";
 
 const duration = 500;
 
@@ -47,8 +47,10 @@ interface Props {
 }
 
 export default function AuthPage(props: Props) {
-    const [showLoginSection, setShowLoginSection] = useState<boolean>(false);
-    const [showRegisterSection, setShowRegisterSection] = useState<boolean>(false);
+    const {openSection} = props;
+
+    const [showLoginSection, setShowLoginSection] = useState<boolean>(openSection === "login");
+    const [showRegisterSection, setShowRegisterSection] = useState<boolean>(openSection === "register");
     const router = useRouter();
 
     const handleShowLogin = useCallback(() => {
@@ -73,8 +75,8 @@ export default function AuthPage(props: Props) {
 
     return (
         <div className="fixed left-0 top-0 w-full h-full">
-            <div className="w-full h-full bg-image bg-[url('/assets/images/backgrounds/auth-background.jpg')] bg-cover bg-no-repeat bg-left sm:bg-center" />
-            <div className="absolute left-0 top-0 right-0 lg:right-1/2 h-full">
+            <div className="w-full h-full bg-[url('/assets/images/backgrounds/auth-background.jpg')] bg-cover bg-no-repeat bg-left sm:bg-center" />
+            <div className="absolute left-0 top-0 w-full lg:w-1/2 h-full">
                 <LoginSection
                     show={showLoginSection}
                     transition={{timeout: duration, defaultStyle, transitionStyles}}

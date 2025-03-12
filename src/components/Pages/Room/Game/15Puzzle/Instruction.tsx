@@ -6,7 +6,7 @@ export default function Instruction() {
 
     return (
         <div className="flex items-center justify-center gap-8">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
                 <div className="flex w-full justify-center mb-1">
                     <kbd className="kbd kbd-md text-sm xl:text-base">
                         <FaArrowUp />

@@ -9,8 +9,6 @@ import DividerBar from "../DividerBar";
 import {GoHomeFill} from "react-icons/go";
 import ImageWithSkeleton from "../ImageWithSkeleton";
 import {FaBook} from "react-icons/fa";
-import {useRecoilValue} from "recoil";
-import {deviceInfoState, gameListState} from "@/libs/recoil/atom";
 import MyTransition from "@/components/MyTransition";
 import {LG_SCREEN} from "@/helpers/shared/constants";
 import {memo, useCallback, useEffect, useRef, useState} from "react";
@@ -23,16 +21,19 @@ import Backdrop from "../Backdrop";
 import UserInfo from "./UserInfo";
 import {useTranslations} from "next-intl";
 import {Link} from "@/i18n/routing";
-import useVisibility from "@/helpers/hooks/useVisibility";
+import {useAppSelector} from "@/libs/redux/hooks";
+import HistoryModal from "../Modal/HistoryModal";
+import StatisticsModal from "../Modal/StatisticsModal";
+import {selectDeviceInfo} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
+import {selectGameList} from "@/libs/redux/features/gameList/gameListSlice";
+import {useVisibility} from "@/helpers/hooks";
 
 export default memo(function Sidebar() {
-    const deviceInfo = useRecoilValue(deviceInfoState)!;
-    const gameList = useRecoilValue(gameListState);
-    const {screen} = deviceInfo;
+    const {screen} = useAppSelector(selectDeviceInfo);
+    const gameList = useAppSelector(selectGameList);
     const [isExpand, setIsExpand] = useState<boolean>(screen.availWidth < LG_SCREEN);
     const translation = useTranslations("common.sidebar");
-    const {hide, show, visibility} = useVisibility();
-
+    const {visibility, hide, show} = useVisibility();
     const notificationElId = useRef<string>(generateRandomString());
     const userInfoElId = useRef<string>(generateRandomString());
 
@@ -73,7 +74,7 @@ export default memo(function Sidebar() {
                 <ToggleSidebarButton isExpand={isExpand} onToggle={handleToggleExpand} />
                 <div className="w-full h-full flex flex-col items-stretch overflow-hidden">
                     {/* header */}
-                    <div className="w-full flex-shrink-0 border-b border-b-neutral-content">
+                    <div className="w-full shrink-0 border-b border-b-neutral-content">
                         <div className="w-full h-full flex flex-1 items-stretch justify-between flex-wrap gap-3 p-2">
                             <UserInfo isExpand={isExpand} id={userInfoElId.current} />
                             {isExpand && (
@@ -153,6 +154,8 @@ export default memo(function Sidebar() {
                     </div>
                 </div>
             </MyTransition>
+            <HistoryModal show={visibility.historyModal} onClose={() => hide("historyModal")} />
+            <StatisticsModal show={visibility.statisticsModal} onClose={() => hide("statisticsModal")} />
         </>
     );
 });

@@ -1,5 +1,5 @@
 import {DeviceInfo} from "@/helpers/shared/interfaces/commonInterface";
-import {getDeviceInfo} from "@/helpers/utils/getDeviceInfo";
+import {DeviceManager} from "@/helpers/utils/classes";
 import {webSocketConnect} from "@/libs/socket.io/webSocketConnect";
 
 interface SetupResult<D> {
@@ -14,12 +14,12 @@ export default class SetupService {
 
     static initializeDeviceInfo = async (): Promise<SetupResult<DeviceInfo | null>> => {
         try {
-            const deviceInfo = getDeviceInfo();
+            const deviceInfo = DeviceManager.getDeviceInfo();
             return {status: true, data: deviceInfo};
         } catch (err) {
             console.log("🚀 ~ SetupService ~ err:", err);
 
-            return {status: true, data: null};
+            return {status: false, data: null};
         }
     };
 }

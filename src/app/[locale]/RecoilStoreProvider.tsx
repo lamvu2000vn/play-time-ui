@@ -6,6 +6,6 @@ interface Props {
     children: React.ReactNode;
 }
 
-export default function StoreProvider(props: Props) {
+export default function RecoilStoreProvider(props: Props) {
     return <RecoilRoot>{props.children}</RecoilRoot>;
 }

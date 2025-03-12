@@ -1,7 +1,6 @@
 import type {Metadata} from "next";
 import {Roboto} from "next/font/google";
 import "./globals.css";
-import StoreProvider from "./StoreProvider";
 import App from "./App";
 import "react-toastify/dist/ReactToastify.css";
 import "animate.css/animate.min.css";
@@ -15,6 +14,7 @@ import {notFound} from "next/navigation";
 import {routing} from "@/i18n/routing";
 import {Locales} from "@/helpers/shared/types";
 import FetchData from "./FetchData";
+import ReduxStoreProvider from "./ReduxStoreProvider";
 
 const roboto = Roboto({
     weight: "400",
@@ -28,13 +28,15 @@ export const metadata: Metadata = {
     description: "An online gaming application",
 };
 
-export default async function RootLayout({
-    children,
-    params: {locale},
-}: Readonly<{
+interface Props {
     children: React.ReactNode;
-    params: {locale: string};
-}>) {
+    params: Promise<{locale: string}>;
+}
+
+export default async function RootLayout(props: Props) {
+    const {children, params} = props;
+    const {locale} = await params;
+
     // Ensure that the incoming `locale` is valid
     if (!routing.locales.includes(locale as Locales)) {
         notFound();
@@ -45,10 +47,10 @@ export default async function RootLayout({
     const messages = await getMessages();
 
     return (
-        <html data-theme="myLightTheme" lang={locale}>
+        <html data-theme="light" lang={locale}>
             <body className={`${roboto.className} antialiased`}>
                 <NextIntlClientProvider messages={messages}>
-                    <StoreProvider>
+                    <ReduxStoreProvider>
                         <AppSetup>
                             <Toastify />
                             <Audio />
@@ -58,7 +60,7 @@ export default async function RootLayout({
                                 </FetchData>
                             </AuthMiddleware>
                         </AppSetup>
-                    </StoreProvider>
+                    </ReduxStoreProvider>
                 </NextIntlClientProvider>
             </body>
         </html>

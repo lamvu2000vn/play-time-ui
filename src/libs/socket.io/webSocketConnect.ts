@@ -1,49 +1,41 @@
 import {WebSocketTransport} from "@/helpers/shared/types";
 import socket from "./socket";
 
+const TIMEOUT = 10000; // 10 seconds
+
 export const webSocketConnect = async (transport?: WebSocketTransport): Promise<boolean> => {
+    if (socket.connected) {
+        return transport === "websocket" || (await handleUpgrade());
+    }
+
     try {
-        if (!socket.connected) {
-            // Thực hiện kết nối
+        await new Promise<void>((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Connection timeout")), TIMEOUT);
+
+            socket.on("connect", () => {
+                clearTimeout(timer);
+                resolve();
+            });
+
+            socket.on("connect_error", (err) => {
+                clearTimeout(timer);
+                reject(err);
+            });
+
             socket.connect();
+        });
 
-            // Chờ kết nối thành công
-            await new Promise<void>((resolve, reject) => {
-                const timer = setTimeout(() => {
-                    reject(new Error("Kết nối thất bại sau 5 giây."));
-                }, 5000); // Timeout sau 5 giây
-
-                socket.on("connect", () => {
-                    clearTimeout(timer);
-                    resolve();
-                });
-
-                socket.on("connect_error", (err) => {
-                    clearTimeout(timer);
-                    reject(err);
-                });
-            });
-        }
-
-        // Logic kiểm tra và xử lý sau khi đã kết nối
-        if (socket.connected) {
-            let timerId: NodeJS.Timeout | null = null;
-
-            timerId = setTimeout(() => {
-                return transport === "websocket";
-            }, 5000);
-
-            socket.io.engine.on("upgrade", (upgradedTransport) => {
-                if (timerId) clearTimeout(timerId);
-                return webSocketConnect(upgradedTransport.name as WebSocketTransport);
-            });
-
-            return true; // Trả về true nếu kết nối thành công
-        }
-
-        return false; // Trả về false nếu không thể kết nối
+        return transport === "websocket" || (await handleUpgrade());
     } catch (err) {
-        console.log("🚀 ~ webSocketConnect ~ err:", err);
+        console.error("🚀 ~ webSocketConnect error:", err);
         return false;
     }
+};
+
+const handleUpgrade = async (): Promise<boolean> => {
+    return new Promise<boolean>((resolve) => {
+        socket.io.engine.on("upgrade", (upgradedTransport) => {
+            resolve(upgradedTransport.name === "websocket");
+        });
+    });
 };

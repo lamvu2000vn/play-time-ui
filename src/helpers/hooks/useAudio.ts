@@ -1,6 +1,6 @@
-import {deviceInfoState} from "@/libs/recoil/atom";
+import {selectDeviceInfo} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
 import {useEffect, useMemo, useState} from "react";
-import {useRecoilValue} from "recoil";
 
 interface IAudioState {
     play: (currentTime?: number) => void;
@@ -93,7 +93,8 @@ const defaultAudioState: IAudio = {
 };
 
 export default function useAudio() {
-    const {backgroundMusicVolume, systemSoundVolume} = useRecoilValue(deviceInfoState)!;
+    const {volume} = useAppSelector(selectDeviceInfo);
+    const {backgroundMusicVolume, systemSoundVolume} = volume;
     const [audio, setAudio] = useState<IAudio>(defaultAudioState);
 
     const audioConfig = useMemo<{key: keyof IAudio; selector: string}[]>(

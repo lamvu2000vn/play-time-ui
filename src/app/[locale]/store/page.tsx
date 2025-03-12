@@ -2,12 +2,11 @@
 
 import Layout from "@/components/Pages/Store/Layout";
 import {CardImage} from "@/components/UI";
-import {itemTypeListState} from "@/libs/recoil/atom";
+import {useAppSelector} from "@/libs/redux/hooks";
 import Link from "next/link";
-import {useRecoilValue} from "recoil";
 
 export default function Page() {
-    const itemTypeList = useRecoilValue(itemTypeListState);
+    const itemTypeList = useAppSelector((state) => state.itemTypeList);
 
     return (
         <Layout>

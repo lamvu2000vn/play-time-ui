@@ -1,17 +1,16 @@
 import {Button, SettingButton} from "@/components/UI";
 import ConfirmLeaveRoomModal from "@/components/UI/Modal/ConfirmLeaveMatchModal";
-import {baseMatchInfoState} from "@/libs/recoil/atom";
-import {useContext, useState} from "react";
-import {useRecoilValue} from "recoil";
+import {useState} from "react";
 import {MdLogout} from "react-icons/md";
 import {useTranslations} from "next-intl";
 import ChatButton from "./ChatButton";
-import {GameContext} from "@/helpers/contexts";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {selectMessages} from "@/libs/redux/features/inMatchData/inMatchDataSlice";
 
 export default function NavBar() {
-    const {messages} = useContext(GameContext);
-
-    const baseMatchInfo = useRecoilValue(baseMatchInfoState)!;
+    const messages = useAppSelector(selectMessages);
+    const baseMatchInfo = useAppSelector(selectBaseMatchInfo)!;
     const [showConfirmLeaveRoomModal, setShowConfirmLeaveRoomModal] = useState<boolean>(false);
     const translation = useTranslations("page.room");
 

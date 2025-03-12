@@ -2,11 +2,11 @@ import {memo, useCallback, useEffect, useRef, useState} from "react";
 import BaseModal from "./BaseModal";
 import Image from "next/image";
 import WebSocketService from "@/services/WebSocketService";
-import {useRecoilState} from "recoil";
-import {roomInfoState} from "@/libs/recoil/atom";
 import {showToast} from "@/helpers/utils/utils";
 import {useTranslations} from "next-intl";
 import CancelButton from "../Buttons/CancelButton";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {clearRoomInfo, selectRoomInfo} from "@/libs/redux/features/roomInfo/roomInfoSlice";
 
 interface Props {
     show: boolean;
@@ -15,7 +15,8 @@ interface Props {
 
 export default memo(function LookingForGameModal(props: Props) {
     const {show, onClose} = props;
-    const [roomInfo, setRoomInfo] = useRecoilState(roomInfoState);
+    const roomInfo = useAppSelector(selectRoomInfo);
+    const dispatch = useAppDispatch();
     const [waitingTime, setWaitingTime] = useState<{minutes: number; seconds: number}>({minutes: 0, seconds: 0});
     const translation = useTranslations("common.modal.lookingForGameModal");
 
@@ -25,12 +26,12 @@ export default memo(function LookingForGameModal(props: Props) {
         if (roomInfo) {
             const {roomId, hostId} = roomInfo;
             await WebSocketService.cancelLookingForQuickMatch(roomId, hostId);
-            setRoomInfo(null);
+            dispatch(clearRoomInfo());
         }
 
         setWaitingTime({minutes: 0, seconds: 0});
         onClose();
-    }, [onClose, roomInfo, setRoomInfo]);
+    }, [onClose, roomInfo, dispatch]);
 
     const formatWaitingTime = (minutes: number, seconds: number): string => {
         return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;

@@ -1,6 +1,7 @@
 import {CardImage, Price} from "@/components/UI";
-import {useAuth} from "@/helpers/hooks/useAuth";
 import {Item} from "@/helpers/shared/interfaces/commonInterface";
+import {selectUser} from "@/libs/redux/features/auth/authSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
 
 interface Props {
     item: Item;
@@ -10,7 +11,7 @@ interface Props {
 
 export default function AvatarItem(props: Props) {
     const {item, showPrice, onClick} = props;
-    const {auth} = useAuth();
+    const user = useAppSelector(selectUser);
 
     return (
         <CardImage key={item._id} onClick={() => onClick && onClick(item)}>
@@ -21,7 +22,7 @@ export default function AvatarItem(props: Props) {
                 </div>
                 {showPrice && (
                     <div className="flex items-center justify-center">
-                        <Price price={item.price} userCoin={auth.user!.coin} />
+                        <Price price={item.price} userCoin={user.coin} />
                     </div>
                 )}
             </CardImage.Content>

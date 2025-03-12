@@ -1,6 +1,9 @@
 import {FifteenPuzzleGameSetup} from "./interfaces/games/fifteenPuzzleInterfaces";
 import {MemoryGameSetup} from "./interfaces/games/memoryInterfaces";
 import {TicTacToeGameSetup} from "./interfaces/games/ticTacToeInterfaces";
+import {Locales} from "./types";
+
+export const localesAvailable: Locales[] = ["ar", "en", "es", "hi", "zh", "vi", "ru", "pt", "ja", "fr"];
 
 export const ticTacToeDefaultSetup: TicTacToeGameSetup = {
     boardSize: "3x3",

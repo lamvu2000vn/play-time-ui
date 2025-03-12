@@ -9,7 +9,7 @@ export default function Timer(props: Props) {
 
     return (
         <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[15%] md:w-[10%] h-full flex justify-center">
-            <div className="relative aspect-square h-full w-auto flex-shrink-0 p-1">
+            <div className="relative aspect-square h-full w-auto shrink-0 p-1">
                 {/* <div className="w-full h-full flex items-center justify-center">
                     <CountdownCircleTimer
                         key={id}

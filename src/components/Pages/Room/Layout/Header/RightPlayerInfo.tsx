@@ -15,7 +15,7 @@ export default function RightPlayerInfo(props: Props) {
     return (
         <div className="absolute right-0 top-0 w-[42.5%] md:w-[45%] h-full">
             <div className={`max-w-full h-full flex items-stretch gap-2 rounded-s-full p-2 ml-1 ${bgColor}`}>
-                <div className="flex-shrink-0 aspect-square">
+                <div className="shrink-0 aspect-square">
                     <div className="aspect-square relative rounded-full overflow-hidden">
                         <ImageWithSkeleton src={playerInfo.avatarUrl} fill />
                     </div>

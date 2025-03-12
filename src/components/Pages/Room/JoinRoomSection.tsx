@@ -1,25 +1,25 @@
-import {useAuth} from "@/helpers/hooks/useAuth";
 import WebSocketService from "@/services/WebSocketService";
 import {useTranslations} from "next-intl";
 import {useEffect} from "react";
 import PreparingRoomSection from "./PreparingRoomSection";
-import {Screen} from "@/app/[locale]/room/[roomId]/page";
-import {useRecoilValue} from "recoil";
-import {deviceInfoState} from "@/libs/recoil/atom";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {selectDeviceInfo} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
+import {selectUser} from "@/libs/redux/features/auth/authSlice";
+import {changeShowingScreen, setGameError} from "@/libs/redux/features/inMatchData/inMatchDataSlice";
+import {selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
 
 interface Props {
     roomId: string;
-    onError: (error: string) => void;
-    onChangeScreen: (screen: Screen) => void;
 }
 
 export default function JoinRoomSection(props: Props) {
-    const {roomId, onError, onChangeScreen} = props;
+    const {roomId} = props;
 
-    const {auth} = useAuth();
-    const {screen} = useRecoilValue(deviceInfoState)!;
+    const user = useAppSelector(selectUser);
+    const {screen} = useAppSelector(selectDeviceInfo);
+    const baseMatchInfo = useAppSelector(selectBaseMatchInfo);
+    const dispatch = useAppDispatch();
     const translation = useTranslations("page.room");
-    const user = auth.user!;
 
     useEffect(() => {
         const handleJoinRoom = async () => {
@@ -39,14 +39,17 @@ export default function JoinRoomSection(props: Props) {
                         errorMessage = translation("error.unknown");
                 }
 
-                onError(errorMessage);
+                dispatch(setGameError({error: errorMessage}));
+                dispatch(changeShowingScreen({screen: "errorScreen"}));
             } else {
-                onChangeScreen("preparingRoomScreen");
+                dispatch(changeShowingScreen({screen: "preparingRoomScreen"}));
             }
         };
 
         handleJoinRoom();
-    }, [onChangeScreen, onError, roomId, screen.availWidth, translation, user._id]);
+    }, [dispatch, roomId, screen.availWidth, translation, user._id]);
+
+    if (baseMatchInfo.roomId) return null;
 
     return <PreparingRoomSection />;
 }

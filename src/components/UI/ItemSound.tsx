@@ -1,8 +1,8 @@
 "use client";
 
-import {deviceInfoState} from "@/libs/recoil/atom";
+import {selectDeviceInfo} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
 import {useEffect, useRef} from "react";
-import {useRecoilValue} from "recoil";
 
 interface Props {
     children: React.ReactNode;
@@ -10,7 +10,7 @@ interface Props {
 
 export default function ItemSound(props: Props) {
     const {children} = props;
-    const {systemSoundVolume} = useRecoilValue(deviceInfoState)!;
+    const {volume} = useAppSelector(selectDeviceInfo);
 
     const ref = useRef<HTMLAudioElement>(null);
 
@@ -27,9 +27,9 @@ export default function ItemSound(props: Props) {
 
         if (audio) {
             audio.muted = false;
-            audio.volume = systemSoundVolume;
+            audio.volume = volume.systemSoundVolume;
         }
-    }, [systemSoundVolume]);
+    }, [volume.systemSoundVolume]);
 
     return (
         <div onMouseEnter={handleMouseEnter}>

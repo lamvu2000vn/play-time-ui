@@ -264,7 +264,8 @@
                 "roomNotFound": "Phòng không tồn tại.",
                 "playAgainFailure": "Đối thủ đã rời khỏi phòng hoặc phòng đã bị hủy.",
                 "screenSizeNotSupported": "Trò chơi yêu cầu kích thước màn hình lớn hơn.",
-                "unknown": "Lỗi không xác định."
+                "unknown": "Lỗi không xác định.",
+                "getMatchInfoFailure": "Không thể lấy dữ liệu ván đấu."
             }
         },
         "error": {

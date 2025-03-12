@@ -2,11 +2,12 @@
 
 import MyError from "@/components/Pages/MyError";
 import {LoadingScreen} from "@/components/UI";
-import {gameListState, itemTypeListState} from "@/libs/recoil/atom";
+import {setGameList} from "@/libs/redux/features/gameList/gameListSlice";
+import {setItemTypeList} from "@/libs/redux/features/itemTypeList/itemTypeListSlice";
+import {useAppDispatch} from "@/libs/redux/hooks";
 import GameService from "@/services/GameService";
 import ItemTypeService from "@/services/ItemTypeService";
 import {useEffect, useState} from "react";
-import {useRecoilState} from "recoil";
 
 interface Props {
     children: React.ReactNode;
@@ -15,8 +16,7 @@ interface Props {
 export default function FetchData(props: Props) {
     const {children} = props;
 
-    const [gameList, setGameList] = useRecoilState(gameListState);
-    const [itemTypeList, setItemTypeList] = useRecoilState(itemTypeListState);
+    const dispatch = useAppDispatch();
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 
@@ -25,18 +25,16 @@ export default function FetchData(props: Props) {
             const [gameListRes, itemTypeListRes] = await Promise.all([GameService.getAll(), ItemTypeService.getAll()]);
 
             if (gameListRes?.status === 200 && itemTypeListRes?.status === 200) {
-                setGameList(gameListRes.data);
-                setItemTypeList(itemTypeListRes.data);
+                dispatch(setGameList(gameListRes.data));
+                dispatch(setItemTypeList(itemTypeListRes.data));
                 setLoading(false);
             } else {
                 setError(new Error("Failed to fetch data"));
             }
         };
 
-        if (gameList.length === 0 || itemTypeList.length === 0) {
-            fetchData();
-        }
-    }, [gameList.length, itemTypeList.length, setGameList, setItemTypeList]);
+        fetchData();
+    }, [dispatch]);
 
     if (loading) return <LoadingScreen />;
 

@@ -64,7 +64,7 @@ export default function Breadcrumbs() {
                     {breadcrumbs.map((crumb, index) => (
                         <Fragment key={index}>
                             <li
-                                className={`flex-shrink-0 flex items-center gap-2 text-sm cursor-pointer hover:underline ${
+                                className={`shrink-0 flex items-center gap-2 text-sm cursor-pointer hover:underline ${
                                     index === lastIndex ? "text-primary font-semibold" : ""
                                 }`}
                                 onClick={() => handleChangeCrumb(index)}

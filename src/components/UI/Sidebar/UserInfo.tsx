@@ -1,4 +1,3 @@
-import {useAuth} from "@/helpers/hooks/useAuth";
 import ImageWithSkeleton from "../ImageWithSkeleton";
 import UserCoin from "../UserCoin";
 import Item from "../Item";
@@ -6,17 +5,19 @@ import useElementShowState, {ElementAvailable} from "@/helpers/hooks/useElementS
 import MyTransition from "@/components/MyTransition";
 import Card from "../Card";
 import {useEffect, useState} from "react";
-import useFlexiblePopupPosition from "@/helpers/hooks/useFlexiblePopupPosition";
+import {useFlexiblePopupPosition} from "@/helpers/hooks";
 import {RiLogoutCircleRLine, RiUserFill} from "react-icons/ri";
 import Link from "next/link";
 import {ImProfile} from "react-icons/im";
 import {BsStars} from "react-icons/bs";
 import DividerBar from "../DividerBar";
-import {useRouter} from "next/navigation";
 import AuthService from "@/services/AuthService";
 import {IoMdArrowDropdown} from "react-icons/io";
 import {useTranslations} from "next-intl";
-import useVisibility from "@/helpers/hooks/useVisibility";
+import {useVisibility} from "@/helpers/hooks";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {logout, selectUser} from "@/libs/redux/features/auth/authSlice";
+import {removeDefaultAccessToken} from "@/libs/axios/apiClient";
 
 interface Props {
     isExpand: boolean;
@@ -25,11 +26,11 @@ interface Props {
 
 export default function UserInfo(props: Props) {
     const {id, isExpand} = props;
-    const {auth, logout} = useAuth();
+    const dispatch = useAppDispatch();
+    const user = useAppSelector(selectUser);
     const {showState, addElement} = useElementShowState();
     const {position, reCalculatePosition} = useFlexiblePopupPosition({elementId: id});
     const [showMenu, setShowMenu] = useState<boolean>(false);
-    const router = useRouter();
     const translation = useTranslations("common");
     const {show} = useVisibility();
 
@@ -38,8 +39,8 @@ export default function UserInfo(props: Props) {
     const handleLogout = async () => {
         try {
             await AuthService.logout();
-            logout();
-            router.push("/auth/login");
+            removeDefaultAccessToken();
+            dispatch(logout());
         } catch (err: unknown) {
             console.log("🚀 ~ handleLogout ~ err:", err);
         }
@@ -65,12 +66,12 @@ export default function UserInfo(props: Props) {
                         {isExpand && <IoMdArrowDropdown className="absolute top-0 right-1 w-4 h-4" />}
                         <div className="w-12 h-12 flex items-center justify-center">
                             <div className="relative aspect-square w-10 rounded-full overflow-hidden">
-                                {auth && auth.user && <ImageWithSkeleton src={auth.user.avatarUrl} fill />}
+                                {user._id && <ImageWithSkeleton src={user.avatarUrl} fill />}
                             </div>
                         </div>
                         {isExpand && (
                             <div className="flex flex-col py-1 pr-2">
-                                <span className="text-base -mt-1 font-semibold">{auth?.user?.name}</span>
+                                <span className="text-base -mt-1 font-semibold">{user.name}</span>
                                 <UserCoin />
                             </div>
                         )}

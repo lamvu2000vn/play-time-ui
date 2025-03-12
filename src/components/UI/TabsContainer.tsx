@@ -22,7 +22,7 @@ function Tab({
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
     return (
-        <div className="flex-1 flex-shrink-0">
+        <div className="flex-1 shrink-0">
             <input
                 type="radio"
                 hidden
@@ -35,7 +35,7 @@ function Tab({
             />
             <label
                 htmlFor={value}
-                className="cursor-pointer block text-nowrap p-3 rounded-tl-lg rounded-tr-lg border-b-4 border-gray-400/70 peer-checked:font-semibold peer-checked:text-primary peer-checked:border-primary"
+                className="cursor-pointer block text-nowrap p-3 rounded-tl-lg rounded-tr-lg border-b-4 border-gray-300 peer-checked:font-semibold peer-checked:text-primary peer-checked:border-primary peer-checked:bg-primary/20"
             >
                 <div className="text-base text-center">{label}</div>
             </label>

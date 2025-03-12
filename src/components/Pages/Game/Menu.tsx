@@ -13,13 +13,13 @@ interface Props {
 }
 
 export default function Menu(props: Props) {
-    const {gameInfo, onShowGameSetupModal, onQuickMatchStart} = props;
+    const {gameInfo, onShowGameSetupModal} = props;
     const translation = useTranslations("page.game.menu");
 
     // Skeleton
     if (!gameInfo) {
         return (
-            <div className="!rounded-box h-full">
+            <div className="!rounded-2xl h-full">
                 <div className="skeleton w-full h-10 mb-3"></div>
                 <div className="skeleton w-full h-10 mb-3"></div>
                 <div className="skeleton w-full h-10 mb-3"></div>
@@ -38,10 +38,7 @@ export default function Menu(props: Props) {
                     <span>{translation("playWithFriend")}</span>
                 </div>
             </Item>
-            <Item
-                className="py-3 px-5 !rounded-full border-2 border-base-content transition-transform duration-100 hover:scale-105"
-                onClick={onQuickMatchStart}
-            >
+            <Item className="py-3 px-5 !rounded-full hover:!brightness-75 brightness-75 text-gray-500">
                 <div className="flex items-center gap-2 max-w-[12rem] mx-auto">
                     <IoEarth className="w-6 h-6" />
                     <span>{translation("playWithRandom")}</span>

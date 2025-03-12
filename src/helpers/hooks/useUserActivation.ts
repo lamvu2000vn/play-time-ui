@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 
-const useUserActivation = () => {
+export default function useUserActivation() {
     const [isUserActive, setIsUserActive] = useState(false);
 
     useEffect(() => {
@@ -18,6 +18,4 @@ const useUserActivation = () => {
     }, []);
 
     return isUserActive;
-};
-
-export default useUserActivation;
+}

@@ -17,15 +17,15 @@ export default function WinnerNotification(props: Props) {
             <div
                 className={`w-full h-full px-2 flex items-center justify-center gap-3 text-neutral bg-yellow-400 shadow-lg shadow-yellow-400/70`}
             >
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                     <FaTrophy className="w-6 h-6" />
                 </div>
                 <div className="flex justify-center items-center overflow-hidden">
                     <div className="w-full h-full text-xl sm:text-2xl md:test-3xl flex items-center gap-2">
-                        <span className="flex-shrink-0 font-semibold">{winnerText}</span>
+                        <span className="shrink-0 font-semibold">{winnerText}</span>
                     </div>
                 </div>
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                     <FaTrophy className="w-6 h-6" />
                 </div>
             </div>

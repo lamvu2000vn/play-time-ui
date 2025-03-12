@@ -264,7 +264,8 @@
                 "roomNotFound": "部屋が見つかりません。",
                 "playAgainFailure": "相手が退室したか、ルームがキャンセルされました。",
                 "screenSizeNotSupported": "ゲームにはより大きな画面サイズが必要です。",
-                "unknown": "不明なエラー。"
+                "unknown": "不明なエラー。",
+                "getMatchInfoFailure": "試合データを取得できません。"
             }
         },
         "error": {

@@ -2,12 +2,12 @@
 
 import MyError from "@/components/Pages/MyError";
 import {LoadingScreen} from "@/components/UI";
-import useUserActivation from "@/helpers/hooks/useUserActivation";
+import {useUserActivation, useWebSocketConnection} from "@/helpers/hooks";
+import {DeviceManager} from "@/helpers/utils/classes";
 import {changeTheme} from "@/helpers/utils/utils";
-import {deviceInfoState} from "@/libs/recoil/atom";
-import SetupService from "@/services/SetupService";
+import {setDeviceInfo, updateDeviceInfo} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
+import {useAppDispatch} from "@/libs/redux/hooks";
 import {useCallback, useEffect, useState} from "react";
-import {useRecoilState} from "recoil";
 
 interface Props {
     children: React.ReactNode;
@@ -16,29 +16,21 @@ interface Props {
 export default function AppSetup(props: Props) {
     const {children} = props;
 
-    const [deviceInfo, setDeviceInfo] = useRecoilState(deviceInfoState);
     const [loading, setLoading] = useState<boolean>(true);
     const [setupSuccess, setSetupSuccess] = useState<boolean>(false);
     const isUserActive = useUserActivation();
+    const transport = useWebSocketConnection();
+
+    const dispatch = useAppDispatch();
+
+    console.log("🚀 ~ AppSetup ~ transport:", transport);
 
     const setup = useCallback(async (): Promise<boolean> => {
         try {
-            const [webSocketResult, deviceInfoResult] = await Promise.all([
-                SetupService.connectWebsocket(),
-                SetupService.initializeDeviceInfo(),
-            ]);
+            const deviceInfo = DeviceManager.getDeviceInfo();
 
-            if (!webSocketResult.status || !deviceInfoResult.status) {
-                return false;
-            }
-
-            const deviceInfo = deviceInfoResult.data!;
-
-            if (deviceInfo.theme) {
-                changeTheme(deviceInfo.theme);
-            }
-
-            setDeviceInfo(deviceInfo);
+            changeTheme(deviceInfo.theme);
+            dispatch(setDeviceInfo(deviceInfo));
 
             return true;
         } catch (err) {
@@ -46,7 +38,7 @@ export default function AppSetup(props: Props) {
 
             return false;
         }
-    }, [setDeviceInfo]);
+    }, [dispatch]);
 
     useEffect(() => {
         (async () => {
@@ -58,26 +50,30 @@ export default function AppSetup(props: Props) {
 
     useEffect(() => {
         if (isUserActive) {
-            setDeviceInfo((prevState) => ({
-                ...prevState!,
-                backgroundMusicVolume: 0.7,
-                systemSoundVolume: 0.7,
-            }));
+            dispatch(
+                updateDeviceInfo({
+                    volume: {
+                        backgroundMusicVolume: 0,
+                        systemSoundVolume: 0.5,
+                    },
+                })
+            );
         }
-    }, [isUserActive, setDeviceInfo]);
+    }, [dispatch, isUserActive]);
 
     // Handle resize window
     useEffect(() => {
         const handleResizeWindow = () => {
-            setDeviceInfo((prevState) => ({
-                ...prevState!,
-                screen: {
-                    width: window.screen.width,
-                    height: window.screen.height,
-                    availWidth: document.body.clientWidth,
-                    availHeight: document.body.clientHeight,
-                },
-            }));
+            dispatch(
+                updateDeviceInfo({
+                    screen: {
+                        width: window.screen.width,
+                        height: window.screen.height,
+                        availWidth: document.body.clientWidth,
+                        availHeight: document.body.clientHeight,
+                    },
+                })
+            );
         };
 
         window.addEventListener("resize", handleResizeWindow);
@@ -85,7 +81,7 @@ export default function AppSetup(props: Props) {
         return () => {
             window.removeEventListener("resize", handleResizeWindow);
         };
-    }, [deviceInfo, setDeviceInfo]);
+    }, [dispatch]);
 
     if (loading) return <LoadingScreen />;
 

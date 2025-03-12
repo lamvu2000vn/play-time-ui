@@ -62,7 +62,7 @@ export default function HeaderNotificationItem(props: Props) {
                 }}
             >
                 <div data-popup-id={id} data-popup-element={ElementAvailable.Notification}>
-                    <div className="w-full py-4 h-max overflow-hidden bg-base-100 border-2 border-primary rounded-box">
+                    <div className="w-full py-4 h-max overflow-hidden bg-base-100 border-2 border-primary rounded-2xl">
                         <div className="flex items-center justify-between mb-4 px-4">
                             <h3 className="text-xl font-bold">{translation("title")}</h3>
                             <div className="relative">

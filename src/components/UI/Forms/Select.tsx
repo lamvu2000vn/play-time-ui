@@ -10,8 +10,7 @@ export default function Select(props: Props) {
     return (
         <select
             {...props}
-            className={`relative py-2 px-3 w-full border-2 outline-2 !outline-offset-0 self-center bg-transparent rounded-full
-                focus:border-primary focus:outline focus:outline-primary disabled:brightness-80
+            className={`select w-full disabled:brightness-80
                 ${invalidClass}
                 ${props.className || ""}`}
         >

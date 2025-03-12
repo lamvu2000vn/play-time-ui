@@ -3,7 +3,7 @@
 import {memo} from "react";
 import Item from "../Item";
 import {IoSettingsSharp} from "react-icons/io5";
-import useVisibility from "@/helpers/hooks/useVisibility";
+import {useVisibility} from "@/helpers/hooks";
 
 interface Props {
     width: number;

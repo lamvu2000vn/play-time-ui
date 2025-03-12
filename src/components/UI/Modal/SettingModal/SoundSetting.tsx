@@ -1,24 +1,33 @@
-import {useRecoilState} from "recoil";
 import {SettingItem} from "./SettingModal";
-import {deviceInfoState} from "@/libs/recoil/atom";
 import {useTranslations} from "next-intl";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {selectDeviceInfo, updateDeviceInfo} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
 
 export default function SoundSetting() {
-    const [deviceInfo, setDeviceInfo] = useRecoilState(deviceInfoState);
+    const deviceInfo = useAppSelector(selectDeviceInfo);
+    const dispatch = useAppDispatch();
     const translation = useTranslations("common.modal.settingModal");
 
     const handleChangeBackgroundVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDeviceInfo((prevState) => ({
-            ...prevState!,
-            backgroundMusicVolume: +e.currentTarget.value,
-        }));
+        dispatch(
+            updateDeviceInfo({
+                volume: {
+                    backgroundMusicVolume: +e.currentTarget.value,
+                    systemSoundVolume: deviceInfo.volume.systemSoundVolume,
+                },
+            })
+        );
     };
 
     const handleChangeSystemVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDeviceInfo((prevState) => ({
-            ...prevState!,
-            systemSoundVolume: +e.currentTarget.value,
-        }));
+        dispatch(
+            updateDeviceInfo({
+                volume: {
+                    systemSoundVolume: +e.currentTarget.value,
+                    backgroundMusicVolume: deviceInfo.volume.backgroundMusicVolume,
+                },
+            })
+        );
     };
 
     return (
@@ -31,7 +40,7 @@ export default function SoundSetting() {
                         min={0}
                         max={1}
                         step={0.1}
-                        value={deviceInfo?.backgroundMusicVolume}
+                        value={deviceInfo.volume.backgroundMusicVolume}
                         className="range range-primary range-xs"
                         onChange={handleChangeBackgroundVolume}
                     />
@@ -45,7 +54,7 @@ export default function SoundSetting() {
                         min={0}
                         max={1}
                         step={0.1}
-                        value={deviceInfo!.systemSoundVolume}
+                        value={deviceInfo.volume.systemSoundVolume}
                         className="range range-primary range-xs"
                         onChange={handleChangeSystemVolume}
                     />

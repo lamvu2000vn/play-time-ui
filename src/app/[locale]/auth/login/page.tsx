@@ -1,16 +1,24 @@
 "use client";
 
 import AuthPage from "@/components/Pages/Auth/AuthPage";
-import {useAuth} from "@/helpers/hooks/useAuth";
-import {useRouter} from "next/navigation";
+import {LoadingScreen} from "@/components/UI";
+import {useRouter} from "@/i18n/routing";
+import {selectAuthState} from "@/libs/redux/features/auth/authSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {useEffect, useState} from "react";
 
 export default function Page() {
-    const {auth} = useAuth();
+    const isAuthenticated = useAppSelector(selectAuthState);
     const router = useRouter();
+    const [content, setContent] = useState<React.ReactNode>(<LoadingScreen />);
 
-    if (!auth.isAuthenticated) {
-        return <AuthPage openSection="login" />;
-    }
+    useEffect(() => {
+        if (!isAuthenticated) return setContent(<AuthPage openSection="login" />);
 
-    return router.back();
+        if (document.referrer.includes("auth")) return router.push("/");
+
+        return router.back();
+    }, [isAuthenticated, router]);
+
+    return content;
 }

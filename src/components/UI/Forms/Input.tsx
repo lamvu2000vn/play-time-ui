@@ -25,7 +25,7 @@ export default forwardRef(function Input(props: Props, ref: React.ForwardedRef<H
             <input
                 ref={ref}
                 {...props}
-                className={`relative w-full py-2 ${px} box-border border-2 outline-2 bg-transparent rounded-full focus:outline focus:border-primary focus:outline-primary disabled:brightness-80 ${invalidClass} ${
+                className={`relative w-full py-2 ${px} box-border outline-none border border-gray-300 bg-transparent rounded-full focus:outline focus:border-primary focus:outline-primary disabled:brightness-80 ${invalidClass} ${
                     props.className || ""
                 }`}
             />

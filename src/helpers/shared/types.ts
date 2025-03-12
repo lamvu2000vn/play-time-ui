@@ -8,7 +8,9 @@ import {MemoryDetails, MemoryGameSetup, MemorySpecialData} from "./interfaces/ga
 import {TicTacToeDetails, TicTacToeGameSetup, TicTacToeSpecialData} from "./interfaces/games/ticTacToeInterfaces";
 import {WSResponse} from "./interfaces/wsInterface";
 
-export type Theme = "myLightTheme" | "myDarkTheme";
+export type Protocol = "http" | "https" | undefined;
+export type DeviceType = "Mobile" | "Tablet" | "Desktop";
+export type Theme = "light" | "dark";
 export type Locales = "ar" | "en" | "es" | "fr" | "hi" | "ja" | "pt" | "ru" | "vi" | "zh";
 export type GameAvailable = "Tic Tac Toe" | "15 Puzzle" | "Memory";
 export type PlayerTurn = "random" | "me" | "opponent";

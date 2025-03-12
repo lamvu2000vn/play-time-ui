@@ -2,8 +2,8 @@ import {Direction, FifteenPuzzleBoardMatrix, Position} from "@/helpers/shared/ty
 import {useEffect, useRef, useState} from "react";
 import BaseBoard from "./BaseBoard";
 import {findEmptyPosition, getRefPosition, swapPosition} from "@/helpers/utils/games/fifteenPuzzleUtils";
-import {useRecoilValue} from "recoil";
-import {deviceInfoState} from "@/libs/recoil/atom";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {selectDeviceVolume} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
 
 interface Props {
     boardMatrix: FifteenPuzzleBoardMatrix;
@@ -13,7 +13,7 @@ interface Props {
 export default function MyBoard(props: Props) {
     const {boardMatrix, onUpdateBoardMatrix} = props;
 
-    const {systemSoundVolume} = useRecoilValue(deviceInfoState)!;
+    const {systemSoundVolume} = useAppSelector(selectDeviceVolume);
     const [emptyPosition, setEmptyPosition] = useState<Position>({y: 0, x: 0});
 
     const audioRef = useRef<HTMLAudioElement | null>(null);

@@ -264,7 +264,8 @@
                 "roomNotFound": "لم يتم العثور على الغرفة.",
                 "playAgainFailure": "لقد غادر الخصم الغرفة أو تم إلغاء الغرفة.",
                 "screenSizeNotSupported": "العبة تتطلب حجم شاشة أكبر.",
-                "unknown": "خطأ غير معروف."
+                "unknown": "خطأ غير معروف.",
+                "getMatchInfoFailure": "لا يمكن استرجاع بيانات المباراة."
             }
         },
         "error": {

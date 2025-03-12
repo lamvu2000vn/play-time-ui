@@ -6,14 +6,15 @@ import {FaKey, FaUser} from "react-icons/fa";
 import * as Yup from "yup";
 import {useEffect} from "react";
 import {showToast} from "@/helpers/utils/utils";
-import {useRouter} from "next/navigation";
-import {useAuth} from "@/helpers/hooks/useAuth";
 import MyTransition from "@/components/MyTransition";
 import AuthService from "@/services/AuthService";
 import {LoginPayload} from "@/helpers/shared/interfaces/apiInterface";
 import {useTranslations} from "next-intl";
-import useAudio from "@/helpers/hooks/useAudio";
 import {setDefaultAccessToken} from "@/libs/axios/apiClient";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {login, selectAuthState} from "@/libs/redux/features/auth/authSlice";
+import {useAudio} from "@/helpers/hooks";
+import {useRouter} from "@/i18n/routing";
 
 interface Props {
     show: boolean;
@@ -26,12 +27,14 @@ interface Props {
 }
 
 export default function LoginSection(props: Props) {
+    const isAuthenticated = useAppSelector(selectAuthState);
     const router = useRouter();
-    const {auth, login} = useAuth();
     const audio = useAudio();
 
     const pageTranslation = useTranslations("page.auth.login");
     const commonTranslation = useTranslations("common");
+
+    const dispatch = useAppDispatch();
 
     const handleLogin = async (payload: LoginPayload) => {
         const response = await AuthService.login(payload);
@@ -54,21 +57,21 @@ export default function LoginSection(props: Props) {
             }
         }
 
-        login(data.user);
+        dispatch(login({user: data.user}));
         setDefaultAccessToken(data.accessToken);
         showToast(
             <div>
                 {commonTranslation("welcome")} <b>{data.user.name}</b>
             </div>
         );
-        audio.welcome.play();
     };
 
     useEffect(() => {
-        if (auth?.isAuthenticated) {
-            return router.push("/");
+        if (isAuthenticated) {
+            audio.welcome.play();
+            router.push("/");
         }
-    }, [auth?.isAuthenticated, router]);
+    }, [audio.welcome, isAuthenticated, router]);
 
     const validationSchema = Yup.object({
         username: Yup.string()
@@ -90,11 +93,11 @@ export default function LoginSection(props: Props) {
         <MyTransition
             in={props.show}
             timeout={props.transition.timeout}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4"
+            className="absolute left-1/2 top-1/2 w-full max-w-md p-4"
             defaultStyles={props.transition.defaultStyle}
             transitionStyles={props.transition.transitionStyles}
         >
-            <div className="w-full h-max max-h-[90vh] overflow-auto rounded-box bg-base-100 shadow-custom-1 p-8 sm:p-14">
+            <div className="w-full h-max max-h-[90vh] overflow-auto rounded-2xl bg-base-100 shadow-custom-1 p-8 sm:p-14">
                 <div className="mb-8">
                     <h5 className="text-3xl font-bold text-center">{pageTranslation("title")}</h5>
                 </div>

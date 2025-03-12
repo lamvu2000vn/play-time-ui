@@ -86,11 +86,11 @@ export default function RegisterSection(props: Props) {
         <MyTransition
             in={props.show}
             timeout={props.transition.timeout}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4"
+            className="absolute left-1/2 top-1/2 w-full max-w-md p-4"
             defaultStyles={props.transition.defaultStyle}
             transitionStyles={props.transition.transitionStyles}
         >
-            <div className="w-full h-max max-h-[90vh] overflow-auto rounded-box bg-base-100 shadow-custom-1 p-8 sm:p-14">
+            <div className="w-full h-max max-h-[90vh] overflow-auto rounded-2xl bg-base-100 shadow-custom-1 p-8 sm:p-14">
                 <div className="mb-8">
                     <h5 className="text-3xl font-bold text-center">{pageTranslation("title")}</h5>
                 </div>

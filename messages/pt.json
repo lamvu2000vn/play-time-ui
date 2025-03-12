@@ -264,7 +264,8 @@
                 "roomNotFound": "Quarto não encontrado.",
                 "playAgainFailure": "O oponente saiu da sala ou a sala foi cancelada.",
                 "screenSizeNotSupported": "O jogo requer um tamanho de tela maior.",
-                "unknown": "Erro desconhecido."
+                "unknown": "Erro desconhecido.",
+                "getMatchInfoFailure": "Não foi possível obter os dados da partida."
             }
         },
         "error": {

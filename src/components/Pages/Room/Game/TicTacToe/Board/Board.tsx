@@ -1,9 +1,10 @@
 import {Position, TicTacToeBoardMatrix} from "@/helpers/shared/types";
-import {useMemo} from "react";
-import {useRecoilValue} from "recoil";
+import {JSX, useMemo} from "react";
 import Cell from "./Cell";
-import {ticTacToeMatchInfoState} from "@/libs/recoil/atom";
 import {Moves} from "../TicTacToeGame";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {selectTicTacToeMatchInfo} from "@/libs/redux/features/ticTacToeMatchInfo/ticTacToeMatchInfoSlice";
 
 interface Props {
     boardMatrix: TicTacToeBoardMatrix;
@@ -14,11 +15,10 @@ interface Props {
 export default function Board(props: Props) {
     const {moves, boardMatrix, onPlayerMove} = props;
 
-    const myMatchInfo = useRecoilValue(ticTacToeMatchInfoState)!;
+    const {gameSetup, gameSpecialData} = useAppSelector(selectTicTacToeMatchInfo)!;
+    const {matchStatus} = useAppSelector(selectBaseMatchInfo);
     const {highlightMoves} = moves;
-    const {matchStatus, game} = myMatchInfo;
-    const {gameSetup, specialData} = game;
-    const {currentTurn, myType} = specialData;
+    const {currentTurn, myType} = gameSpecialData;
 
     const drawCells = (): JSX.Element[] => {
         let index = 0;
@@ -63,7 +63,7 @@ export default function Board(props: Props) {
     }, [gameSetup.boardSize]);
 
     return (
-        <div className="portrait:w-full landscape:h-full aspect-square p-8 xl:p-12">
+        <div className="portrait:w-full landscape:h-full max-w-[30rem] max-h-[30rem] aspect-square p-8 xl:p-12">
             <div className="w-full h-full aspect-square">
                 <div className="w-full h-full grid" style={gridStyles}>
                     {drawCells()}

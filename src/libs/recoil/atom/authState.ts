@@ -5,6 +5,13 @@ export default atom<Auth>({
     key: "authState",
     default: {
         isAuthenticated: false,
-        user: null,
+        user: {
+            _id: "",
+            avatarUrl: "",
+            coin: 0,
+            gameStatistics: [],
+            name: "",
+            socketId: "",
+        },
     },
 });

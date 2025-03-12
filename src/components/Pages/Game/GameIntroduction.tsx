@@ -1,19 +1,18 @@
 import {Card, ImageWithSkeleton} from "@/components/UI";
-import {GameInfo, GameStatistics} from "@/helpers/shared/interfaces/commonInterface";
+import {GameInfo} from "@/helpers/shared/interfaces/commonInterface";
 import {GameAvailable} from "@/helpers/shared/types";
 import {useTranslations} from "next-intl";
 
 interface Props {
-    gameInfo: GameInfo | null;
-    gameStatistics: GameStatistics | null;
+    gameInfo?: GameInfo;
 }
 
 export default function GameIntroduction(props: Props) {
-    const {gameInfo, gameStatistics} = props;
+    const {gameInfo} = props;
     const translation = useTranslations("page.game");
 
     // Skeleton
-    if (!gameInfo || !gameStatistics) {
+    if (!gameInfo) {
         return (
             <div className="w-full flex mb-4">
                 <div className="basis-1/5">

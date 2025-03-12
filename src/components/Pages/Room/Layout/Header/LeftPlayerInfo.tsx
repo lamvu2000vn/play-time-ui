@@ -23,7 +23,7 @@ export default function LeftPlayerInfo(props: Props) {
                         <div className="text-sm xl:text-lg text-end font-semibold">{score}</div>
                     </div>
                 </div>
-                <div className="flex-shrink-0 aspect-square">
+                <div className="shrink-0 aspect-square">
                     <div className="aspect-square relative rounded-full overflow-hidden">
                         <ImageWithSkeleton src={playerInfo.avatarUrl} fill />
                     </div>

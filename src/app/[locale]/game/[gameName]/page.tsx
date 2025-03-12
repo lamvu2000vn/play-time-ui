@@ -1,61 +1,54 @@
 "use client";
 
 import NotFound from "@/components/Pages/NotFoundPage";
-import {deviceInfoState, gameListState, gameStatisticsState, roomInfoState} from "@/libs/recoil/atom";
-import {useRecoilState, useRecoilValue} from "recoil";
-import {useEffect, useState} from "react";
+import {use, useEffect, useState} from "react";
 import {Card, Container} from "@/components/UI";
 import MyTransition from "@/components/MyTransition";
 import Ranking from "@/components/Pages/Game/Ranking";
 import {GameSetupModal, RequireLargerScreenModal} from "@/components/UI/Modal";
 import LookingForGameModal from "@/components/UI/Modal/LookingForGameModal";
-import UserService from "@/services/UserService";
-import {useAuth} from "@/helpers/hooks/useAuth";
 import GameIntroduction from "@/components/Pages/Game/GameIntroduction";
 import Menu from "@/components/Pages/Game/Menu";
-import {useRouter} from "next/navigation";
 import WebSocketService from "@/services/WebSocketService";
-import {ticTacToeDefaultSetup} from "@/helpers/shared/data";
+import {fifteenPuzzleDefaultSetup, memoryDefaultSetup, ticTacToeDefaultSetup} from "@/helpers/shared/data";
 import {showToast} from "@/helpers/utils/utils";
 import {GameAvailable, WSCallbackFunc} from "@/helpers/shared/types";
 import socket from "@/libs/socket.io/socket";
 import {CreateRoomData} from "@/helpers/shared/interfaces/wsInterface";
 import PlayerStatistics from "@/components/Pages/Game/PlayerStatistics";
 import {checkScreenWidthValid} from "@/helpers/utils/checkScreenWidthValid";
+import {useAppSelector, useAppDispatch} from "@/libs/redux/hooks";
+import {selectRoomInfo, setRoomInfo} from "@/libs/redux/features/roomInfo/roomInfoSlice";
+import {selectDeviceInfo} from "@/libs/redux/features/deviceInfo/deviceInfoSlice";
+import {selectGameInfoByName} from "@/libs/redux/features/gameList/gameListSlice";
+import {selectGameStatisticsById, selectUser} from "@/libs/redux/features/auth/authSlice";
+import {setGameId} from "@/libs/redux/features/ui/uiSlice";
+import {useVisibility} from "@/helpers/hooks";
+import {useRouter} from "@/i18n/routing";
 
 interface Props {
-    params: {
-        gameName: string;
-    };
+    params: Promise<{gameName: string}>;
 }
 
 export default function Page(props: Props) {
-    const {params} = props;
-    const {auth} = useAuth();
-    const user = auth.user!;
-    const gameList = useRecoilValue(gameListState);
-    const [allGameStatistics, setAllGameStatistics] = useRecoilState(gameStatisticsState);
-    const [roomInfo, setRoomInfo] = useRecoilState(roomInfoState);
-    const {screen} = useRecoilValue(deviceInfoState)!;
-    const [error, setError] = useState<string>("");
-    const [show, setShow] = useState<boolean>(false);
-    const [showGameSetupModal, setShowGameSetupModal] = useState<boolean>(false);
-    const [showLookingForGameModal, setShowLookingForGameModal] = useState<boolean>(false);
-    const [showRequireLargerScreenModal, setShowRequireLargerScreenModal] = useState<boolean>(false);
+    const {gameName} = use(props.params);
+    const user = useAppSelector(selectUser);
+    const gameInfo = useAppSelector(selectGameInfoByName(gameName));
+    const gameStatistics = useAppSelector(selectGameStatisticsById(gameInfo?._id));
+    const roomInfo = useAppSelector(selectRoomInfo);
+    const {screen} = useAppSelector(selectDeviceInfo);
     const [requiredWidth, setRequiredWidth] = useState<number>(0);
-
+    const dispatch = useAppDispatch();
     const router = useRouter();
-
-    const gameInfo = gameList.find((gameInfo) => gameInfo.alternativeName === params.gameName)!;
-    const gameStatistics = allGameStatistics.find((statistics) => statistics.gameInfo._id === gameInfo._id) || null;
-    const gameName = gameInfo.name as GameAvailable;
+    const {visibility, hide, show} = useVisibility();
+    const [showPage, setShowPage] = useState<boolean>(false);
 
     const isScreenWidthValid = (): boolean => {
-        const {isValid, requiredWidth: width} = checkScreenWidthValid(gameName, screen.availWidth);
+        const {isValid, requiredWidth: width} = checkScreenWidthValid(gameInfo!.name, screen.availWidth);
 
         if (!isValid) {
             setRequiredWidth(width);
-            setShowRequireLargerScreenModal(true);
+            show("requireLargerScreenModal");
             return false;
         }
 
@@ -64,20 +57,33 @@ export default function Page(props: Props) {
 
     const handleShowGameSetupModal = () => {
         if (isScreenWidthValid()) {
-            setShowGameSetupModal(true);
+            show("gameSetupModal");
         }
     };
-    const handleCloseGameSetupModal = () => setShowGameSetupModal(false);
-    const handleShowLookingForGameModal = () => setShowLookingForGameModal(true);
-    const handleCloseLookingForGameModal = () => setShowLookingForGameModal(false);
 
     const handleQuickMatchStart = async () => {
-        if (!isScreenWidthValid()!) return;
+        if (!isScreenWidthValid() || !gameInfo) return;
+
+        let gameSetup: unknown;
+
+        switch (gameName as GameAvailable) {
+            case "Tic Tac Toe":
+                gameSetup = ticTacToeDefaultSetup;
+                break;
+            case "15 Puzzle":
+                gameSetup = fifteenPuzzleDefaultSetup;
+                break;
+            case "Memory":
+                gameSetup = memoryDefaultSetup;
+                break;
+            default:
+                gameSetup = ticTacToeDefaultSetup;
+        }
 
         const {status, data} = await WebSocketService.createNewRoom({
             gameId: gameInfo._id,
             hostId: user._id,
-            gameSetup: ticTacToeDefaultSetup,
+            gameSetup,
             type: "Random",
         });
 
@@ -86,40 +92,57 @@ export default function Page(props: Props) {
             return;
         }
 
-        setRoomInfo({
-            roomId: data._id,
-            hostId: data.hostId,
-            joinerId: data.joinerId,
-            gameId: data.gameId,
-            gameSetup: data.gameSetup,
-            matchStatus: data.matchStatus,
-            type: data.type,
-        });
-        handleShowLookingForGameModal();
+        dispatch(
+            setRoomInfo({
+                roomId: data._id,
+                hostId: data.hostId,
+                joinerId: data.joinerId,
+                gameId: data.gameId,
+                gameSetup: data.gameSetup,
+                matchStatus: data.matchStatus,
+                type: data.type,
+            })
+        );
+        show("lookingForGameModal");
     };
+
+    useEffect(() => {
+        setShowPage(true);
+    }, []);
+
+    useEffect(() => {
+        if (gameInfo) {
+            dispatch(setGameId({gameId: gameInfo._id}));
+        }
+    }, [dispatch, gameInfo]);
 
     useEffect(() => {
         if (
             (roomInfo && roomInfo.type === "PlayWithFriend") ||
-            (roomInfo && roomInfo.type === "Random" && roomInfo.hostId !== null && roomInfo.joinerId !== null)
+            (roomInfo && roomInfo.type === "Random" && roomInfo.hostId !== "" && roomInfo.joinerId !== "")
         ) {
+            hide("gameSetupModal");
             return router.push(`/room/${roomInfo.roomId}`);
         }
-    }, [roomInfo, router]);
+    }, [hide, roomInfo, router]);
 
     useEffect(() => {
         const handleQuickMatchFounded = async (payload: CreateRoomData, callback: WSCallbackFunc<object>) => {
+            console.log("ok");
             callback({status: "ok", message: "Success", data: payload});
 
-            setRoomInfo({
-                roomId: payload._id,
-                hostId: payload.hostId,
-                joinerId: payload.joinerId,
-                gameId: payload.gameId,
-                gameSetup: payload.gameSetup,
-                matchStatus: payload.matchStatus,
-                type: payload.type,
-            });
+            dispatch(
+                setRoomInfo({
+                    roomId: payload._id,
+                    hostId: payload.hostId,
+                    joinerId: payload.joinerId,
+                    gameId: payload.gameId,
+                    gameSetup: payload.gameSetup,
+                    matchStatus: payload.matchStatus,
+                    type: payload.type,
+                })
+            );
+            hide("lookingForGameModal");
         };
 
         socket.on("quickMatchFounded", handleQuickMatchFounded);
@@ -127,45 +150,20 @@ export default function Page(props: Props) {
         return () => {
             socket.off("quickMatchFounded", handleQuickMatchFounded);
         };
-    }, [setRoomInfo]);
+    }, [dispatch, hide]);
 
-    useEffect(() => {
-        const getGameStatistics = async () => {
-            const response = await UserService.getAllGameStatistics(user._id);
-
-            if (!response || response.status !== 200 || !Object.keys(response.data).length) {
-                setError("Không thể tải thống kê trò chơi. Vui lòng tải lại trang hoặc thử lại sau.");
-                return;
-            }
-
-            const data = response.data;
-
-            setAllGameStatistics(data);
-        };
-
-        if (!allGameStatistics.length) {
-            getGameStatistics();
-        }
-    }, [allGameStatistics.length, setAllGameStatistics, user._id]);
-
-    useEffect(() => {
-        setShow(true);
-    }, []);
-
-    if (!gameInfo) return <NotFound />;
-
-    if (error) return <div>{error}</div>;
+    if (!gameInfo || !gameStatistics) return <NotFound />;
 
     return (
         <>
             <Container>
                 <MyTransition
-                    in={show}
-                    timeout={1000}
+                    in={showPage}
+                    timeout={300}
                     defaultStyles={{
                         transform: "translateY(3rem)",
                         opacity: 0,
-                        transition: "all 1s ease-in-out",
+                        transition: "all 300ms ease-in-out",
                     }}
                     transitionStyles={{
                         entering: {transform: "translateY(0)", opacity: 1},
@@ -175,7 +173,7 @@ export default function Page(props: Props) {
                         unmounted: {transform: "translateY(3rem)", opacity: 0},
                     }}
                 >
-                    <GameIntroduction gameInfo={gameInfo} gameStatistics={gameStatistics} />
+                    <GameIntroduction gameInfo={gameInfo} />
                     <div className="flex flex-wrap gap-4">
                         <div className="basis-full lg:basis-2/5">
                             <div className="w-full h-full flex flex-col items-stretch">
@@ -201,11 +199,15 @@ export default function Page(props: Props) {
                     </div>
                 </MyTransition>
             </Container>
-            <GameSetupModal gameInfo={gameInfo} show={showGameSetupModal} onClose={handleCloseGameSetupModal} />
-            <LookingForGameModal show={showLookingForGameModal} onClose={handleCloseLookingForGameModal} />
+            <GameSetupModal
+                gameInfo={gameInfo}
+                show={visibility.gameSetupModal}
+                onClose={() => hide("gameSetupModal")}
+            />
+            <LookingForGameModal show={visibility.lookingForGameModal} onClose={() => hide("lookingForGameModal")} />
             <RequireLargerScreenModal
-                show={showRequireLargerScreenModal}
-                onClose={() => setShowRequireLargerScreenModal(false)}
+                show={visibility.requireLargerScreenModal}
+                onClose={() => hide("requireLargerScreenModal")}
                 requiredWidth={requiredWidth}
             />
         </>

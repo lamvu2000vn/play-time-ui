@@ -7,7 +7,7 @@ import Item from "../Item";
 import HeaderNotificationItem from "./HeaderNotificationItem";
 import {usePathname} from "next/navigation";
 import SettingButton from "../Buttons/SettingButton";
-import useVisibility from "@/helpers/hooks/useVisibility";
+import {useVisibility} from "@/helpers/hooks";
 
 export default memo(function Header() {
     const notificationElId = useRef<string>(generateRandomString());

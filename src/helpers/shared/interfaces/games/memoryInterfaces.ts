@@ -50,5 +50,5 @@ export interface MemoryFinishTheMatchPayload {
 
 export interface MemoryMatchResultsPayload {
     winnerId: string | undefined;
-    matchStatistics: MatchStatistics;
+    matchStatistics: MatchStatistics | null;
 }

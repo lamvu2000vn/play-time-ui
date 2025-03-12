@@ -264,7 +264,8 @@
                 "roomNotFound": "Salle non trouvée.",
                 "playAgainFailure": "L'adversaire a quitté la salle ou la salle a été annulée.",
                 "screenSizeNotSupported": "Le jeu nécessite un écran plus grand.",
-                "unknown": "Erreur inconnue."
+                "unknown": "Erreur inconnue.",
+                "getMatchInfoFailure": "Impossible de récupérer les données du match."
             }
         },
         "error": {

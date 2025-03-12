@@ -4,137 +4,110 @@ import ErrorSection from "@/components/Pages/Room/ErrorSection";
 import PreparingRoomSection from "@/components/Pages/Room/PreparingRoomSection";
 import WaitingRoomSection from "@/components/Pages/Room/WaitingRoomSection";
 import {LoadingScreen} from "@/components/UI";
-import {useAuth} from "@/helpers/hooks/useAuth";
-import {WSCallbackFunc} from "@/helpers/shared/types";
-import {roomInfoState, matchInfoState, baseMatchInfoState} from "@/libs/recoil/atom";
-import socket from "@/libs/socket.io/socket";
 import WebSocketService from "@/services/WebSocketService";
-import {useCallback, useEffect, useState} from "react";
-import {useRecoilState, useSetRecoilState} from "recoil";
-import {MatchInfo, PlayerMatchStatistics} from "@/helpers/shared/interfaces/commonInterface";
+import {use, useEffect} from "react";
 import MatchCompletedSection from "@/components/Pages/Room/MatchCompletedSection";
 import JoinRoomSection from "@/components/Pages/Room/JoinRoomSection";
 import StartTheGameSection from "@/components/Pages/Room/StartTheGameSection";
-import {initializeData} from "@/helpers/utils/games/baseMatchInfoUtils";
+import {useAppDispatch, useAppSelector} from "@/libs/redux/hooks";
+import {clearRoomInfo, selectRoomInfo} from "@/libs/redux/features/roomInfo/roomInfoSlice";
+import {selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import WSEventListener from "@/components/Pages/Room/Layout/WSEventListener";
+import {changeShowingScreen, selectShowingScreen} from "@/libs/redux/features/inMatchData/inMatchDataSlice";
+import {useRouter} from "@/i18n/routing";
 
 interface Props {
-    params: {
-        roomId: string;
-    };
+    params: Promise<{roomId: string}>;
 }
 
-export type Screen =
-    | "loadingScreen"
-    | "errorScreen"
-    | "preparingRoomScreen"
-    | "startTheGameScreen"
-    | "matchCompletedScreen"
-    | "waitingRoomScreen"
-    | "joinRoomScreen";
-
-export type MatchCompletedFunc = (newPlayerMatchStatistics: PlayerMatchStatistics, isLeavedRoom?: boolean) => void;
+const SWITCH_SCREEN_DELAY = 3000; // 3 seconds
 
 export default function Page(props: Props) {
-    const {params} = props;
+    const params = use(props.params);
 
-    const [roomInfo, setRoomInfo] = useRecoilState(roomInfoState);
-    const [matchInfo, setMatchInfo] = useRecoilState(matchInfoState);
-    const setBaseMatchInfo = useSetRecoilState(baseMatchInfoState);
-    const [error, setError] = useState<string>("");
-    const [playerMatchStatistics, setPlayerMatchStatistics] = useState<PlayerMatchStatistics | null>(null);
-    const [screenShowing, setScreenShowing] = useState<Screen>("loadingScreen");
-    const [leavedRoom, setLeavedRoom] = useState<boolean>(false);
-    const {auth} = useAuth();
-    const user = auth.user!;
+    const roomInfo = useAppSelector(selectRoomInfo);
+    const baseMatchInfo = useAppSelector(selectBaseMatchInfo);
+    const screenShowing = useAppSelector(selectShowingScreen);
+    const router = useRouter();
+    const dispatch = useAppDispatch();
 
-    const handleMatchCompleted = useCallback<MatchCompletedFunc>(
-        (newPlayerMatchStatistics: PlayerMatchStatistics, isLeavedRoom: boolean = false) => {
-            setLeavedRoom(isLeavedRoom);
-            setPlayerMatchStatistics(newPlayerMatchStatistics);
-        },
-        []
-    );
-
-    const handleSetError = (error: string) => {
-        setError(error);
-        setScreenShowing("errorScreen");
-    };
-
-    const handleChangeScreen = (screen: Screen) => setScreenShowing(screen);
-
-    useEffect(() => {
-        const handleJoinedRoom = (_, callback: WSCallbackFunc<object>) => {
-            callback({status: "ok", message: "Success", data: {}});
-            setScreenShowing("preparingRoomScreen");
-        };
-
-        const handleStartTheGame = async (payload: MatchInfo, callback: WSCallbackFunc<object>) => {
-            callback({
-                status: "ok",
-                message: "Success",
-                data: {},
-            });
-
-            setMatchInfo(payload);
-            setBaseMatchInfo(initializeData(payload, user));
-            setScreenShowing("startTheGameScreen");
-        };
-
-        socket.on("joinedRoom", handleJoinedRoom);
-        socket.on("startTheGame", handleStartTheGame);
-
-        return () => {
-            socket.off("joinedRoom", handleJoinedRoom);
-            socket.off("startTheGame", handleStartTheGame);
-        };
-    }, [setBaseMatchInfo, setMatchInfo, setRoomInfo, user, user._id]);
+    const {roomId, myMatchStatistics, matchStatus, isLeaved} = baseMatchInfo;
 
     useEffect(() => {
         if (!roomInfo) {
-            setScreenShowing("joinRoomScreen");
+            dispatch(changeShowingScreen({screen: "joinRoomScreen"}));
             return;
         }
 
         if (roomInfo.type === "PlayWithFriend") {
-            setScreenShowing("waitingRoomScreen");
+            dispatch(changeShowingScreen({screen: "waitingRoomScreen"}));
             return;
         }
 
         if (roomInfo.type === "Random") {
             WebSocketService.readyForQuickMatch(roomInfo.roomId);
-            setScreenShowing("preparingRoomScreen");
+            dispatch(changeShowingScreen({screen: "preparingRoomScreen"}));
             return;
         }
-    }, [roomInfo]);
 
+        return () => {
+            dispatch(changeShowingScreen({screen: "loadingScreen"}));
+        };
+    }, [dispatch, roomInfo]);
+
+    // Switch to startTheGame screen
     useEffect(() => {
-        if (playerMatchStatistics) {
-            setTimeout(
-                () => {
-                    setScreenShowing("matchCompletedScreen");
-                },
-                leavedRoom ? 0 : 3000
-            );
+        if (baseMatchInfo.roomId) {
+            dispatch(changeShowingScreen({screen: "startTheGameScreen"}));
         }
-    }, [leavedRoom, playerMatchStatistics]);
+    }, [baseMatchInfo, dispatch]);
+
+    // Switch to matchCompleted screen
+    useEffect(() => {
+        if (roomId && matchStatus === "completed") {
+            if (!myMatchStatistics) {
+                setTimeout(() => {
+                    dispatch(changeShowingScreen({screen: "loadingScreen"}));
+                    router.push("/");
+                    dispatch(clearRoomInfo());
+                }, SWITCH_SCREEN_DELAY);
+            } else {
+                setTimeout(
+                    () => {
+                        dispatch(changeShowingScreen({screen: "matchCompletedScreen"}));
+                    },
+                    isLeaved ? 0 : SWITCH_SCREEN_DELAY
+                );
+            }
+        }
+    }, [isLeaved, dispatch, matchStatus, myMatchStatistics, roomId, router]);
+
+    let content: React.JSX.Element;
 
     switch (screenShowing) {
         case "loadingScreen":
-            return <LoadingScreen />;
+            content = <LoadingScreen />;
+            break;
         case "joinRoomScreen":
-            return (
-                <JoinRoomSection roomId={params.roomId} onError={handleSetError} onChangeScreen={handleChangeScreen} />
-            );
+            content = <JoinRoomSection roomId={params.roomId} />;
+            break;
         case "errorScreen":
-            return <ErrorSection message={error} />;
+            content = <ErrorSection />;
+            break;
         case "preparingRoomScreen":
-            return <PreparingRoomSection />;
+            content = <PreparingRoomSection />;
+            break;
         case "startTheGameScreen":
-            return <StartTheGameSection gameName={matchInfo!.game.info.name} onMatchCompleted={handleMatchCompleted} />;
+            content = <StartTheGameSection />;
+            break;
         case "matchCompletedScreen":
-            return <MatchCompletedSection leavedRoom={leavedRoom} playerMatchStatistics={playerMatchStatistics!} />;
+            content = <MatchCompletedSection />;
+            break;
         case "waitingRoomScreen":
         default:
-            return <WaitingRoomSection />;
+            content = <WaitingRoomSection />;
+            break;
     }
+
+    return <WSEventListener>{content}</WSEventListener>;
 }

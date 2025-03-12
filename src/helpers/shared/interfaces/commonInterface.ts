@@ -1,4 +1,14 @@
-import {ChatType, GameAvailable, MatchStatus, PlayerTurn, Theme, WaitingRoomType} from "../types";
+import {
+    BackgroundImageAvailable,
+    ChatType,
+    DeviceType,
+    GameAvailable,
+    Locales,
+    MatchStatus,
+    PlayerTurn,
+    Theme,
+    WaitingRoomType,
+} from "../types";
 
 export interface HTMLElementOtherProps {
     "data-trigger-popup"?: string;
@@ -15,10 +25,14 @@ export interface HTMLElementPosition {
 
 export interface DeviceInfo {
     userAgent: string;
-    language: string;
+    type: DeviceType;
+    language: Locales;
     theme: Theme;
-    backgroundMusicVolume: number;
-    systemSoundVolume: number;
+    backgroundImage: BackgroundImageAvailable;
+    volume: {
+        backgroundMusicVolume: number;
+        systemSoundVolume: number;
+    };
     screen: {
         width: number;
         height: number;
@@ -40,11 +54,12 @@ export interface UserInfo {
     avatarUrl: string;
     socketId: string | null;
     coin: number;
+    gameStatistics: GameStatistics[];
 }
 
 export interface Auth {
     isAuthenticated: boolean;
-    user: UserInfo | null;
+    user: UserInfo;
 }
 
 export interface GameInfo {
@@ -109,19 +124,19 @@ export interface CreateNewRoom<G> {
 export interface RoomInfo {
     roomId: string;
     hostId: string;
-    joinerId: string;
+    joinerId: string | null;
     gameId: string;
     gameSetup: string;
     type: WaitingRoomType;
     matchStatus: MatchStatus | null;
 }
 
-export interface MatchInfo<Details = object, GameSetup = object> {
+export interface MatchInfo {
     roomId: string;
     game: {
         info: GameInfo;
-        details: Details;
-        gameSetup: GameSetup;
+        details: object;
+        gameSetup: object;
     };
     hostInfo: PlayerInfo;
     joinerInfo: PlayerInfo;
@@ -134,15 +149,15 @@ export interface BaseMatchInfo {
     winner: PlayerTurn | null;
     isDraw: boolean;
     matchStatus: MatchStatus;
+    myMatchStatistics: PlayerMatchStatistics | null;
+    isLeaved: boolean;
 }
 
-export interface MyMatchInfo<GameSetup, Details, Data> extends BaseMatchInfo {
-    game: {
-        info: GameInfo;
-        gameSetup: GameSetup;
-        details: Details;
-        specialData: Data;
-    };
+export interface MyMatchInfo<GameSetup, Details, Data> {
+    gameInfo: GameInfo;
+    gameSetup: GameSetup;
+    gameDetails: Details;
+    gameSpecialData: Data;
 }
 
 export interface ScoreStatistics {
@@ -152,12 +167,13 @@ export interface ScoreStatistics {
 }
 
 export interface GameStatistics {
-    gameInfo: GameInfo;
+    gameId: string;
+    level: number;
     totalScore: number;
     numOfWin: number;
     numOfLose: number;
     numOfDraw: number;
-    scoreStatistics: ScoreStatistics;
+    scoreForNextLevel: number;
 }
 
 export interface PlayerMatchStatistics {
@@ -194,12 +210,4 @@ export interface TransformedHistory {
     drawCount: number;
     createdAt: string;
     updatedAt: string;
-}
-
-export interface GameContext {
-    gameName: GameAvailable | "";
-    stopTheMatch: boolean;
-    messages: ChatContent[];
-    seconds: number;
-    onSetMyMatchStatistics: (matchStatistics: PlayerMatchStatistics) => void;
 }

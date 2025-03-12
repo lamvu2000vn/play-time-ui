@@ -1,11 +1,10 @@
 import MyTransition from "@/components/MyTransition";
 import {CloseButton} from "@/components/UI";
-import {useAuth} from "@/helpers/hooks/useAuth";
 import {PaidItem} from "@/helpers/shared/interfaces/commonInterface";
-import {matchInfoState} from "@/libs/recoil/atom";
+import {selectUser} from "@/libs/redux/features/auth/authSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
 import WebSocketService from "@/services/WebSocketService";
 import Image from "next/image";
-import {useRecoilValue} from "recoil";
 
 interface Props {
     show: boolean;
@@ -15,9 +14,8 @@ interface Props {
 
 export default function StickerPopup(props: Props) {
     const {show, stickers, onClose} = props;
-    const matchInfo = useRecoilValue(matchInfoState)!;
-    const {auth} = useAuth();
-    const user = auth.user!;
+    const matchInfo = useAppSelector((state) => state.matchInfo)!;
+    const user = useAppSelector(selectUser);
 
     const handleSendSticker = async (sticker: PaidItem) => {
         await WebSocketService.sendMessageInGame(matchInfo.roomId, {
@@ -31,7 +29,7 @@ export default function StickerPopup(props: Props) {
         <MyTransition
             in={show}
             timeout={300}
-            className="absolute right-0 bottom-full aspect-square lg:aspect-[3/4] w-[80%] h-auto rounded-box shadow-custom-1 bg-base-100 pt-8 pb-4"
+            className="absolute right-0 bottom-full aspect-[3/4] w-[80%] h-auto rounded-2xl shadow-custom-1 bg-base-100 pt-8 pb-4"
             defaultStyles={{
                 opacity: 0,
                 transform: "translateY(1rem)",
@@ -53,7 +51,7 @@ export default function StickerPopup(props: Props) {
                     {stickers.map((sticker, index) => (
                         <div key={index} className="w-full p-2">
                             <div
-                                className="cursor-pointer rounded-box hover:shadow-custom-1"
+                                className="cursor-pointer rounded-2xl hover:shadow-custom-1"
                                 onClick={() => handleSendSticker(sticker)}
                             >
                                 <Image

@@ -1,10 +1,11 @@
 import {ImageWithSkeleton} from "@/components/UI";
-import {GameContext} from "@/helpers/contexts";
 import {MemoryCardState} from "@/helpers/shared/interfaces/games/memoryInterfaces";
-import {baseMatchInfoState, memoryMatchInfoState} from "@/libs/recoil/atom";
-import {memo, useContext, useEffect, useRef} from "react";
+import {selectBaseMatchInfo} from "@/libs/redux/features/baseMatchInfo/baseMatchInfoSlice";
+import {selectStopTheMatchState} from "@/libs/redux/features/inMatchData/inMatchDataSlice";
+import {selectMemoryMatchInfo} from "@/libs/redux/features/memoryMatchInfo/memoryMatchInfoSlice";
+import {useAppSelector} from "@/libs/redux/hooks";
+import {memo, useEffect, useRef} from "react";
 import {FaStar} from "react-icons/fa6";
-import {useRecoilValue} from "recoil";
 
 interface Props {
     index: number;
@@ -15,12 +16,11 @@ interface Props {
 export default memo(function Card(props: Props) {
     const {index, cardState, onCardClick} = props;
 
-    const {matchStatus} = useRecoilValue(baseMatchInfoState)!;
-    const {game} = useRecoilValue(memoryMatchInfoState)!;
-    const {stopTheMatch} = useContext(GameContext);
+    const {matchStatus} = useAppSelector(selectBaseMatchInfo)!;
+    const {gameSpecialData} = useAppSelector(selectMemoryMatchInfo)!;
+    const isStopTheMatch = useAppSelector(selectStopTheMatchState);
 
     const {card, flipStatus, hidden} = cardState;
-    const {specialData} = game;
 
     const cardRef = useRef<HTMLDivElement>(null);
 
@@ -29,8 +29,8 @@ export default memo(function Card(props: Props) {
             flipStatus === "flipping" ||
             flipStatus === "flipped" ||
             hidden ||
-            specialData.currentTurn === "opponent" ||
-            stopTheMatch ||
+            gameSpecialData.currentTurn === "opponent" ||
+            isStopTheMatch ||
             matchStatus === "completed"
         )
             return;
